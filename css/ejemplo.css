@@ -1,0 +1,62 @@
+.colorDiv{
+  width: 100%;
+  height: 120px;
+  background: black;
+  padding: 10px 0 10px 0;
+}
+
+.listaColor{
+  list-style: none;
+}
+
+.listaColor li{
+  float: left;
+}
+
+.listaColor li div{
+  width: 110px;
+  height: 100px;
+  padding: 10px;
+  user-select: none;
+  -moz-user-select: none;
+}
+
+.color1{
+  background: #f3f9fb;
+}
+
+.color2{
+  background: #87c0cd;
+}
+
+.color3{
+  background: #226597;
+  color: white;
+}
+
+.color4{
+  background: #113f67;
+  color: white;
+}
+
+.color5{
+  background: #c2c9cf;
+}
+
+.nota{
+  margin: 5px;
+  color: white;
+  font-size: 1.2em;
+  background: #d65a31;
+}
+
+@media only screen and (max-width: 400px) {
+  .nota{
+    display: none;
+  }
+
+  .colorDiv{
+    display: none;
+  }
+
+}

@@ -1,0 +1,865 @@
+/*Importa la letra Poppins*/
+@font-face {
+  font-family: Poppins-Regular;
+  src: url("../webfonts/Poppins-Regular.ttf");
+}
+
+/*Quita el relleno y margen de todos los elementos y les asigna
+  la letra Poppins*/
+*{
+  padding: 0;
+  margin: 0;
+  font-family: Poppins-Regular;
+}
+
+/*Quitar decoración de los enlaces, poner el color por defecto como negro*/
+a{
+  text-decoration: none;
+  color: black;
+}
+
+/*Evita el cambio de apariencia del enlace cunado es visitado*/
+a:visited{
+  color: black;
+}
+
+/*Contiene los elementos del sitio en un espacio de 1200px y lo centra*/
+.contenedor{
+  margin: 0 auto;
+  width: 1200px;
+}
+
+/*Quitar el color blanco y se cambia por un celeste muy claro.*/
+.contenido{
+  background-color: #f3f9fb;
+}
+
+/*Se separa el contenido del menu de sus bordes */
+menu{
+  padding: 10px 0;
+}
+
+/* Se define el tamaño del logo de la página*/
+.logo{
+  height: 64px;
+  width: 64px;
+}
+
+/*Ocultar el icono del menu responsivo */
+menu i {
+  visibility: hidden;
+}
+
+/*Posicionar el menu al lado derecho de la pantalla*/
+menu div{
+  float:right;
+}
+
+/*Contenedor de los elementos de navegación del menu. Quitando el estilo de
+    la lista y posicionandolo en el eje z de manera que el menu menuResponsivo
+    permanezca por encima de cualquier otro contenido*/
+menu ul{
+  z-index: 99999;
+  list-style: none;
+}
+
+/*Situar los elementos de navegacion uno al lado del otro de izquierda a
+    derecha. Se separan de los bordes y de si mismos.*/
+menu ul li{
+  float: left;
+  margin: 15px 10px;
+}
+
+/*Da el tamaño a los enlaces de navegación. Pone todas las letras en
+    mayusculas y se les da su tamaño.*/
+menu ul li a{
+  width: 64px;
+  height: 64px;
+  text-transform: uppercase;
+  font-size: 1.6em;
+}
+
+/*Se defina la barra de usuario con un color azul oscuro situada al inicio de
+    la página*/
+.barraUsuario{
+  width: 100%;
+  height: 35px;
+  background-color: #113f67;
+}
+
+/*Se remueve el stilo de la lista.*/
+.barraUsuario ul{
+  list-style: none;
+}
+
+/*Se posicionan los elementos uno al lado del otro y se separan*/
+.barraUsuario ul li{
+  float:left;
+  margin: 5px 10px;
+}
+
+/*Se le da a cada elemento su color gris y se ponen las letras en mayuscula.*/
+.barraUsuario ul li a{
+  color: #c2c9cf;
+  text-transform: uppercase;
+}
+
+/*Se le da el tamaño al elemento titulo 1 y se alinea al centro para
+  separar las secciones de la pagina. principalmente en el index. Se
+  separa mas de los elementos encima del mismo que de los que se encuentran
+  abajo de el. */
+h1{
+  font-size: 2.3em;
+  text-align: center;
+  margin: 40px 0 20px;
+}
+
+/*Se utiliza una lista ordenada para los requisitos de la prueba. Se separa
+  del borde izquierdo del contenedor para evitar que los números se salgan
+  de el*/
+ol{
+ margin-left: 80px;
+ width: 93%;
+}
+
+/*Define el contenedor para las instrucciones del sitio. Con letra blanca y
+  fondo oscuro. Separando el contenido de los bordes.*/
+.instrucciones{
+  background-color: #226597;
+  color: white;
+  padding: 40px 90px;
+}
+
+/*posisiona el titulo 1 mas a la izquierda del contenedor.*/
+.instrucciones h1{
+  text-align: left;
+  margin: 0 0 20px 0;
+}
+
+/*Define la lista de instrucciones y lo separa de los demas elementos.*/
+.instrucciones ul{
+  list-style: none;
+  margin-bottom: 20px;
+  margin-left: 20px;
+}
+
+/*Se marca cada instrucción con "-"*/
+.instrucciones ul li::before{
+  content: "-";
+}
+
+/*Define la tabla que contiene lo que significan las opciones de la prueba
+    Se le da un borde blanco y se separa su contenido de sus bordes*/
+.instrucciones table{
+  width: 80%;
+  margin: 0 auto;
+  border: 2px solid white;
+  padding: 10px;
+}
+
+/*A las celdas de la primera columna se les da un ancho menor */
+.instrucciones table tr:first-child{
+  width: 20%;
+}
+
+/*Se centra el texto de la primer celda de cada fila. se seprara el texto
+    de los bordes y se le añade un borde a la derecha de color blanco*/
+.instrucciones table tr td:first-child{
+  text-align: center;
+  padding-right: 10px;
+  border-right: 2px solid white;
+}
+
+/*Se posisiona el texto a la izquierda para la segunda celda de cada fila
+    Se separa del borde izquierdo*/
+.instrucciones table tr td:last-child{
+  text-align: left;
+  padding-left: 10px;
+}
+
+/*Se le da un tamaño mayor a la segunda columna de la tabla*/
+.instrucciones table tr:last-child{
+  width: 80%;
+}
+
+/*Define un contenedor para las afirmaciones. el texto se posiciona en el
+    centro se le da un tamaño fijo para evitar que se salga el contenido.
+    Tiene un borde gris para separarlo del siguiente elemento*/
+.pregunta{
+  text-align: center;
+  width: 85%;
+  height: 150px;
+  margin: 0 auto;
+  padding: 20px;
+  border-bottom: solid 2px #c2c9cf;
+}
+
+/*Se le da el tamaño a la afirmación*/
+.pregunta p{
+  font-size: 1.5em;
+}
+
+/*Se crea un contenedor para las respuestas se posiciona en el centro con un
+    ancho fijo. tiene relleno arriba y abajo*/
+.opciones{
+  margin: 0 auto;
+  width: 400px;
+  padding: 10px 0;
+}
+
+/*Contenedor para el boton de radio especial. se posiciona uno al lado del
+    otro. se le da posición relativa por su contenido. Se le da margen para
+    separar cada elemento. se le da tamaño al texto.y se previene la seleccion
+    del texto por parte del usuario. tamaño para que no interfiera con los
+    labels*/
+.contenedorRadio {
+  float: left;
+  display: block;
+  position: relative;
+  width: auto;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  margin-left: 40px;
+  cursor: pointer;
+  font-size: 2em;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/*Se le da posición absoluta y se oculta el control de radio por defecto.*/
+.contenedorRadio input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/*Se posiciona el boton en su contenedor. Se le da el alto y ancho.
+    El borde se pinta del azul oscuro. y se redondea.*/
+.botonRadio {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 50px;
+  width: 50px;
+  border: 2px solid #113f67;
+  border-radius: 50%;
+}
+
+/*Pinta el botón de gris cuando el usuario posiciona el cursor sobre el
+    contenedor*/
+.contenedorRadio:hover input ~ .botonRadio {
+  background-color: #c2c9cf;
+}
+
+/*Pinta el fondo de azul oscuro cuando se selecciona un botón*/
+.contenedorRadio input:checked ~ .botonRadio {
+  background-color: #113f67;
+}
+
+/*Creamos el espacio para añadir el texto de color blanco y lo posicionamos*/
+.botonRadio:after {
+  content: "";
+  position: absolute;
+  display: none;
+  color: white;
+  top: -2px;
+  left: 7px;
+}
+
+/*mostramos el texto cuando un boton es seleccionado.*/
+.contenedorRadio input:checked ~ .botonRadio:after {
+  display: block;
+}
+
+/*Ponemos el texto que se desea en el botón*/
+.so:after {
+  content: "so";
+}
+
+.cv:after{
+  content: "cv";
+}
+
+/*Centra el texto de un solo caracter en el centro*/
+.o:after{
+  content: "o";
+  left: 15px;
+}
+
+.n:after{
+  content: "n";
+  left: 15px;
+}
+
+.c:after{
+  content: "c";
+  left: 15px;
+}
+
+/*Los botones son rectangulares y largos con el texto en mayuscula. de color
+    blanco con fondo celeste. sin borde*/
+button{
+  padding: 10px 40px;
+  text-transform: uppercase;
+  color: white;
+  background-color: #87c0cd;
+  border: none;
+  font-size: 1.1em;
+}
+
+button:hover{
+  background-color: transparent;
+  border: 2px solid #87c0cd;
+  color: black;
+  padding: 8px 38px;
+}
+
+/*contenedor para los botones de la pagina de prueba.*/
+.botonesPrueba{
+  width: 85%;
+  padding: 40px;
+  margin: 0 auto;
+}
+
+/*Hacer que el elemento se pegue a el borde derecho*/
+.posicionDerecha{
+  float: right;
+}
+
+.posicionCentro{
+  margin: 0 auto;
+}
+
+/*Sección que contiene dos lados. Para los formularios. con flexbox
+    Si es solo un elemento este se centra solo.*/
+.seccionMedia{
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+/*Le da el tamaño a las secciones. como maximo 2.*/
+.seccionMedia > div{
+  padding: 40px;
+  width: 40%;
+}
+
+/*Modifica el tamaño del titulo para las secciones y se alinea a la
+    izquierda*/
+.seccionMedia > div > h1{
+  font-size: 2em;
+  text-align: left;
+  margin-bottom: 40px;
+}
+
+div.columna1, div.columna2{
+  float:left;
+  margin-bottom: 15px;
+}
+
+/*controlar el tamaño de los labels y los inputs*/
+div.columna1 {
+  width: 30%;
+}
+
+div.columna2 {
+  width: 70%;
+}
+
+/*Ancho de los labels para los forms*/
+label{
+  width: 100%;
+}
+
+/*Da tamaño y borde de color azul oscuro*/
+input[type="text"], input[type="file"], input[type="number"],
+  input[type="time"] {
+  background-color: white;
+  width: 100%;
+  border: 2px solid #113f67;
+}
+
+/*Mover el calendario al centro de su contenedor*/
+#selectorFechas{
+  margin-left: 150px;
+}
+
+/*Modificar el estilo del calendario para que tenga el fondo de color celeste.*/
+#selectorFechas .datepicker{
+  background-color: #f3f9fb;
+}
+
+/*Redondear las celdas del calendario*/
+#selectorFechas .datepicker--cell{
+  border-radius: 50%;
+}
+
+/*Dar tamaño al contenedor de los gráficos. deben tener ancho y alto.*/
+.grafico {
+  height: 350px;
+  width: 100%;
+  clear: both;
+}
+
+/*Contenedor para el boton de radio especial. se posiciona uno al lado del
+    otro. se le da posición relativa por su contenido. Se le da margen para
+    separar cada elemento. se le da tamaño al texto.y se previene la seleccion
+    del texto por parte del usuario. tamaño para que no interfiera con los
+    labels*/
+.contenedorRadioCheck {
+  float: left;
+  display: block;
+  position: relative;
+  width: auto;
+  padding-left: 55px;
+  margin-bottom: 12px;
+  margin-left: 20px;
+  cursor: pointer;
+  font-size: 2em;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/*Se le da posición absoluta y se oculta el control de radio por defecto.*/
+.contenedorRadioCheck input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/*Se posiciona el boton en su contenedor. Se le da el alto y ancho.
+  El borde se pinta de celeste y se redondea.*/
+.radioCheck {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 50px;
+  width: 50px;
+  border: 2px solid #87c0cd;
+  border-radius: 50%;
+}
+
+/*Pinta el botón de gris cuando el usuario posiciona el cursor sobre el
+  contenedor*/
+.contenedorRadioCheck:hover input ~ .radioCheck {
+  background-color: #c2c9cf;
+}
+
+/*Pinta el fondo de celeste cuando se selecciona un botón*/
+.contenedorRadioCheck input:checked ~ .radioCheck {
+  background-color: #87c0cd;
+}
+
+/*Creamos el espacio para añadir el texto de color blanco y lo posicionamos*/
+.radioCheck:after {
+  content: "";
+  position: absolute;
+  display: none;
+  color: white;
+  top: 2px;
+  left: 13px;
+}
+
+/*mostramos el texto cuando un boton es seleccionado.*/
+.contenedorRadioCheck input:checked ~ .radioCheck:after {
+  display: block;
+}
+
+/*boton para hombre*/
+.radioH:after{
+  content: "H";
+}
+
+/*Boton para mujer*/
+.radioM:after{
+  content: "M";
+}
+
+/*Boton para radio comun*/
+.check:after{
+  content: "✔";
+}
+
+/*contenedor para posicionar elementos de
+    manera vertical*/
+.botonesGraficos{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+/*Botones con fondo verde*/
+.aprobado{
+  background-color: #4CAF50;
+}
+
+/*Botones con fondo rojo*/
+.rechazado{
+  background-color: #f44336;
+}
+
+.especificos{
+ background-color: #87c0cd;
+}
+
+/*Poner la imagen como el fondo de un div. Que  cubra todo del elemento.
+    con alto fijo y que se posicione la imagen de manera que lo que se
+    vea sea la pantalla con la prueba*/
+.imagen{
+  background-image: url("../img/pc.jpg");
+  background-size: cover;
+  background-position: 10% 17%;
+  height: 500px;
+}
+
+/*Guia de colores para los gráficos*/
+.guiaGrafico{
+  width: 100%;
+  list-style: none;
+}
+
+.guiaGrafico li{
+  float: left;
+}
+
+/*Dar tamaño a los contenedores de color y separarlos.*/
+.guiaGrafico li div{
+  float: left;
+  width: 20px;
+  height: 20px;
+  margin: 0 5px;
+}
+
+.colorMuyBajo{
+  background-color: #0008E6;
+}
+
+.colorBajo{
+  background-color: #00FFFF;
+}
+
+.colorPromedio{
+  background-color: #7CAD00;
+}
+
+.colorAlto{
+  background-color: #FEA90D;
+}
+
+.colorMuyAlto{
+  background-color: #fd5f00;
+}
+
+/*Cuando el menu de celular se despliega pinta el icono de blanco y el
+    fondo de azul oscuro*/
+.menuResponsivo{
+  color: white;
+  background: #113f67;
+}
+
+/*tabla para el backend del sitio. con ancho del 90% de bordes colapsados. */
+.tablaB{
+  clear: both;
+  width: 90%;
+  margin: 20px auto;
+  border-collapse: collapse;
+}
+
+/*poner el borde de las celdas y titulo de columna con borde gris.*/
+.tablaB td, .tablaB th{
+  border: 1px solid #ddd;
+  padding: 1px;
+}
+
+/*Dar a las filas de numero par un fondo de color gris claro. Las otras filas
+    son de fondo transparente.*/
+.tablaB tr:nth-child(even){
+  background-color: #f2f2f2;
+}
+
+/*Todas las filas se pintan con un gris un poco más oscuro cuando el cursor
+    para sobre ellas*/
+.tablaB tr:hover {
+  background-color: #ddd;
+}
+
+/*Se les da a los titulos de columnas un fondo de azul oscuro con letra
+    blanca.*/
+.tablaB th{
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #226597;
+  color: white;
+}
+
+/*Posicionar elementos al centro de un contenedor utilizando flex-box*/
+.flexCentro{
+  display: flex;
+  justify-content: center;
+}
+
+/*Se utiliza un verde opaco para las evaluaciones que ya fueron realizadas.*/
+.revisado{
+  background-color: #99E8AC !important;
+}
+
+/*Para las que aún no han sido realizadas se pintan de un color mas llamativo
+    para que le llame más la atención al usuario. En este caso un rojo*/
+.noRevisado{
+  background-color: #f66055 !important;
+}
+
+/*Se le da posición y tamaño a los botones contenidos en las tablas del
+    backend.*/
+.tablaB td button{
+    float: left;
+    width: 50%;
+}
+
+/*EL modo responsivo entra en efecto cuando la ventana se encoge a un ancho
+    menor a 1200px. Siendo una de las resoluciones más populares */
+@media only screen and (max-width: 1199px) { /*400*/
+  /*Al contenedor principal se le da un ancho de la pantalla completa.*/
+  .contenedor{
+    width: 100%;
+  }
+
+  /*Se quita el logo de la página*/
+  .logo{
+    display: none;
+  }
+
+  /*Reduce el tamaño de los títulos.*/
+  h1{
+    font-size: 1.7em;
+  }
+
+  /*Se ajusta el margen izquierdo de la lista ordenada.*/
+  ol{
+    margin-left: 25px;
+  }
+
+  /*Modificamos el tamaño del padding de el contenedor de instrucciones.*/
+  .instrucciones{
+    padding: 40px 20px;
+  }
+
+  /*Acomodamos la lista de instrucciones.*/
+  .instrucciones ul{
+    margin-left: 10px;
+  }
+
+  /*A la tabla le damos un tamaño del 100%*/
+  .instrucciones table{
+    width: 100%;
+  }
+
+  /*Las preguntas se modifican para que cubran casi toda la pantalla.
+      Se modifica su relleno vertical y se elimina el horizontal.*/
+  .pregunta{
+    width: 95%;
+    padding: 10px 0;
+  }
+
+  /*Se ajusta el tamaño del parrafo*/
+  .pregunta p{
+    font-size: 1em;
+  }
+
+  /*A los contenedores de los botones de radio se les da un ancho del 100%
+      de pregunta*/
+  .opciones{
+    width: 100%;
+  }
+
+  /*Se ajusta el posicionamiento de los botnes de radio.*/
+  .contenedorRadio{
+    margin-left: 25px;
+  }
+
+  /*Se ajusta la seccion de los botones al mismo tamaño que al de una
+      pregunta.*/
+  .botonesPrueba{
+    width: 95%;
+    padding: 10px 0px;
+  }
+
+  .seccionMedia > div{
+    width: 95%;
+    padding: 0;
+  }
+
+  .seccionMedia > div > h1{
+    font-size: 1.7em;
+  }
+
+  /*posiciona el calendario en el centro de la pantalla.*/
+  #selectorFechas{
+    margin: 0 auto;
+  }
+
+  /*Ajustamos la letra del calendario*/
+  #selectorFechas .datepicker{
+    width: 100%;
+    font-size: 1.2em;
+  }
+
+  /*Modificamos los circulos del calendario para evitar que se deformen.
+      Se hacen más cuadrados.*/
+  #selectorFechas .datepicker--cell{
+    border-radius: 4px;
+  }
+
+  /*Modifica el tamaño de la letra de guía de grafico.*/
+  .guiaGrafico li{
+    font-size: 0.86em;
+  }
+
+  /*Ajustamos los tamaños de los contenedores de colores.*/
+  .guiaGrafico li div{
+    width: 10px;
+    height: 10px;
+    margin-top: 5px;
+  }
+
+  /*Los botones de la página de gráficos los acomodamos de modo horizontal.*/
+  .botonesGraficos{
+    flex-direction: row;
+  }
+
+  /*Damos tamaño al menu*/
+  menu{
+    height: 50px;
+  }
+
+  /*Hacemos que el ícono de menu aparesca. Le damos su tamaño.*/
+  menu i{
+    visibility: visible;
+    font-size: 2em;
+    float: right;
+    padding: 10px 20px;
+    margin: 0px 10px;
+    border: 1px solid #c2c9cf;
+  }
+
+  /*Se posiciona el contenedor de menu y se le da una posición relativa
+      para que sea el punto de origen del posicionamiento del menu de
+      navegación*/
+  menu div{
+    float: right;
+    position: relative;
+    width: 10px;
+    height: 10px;
+  }
+
+  /*Se esconde el menu de navegacion. Se posiciona de manera absoluta.
+      Este menu tiene el fondo oscuro con letra blanca. Tambien se le da una
+      sombra alrededor. Al final se le asigna una animación al momento que
+      aparece.*/
+  menu ul{
+    display: none;
+    position:absolute;
+    top: 64px;
+    right: -80px;
+    padding: 10px 5px;
+    background-color: #226597;
+    -webkit-box-shadow: 6px 26px 31px -11px rgba(0,0,0,1);
+    -moz-box-shadow: 6px 26px 31px -11px rgba(0,0,0,1);
+    box-shadow: 6px 26px 31px -11px rgba(0,0,0,1);
+    animation-name: aniMenu;
+    animation-duration: 1s;
+  }
+
+  /*animación del menu responsivo. va de ser transparente a ser completamente
+      visible.*/
+  @keyframes aniMenu{
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+
+  /*Se remueve el posicionamiento horizontal de los elementos de menu*/
+  menu ul li{
+    float: none;
+  }
+
+  /*Se colorea los enlaces de blanco y se transforma todo el texto a
+      minuscula.*/
+  menu ul li a{
+    color: white !important;
+    font-size: 1.5em;
+    text-transform: lowercase;
+  }
+
+  /*Muestra o esconde el menu al dar click al icono de menu*/
+  .mostrar{
+    display: block;
+  }
+
+  .barraUsuario ul li a{
+    font-size: 0.8em;
+  }
+
+  /*Se salta todos los elementos posicionados del lado izquierdo*/
+  .columna1{
+    clear: left;
+  }
+
+  /*Se salta todos los elementos posicionados del lado derecho*/
+  .columna2{
+    clear: right;
+  }
+
+  /*Los botones de radio de am saltan una linea si hay elementos float
+      posicionados en los lados*/
+  #am{
+    clear: both;
+  }
+
+  /*Crear espacio abajo de los contenedores de radio*/
+  .columna2 .contenedorRadioCheck{
+    margin-bottom: 50px;
+  }
+
+  /*Tabla backend del 100% del ancho de la pantalla.*/
+  .tablaB{
+    width: 100%;
+  }
+
+  /*Ajustes en el tamaño de la letra*/
+  .tablaB th{
+    font-size: 0.8em;
+  }
+
+  .tablaB td{
+    font-size: 0.9em;
+  }
+
+  /*dar tamaño de 100% de la celda para que los botones se acomoden uno encima
+      del otro*/
+  .tablaB td button{
+    width: 100%;
+    padding: 5px 0;
+    margin: 0;
+    font-size: 1em;
+  }
+
+
+  .tablaB td button:hover{
+    border: none;
+  }
+
+  /*Quitar la columna que indica si la prueba ha sido revisada o no.
+      Solo se muestra mediante el color de la fila.*/
+  #estudiantes th:last-child, #estudiantes td:last-child{
+    display:none;
+  }
+
+}

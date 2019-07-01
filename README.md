@@ -1,6 +1,10 @@
 # Neopir
 Proyecto para la prueba de idoneidad mental para la portación de armas
 
+## Tareas Generales
+- [x] Crear estructura de las páginas del proyecto.
+- [ ] Resolver el hosting del proyecto.
+
 ## Reglas
 
 **0- General** 
@@ -17,6 +21,10 @@ index.php, prueba.php, graficogeneral.php, etc...
 * Archivos php que contengan funciones deben iniciar en mayúscula.
 ```
 Base.php
+```
+* Archivos php que contengan estructuras parciales como el menu inician con "_".
+```
+_menu.php
 ```
 
 **1- Variables** 

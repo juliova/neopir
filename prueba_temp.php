@@ -115,46 +115,24 @@
 
         <!--Preguntas -->
 
-        <?php 
+        <?php
+          
+          $numero = 1;
+          $texto = "Yo no soy una persona que se preocupa mucho. ";
           $char = ["so","o","n","c","cv"];
           echo("<div class=\"pregunta\">
-                  <p>".$numero. $texto."</p>
+                  <p>".$numero.". ". $texto."</p>
                   <div class=\"opciones\">");
           $valores = [0,1,2,3,4];
-          
-
+          for($i=0; $i<5; $i++){
+            echo ("<label class=\"contenedorRadio\">
+                    <input type=\"radio\" name=\"radio".$numero."\" value=\"".$valores[$i]."\">
+                    <span class=\"botonRadio ".$char[$i]."\"></span>
+                  </label>");
+          }
           echo("  </div>
                 </div>");
         ?>
-
-        <div class="pregunta">
-          <p>
-            1. Yo no soy una persona que se preocupa mucho.
-          </p>
-          <div class="opciones">
-            <label class="contenedorRadio">
-              <input type="radio" name="radio">
-              <span class="botonRadio so"></span>
-            </label>
-            <label class="contenedorRadio">
-              <input type="radio" name="radio" />
-              <span class="botonRadio o"></span>
-            </label>
-            <label class="contenedorRadio">
-              <input type="radio" name="radio" />
-              <span class="botonRadio n"></span>
-            </label>
-            <label class="contenedorRadio">
-              <input type="radio" name="radio" />
-              <span class="botonRadio c"></span>
-            </label>
-            <label class="contenedorRadio">
-              <input type="radio" name="radio" />
-              <span class="botonRadio cv"></span>
-            </label>
-          </div>
-        </div>
-
         <!--Botones de la prueba -->
         <div class="botonesPrueba">
           <button class="posicionIzquierda">GUARDAR</button>

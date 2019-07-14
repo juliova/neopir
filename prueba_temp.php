@@ -112,33 +112,35 @@
             </tr>
           </table>
         </div>
+        <form action="prueba_temp.php" method="post">
+          <!--Preguntas -->
 
-        <!--Preguntas -->
-
-        <?php
-          
-          $numero = 1;
-          $texto = "Yo no soy una persona que se preocupa mucho. ";
-          $char = ["so","o","n","c","cv"];
-          echo("<div class=\"pregunta\">
-                  <p>".$numero.". ". $texto."</p>
-                  <div class=\"opciones\">");
-          $valores = [0,1,2,3,4];
-          for($i=0; $i<5; $i++){
-            echo ("<label class=\"contenedorRadio\">
-                    <input type=\"radio\" name=\"radio".$numero."\" value=\"".$valores[$i]."\">
-                    <span class=\"botonRadio ".$char[$i]."\"></span>
-                  </label>");
-          }
-          echo("  </div>
-                </div>");
-        ?>
-        <!--Botones de la prueba -->
-        <div class="botonesPrueba">
-          <button class="posicionIzquierda">GUARDAR</button>
-          <button class="posicionDerecha">SIGUIENTE</button>
-        </div>
-
+          <?php
+            session_start();
+            
+            if()
+            $numero = 1;
+            $texto = "Yo no soy una persona que se preocupa mucho. ";
+            $char = ["so","o","n","c","cv"];
+            echo("<div class=\"pregunta\">
+                    <p>".$numero.". ". $texto."</p>
+                    <div class=\"opciones\">");
+            $valores = [0,1,2,3,4];
+            for($i=0; $i<5; $i++){
+              echo ("<label class=\"contenedorRadio\">
+                      <input type=\"radio\" name=\"radio".$numero."\" value=\"".$valores[$i]."\">
+                      <span class=\"botonRadio ".$char[$i]."\"></span>
+                    </label>");
+            }
+            echo("  </div>
+                  </div>");
+          ?>
+          <!--Botones de la prueba -->
+          <div class="botonesPrueba">
+            <button class="posicionIzquierda" value=1>GUARDAR</button>
+            <button class="posicionDerecha" value=2>SIGUIENTE</button>
+          </div>
+        </form>
       </div>
     </div>
   </body>

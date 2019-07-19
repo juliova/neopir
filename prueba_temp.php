@@ -1,16 +1,32 @@
 <?php 
+  session_start();
+  $siguiente = false;
   include 'Base.php';
   $con = conectar();
+  if(isset($_SESSION['numPregunta'])){
+    
+  } else {
+    $_SESSION['numPregunta'] = 1;
+    $sql = "SELECT PreguntasxVista FROM variables;";
+    $resultado = $con->query($sql);
+    $fila = $resultado->fetch_assoc();
+    $_SESSION['cantPreguntas'] = $fila['PreguntasxVista'];
+  }
   if(isset($_POST['btn'])){
     switch ($_POST['btn']) {
       case 1: //Guardar
-        
+        $siguiente = true;
         break;
       case 2: //Siguiente
+        if($_SESSION['numPregunta']>240){
+          header("Location: finalprueba.php");
+        }
+        //ingcrementar numPregunta
+        $_SESSION['numPregunta'] = $_SESSION['numPregunta'] + 20; 
         break;
     }
   } else {
-
+    $_SESSION['numPregunta'] = 1;
   }
 ?>
 
@@ -134,9 +150,10 @@
             $pregunta = 1;
             $sql = "SELECT IDPregunta, TextoPregunta, formatos.Valor1, formatos.Valor2, 
                       formatos.Valor3, formatos.Valor4, formatos.Valor5 FROM preguntas
-                      JOIN formatos ON formatos.IDFormato = preguntas.Formato LIMIT 20;";
+                      JOIN formatos ON formatos.IDFormato = preguntas.Formato;";
             $respuesta = $con->query($sql);
-            while($fila = $respuesta->fetch_assoc()){
+            for($for = $_SESSION['numPregunta']; $for<($_SESSION['cantPreguntas']+$_SESSION['numPregunta']); $for++ ){
+              $fila = $respuesta->fetch_assoc();
               ?>
               <div class="pregunta">
                 <p><?php echo($fila['IDPregunta'].". ".$fila['TextoPregunta']);?></p>
@@ -166,10 +183,11 @@
               <?php $pregunta++;
             }
           ?>
+          <?php echo "num = ". $_SESSION['numPregunta'] . " cant = ".$_SESSION['cantPreguntas']; ?>
           <!--Botones de la prueba -->
           <div class="botonesPrueba">
             <button type="submit" name="btn" class="posicionIzquierda" value="1">GUARDAR</button>
-            <button type="submit" name="btn" disabled class="posicionDerecha" value="2">SIGUIENTE</button>
+            <button type="submit" name="btn" <?php if($siguiente){ echo "";} else { echo "disabled"; } ?> class="posicionDerecha" value="2">SIGUIENTE</button>
           </div>
         </form>
       </div>

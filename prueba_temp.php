@@ -131,9 +131,10 @@
         <form action="prueba_temp.php" method="post">
           <!--Preguntas -->
           <?php
+            $pregunta = 1;
             $sql = "SELECT IDPregunta, TextoPregunta, formatos.Valor1, formatos.Valor2, 
                       formatos.Valor3, formatos.Valor4, formatos.Valor5 FROM preguntas
-                      JOIN formatos ON formatos.IDFormato = preguntas.Formato LIMIT 10;";
+                      JOIN formatos ON formatos.IDFormato = preguntas.Formato LIMIT 20;";
             $respuesta = $con->query($sql);
             while($fila = $respuesta->fetch_assoc()){
               ?>
@@ -141,28 +142,28 @@
                 <p><?php echo($fila['IDPregunta'].". ".$fila['TextoPregunta']);?></p>
                 <div class="opciones">
                   <label class="contenedorRadio">
-                    <input type="radio" name="radio<?php echo($fila['IDPregunta'])?>" value="<?php echo($fila['Valor1']); ?>"/>
+                    <input type="radio" name="radio<?php echo($pregunta);?>" value="<?php echo($fila['Valor1']); ?>"/>
                     <span class="botonRadio so"></span>
                   </label>
                   <label class="contenedorRadio">
-                    <input type="radio" name="radio<?php echo($fila['IDPregunta'])?>" value="<?php echo($fila['Valor2']); ?>"/>
+                    <input type="radio" name="radio<?php echo($pregunta);?>" value="<?php echo($fila['Valor2']); ?>"/>
                     <span class="botonRadio o"></span>
                   </label>
                   <label class="contenedorRadio">
-                    <input type="radio" name="radio<?php echo($fila['IDPregunta'])?>" value="<?php echo($fila['Valor3']); ?>"/>
+                    <input type="radio" name="radio<?php echo($pregunta);?>" value="<?php echo($fila['Valor3']); ?>"/>
                     <span class="botonRadio n"></span>
                   </label>
                   <label class="contenedorRadio">
-                    <input type="radio" name="radio<?php echo($fila['IDPregunta'])?>" value="<?php echo($fila['Valor4']); ?>"/>
+                    <input type="radio" name="radio<?php echo($pregunta);?>" value="<?php echo($fila['Valor4']); ?>"/>
                     <span class="botonRadio c"></span>
                   </label>
                   <label class="contenedorRadio">
-                    <input type="radio" name="radio<?php echo($fila['IDPregunta'])?>" value="<?php echo($fila['Valor5']); ?>"/>
+                    <input type="radio" name="radio<?php echo($pregunta);?>" value="<?php echo($fila['Valor5']); ?>"/>
                     <span class="botonRadio cv"></span>
                   </label>
                 </div>
               </div>
-              <?php 
+              <?php $pregunta++;
             }
           ?>
           <!--Botones de la prueba -->

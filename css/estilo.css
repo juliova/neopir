@@ -309,11 +309,27 @@ button{
   font-size: 1.1em;
 }
 
+/* Añadir la manita al pasar el cursor sobre el boton */
 button:hover{
   background-color: transparent;
   border: 2px solid #87c0cd;
   color: black;
   padding: 8px 38px;
+  cursor: pointer;
+}
+
+/* Pintar el boton de gris con letra blanca cuando se encuentra desabilitado */
+button:disabled{
+  background-color: gray;
+  color: white;
+}
+
+/* Quitar cualquer cambio de apariencia cuando el boton esta desabilitado y en el 
+    estado de hover */
+button:disabled:hover{
+  border: none;
+  padding: 10px 40px;
+  cursor: default;
 }
 
 /*contenedor para los botones de la pagina de prueba.*/

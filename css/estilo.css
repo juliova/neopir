@@ -458,6 +458,7 @@ input[type="text"], input[type="file"], input[type="number"],
   width: 50px;
   border: 2px solid #87c0cd;
   border-radius: 50%;
+  background-color: #9ba6ad;
 }
 
 /*Pinta el botón de gris cuando el usuario posiciona el cursor sobre el
@@ -475,7 +476,6 @@ input[type="text"], input[type="file"], input[type="number"],
 .radioCheck:after {
   content: "";
   position: absolute;
-  display: none;
   color: white;
   top: 2px;
   left: 13px;

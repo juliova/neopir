@@ -6,7 +6,7 @@
   if(isset($_SESSION['numPregunta'])){
     
   } else {
-    $_SESSION['numPregunta'] = 1;
+    $_SESSION['numPregunta'] = 0;
     $sql = "SELECT PreguntasxVista FROM variables;";
     $resultado = $con->query($sql);
     $fila = $resultado->fetch_assoc();
@@ -16,17 +16,18 @@
     switch ($_POST['btn']) {
       case 1: //Guardar
         $siguiente = true;
+
         break;
       case 2: //Siguiente
-        if($_SESSION['numPregunta']>240){
+        if($_SESSION['numPregunta']>=220){
           header("Location: finalprueba.php");
         }
         //ingcrementar numPregunta
-        $_SESSION['numPregunta'] = $_SESSION['numPregunta'] + 20; 
+        $_SESSION['numPregunta'] = $_SESSION['numPregunta'] + 20;
         break;
     }
   } else {
-    $_SESSION['numPregunta'] = 1;
+    $_SESSION['numPregunta'] = 0;
   }
 ?>
 
@@ -42,6 +43,14 @@
     <link type="text/css" rel="stylesheet" href="css/all.css" />
     <script src="js/jquery-3.4.1.min.js"></script>
     <script src="js/scripts.js"></script>
+    <?php if(isset($_POST['btn'])) {
+      if($_POST['btn'] == 1){?>
+        <script>
+          $(document).ready(function(){
+            alert("Sus respuestas han sido guardadas. Favor presione el botón SIGUIENTE."); 
+          });
+        </script>
+    <?php }} ?>
   </head>
 
   <!--Cuerpo -->
@@ -153,6 +162,7 @@
                       JOIN formatos ON formatos.IDFormato = preguntas.Formato;";
             $respuesta = $con->query($sql);
             for($for = $_SESSION['numPregunta']; $for<($_SESSION['cantPreguntas']+$_SESSION['numPregunta']); $for++ ){
+              $respuesta->data_seek($for);
               $fila = $respuesta->fetch_assoc();
               ?>
               <div class="pregunta">

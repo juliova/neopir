@@ -8,11 +8,12 @@
   if(isset($_SESSION['numPregunta'])){
     
   } else {
-    $_SESSION['numPregunta'] = 0;
+    $_SESSION['numPregunta'] = 1;
     $sql = "SELECT PreguntasxVista FROM variables;";
     $respuesta = $con->query($sql);
     $fila = $respuesta->fetch_assoc();
     $_SESSION['cantPreguntas'] = $fila['PreguntasxVista'];
+    $con->close();
   }
   if(isset($_POST['btn'])){
     switch ($_POST['btn']) {
@@ -33,12 +34,10 @@
                          "A4"=>0,"N4"=>0,"E4"=>0,"O4"=>0,"C4"=>0,
                          "A5"=>0,"N5"=>0,"E5"=>0,"O5"=>0,"C5"=>0,
                          "A6"=>0,"N6"=>0,"E6"=>0,"O6"=>0,"C6"=>0);
-        $sql = "SELECT Tipo from preguntas;";
+        $sql = "Call TiposXPregunta(".$_SESSION['numPregunta'].");";
         $respuesta = $con->query($sql);
         $i = 0;
-        for($for = $_SESSION['numPregunta']; $for<($_SESSION['cantPreguntas']+$_SESSION['numPregunta']); $for++ ){
-          $respuesta->data_seek($for);
-          $fila = $respuesta->fetch_assoc();
+        while($fila = $respuesta->fetch_assoc()){
           switch($fila['Tipo']){
             case "A1":
               $totales['A1'] += $puntos[$i];
@@ -133,15 +132,18 @@
           }
           $i++;
         }
-        $sql = "UPDATE calificaciones SET 
-          A1 = A1+".$totales['A1'].", N1 = N1+".$totales['N1'].", E1 = E1+".$totales['E1'].", O1 = O1+".$totales['O1'].", C1 = C1+".$totales['C1'].", 
-          A2 = A2+".$totales['A2'].", N2 = N2+".$totales['N2'].", E2 = E2+".$totales['E2'].", O2 = O2+".$totales['O2'].", C2 = C2+".$totales['C2'].", 
-          A3 = A3+".$totales['A3'].", N3 = N3+".$totales['N3'].", E3 = E3+".$totales['E3'].", O3 = O3+".$totales['O3'].", C3 = C3+".$totales['C3'].", 
-          A4 = A4+".$totales['A4'].", N4 = N4+".$totales['N4'].", E4 = E4+".$totales['E4'].", O4 = O4+".$totales['O4'].", C4 = C4+".$totales['C4'].", 
-          A5 = A5+".$totales['A5'].", N5 = N5+".$totales['N5'].", E5 = E5+".$totales['E5'].", O5 = O5+".$totales['O5'].", C5 = C5+".$totales['C5'].", 
-          A6 = A6+".$totales['A6'].", N6 = N6+".$totales['N6'].", E6 = E6+".$totales['E6'].", O6 = O6+".$totales['O6'].", C6 = C6+".$totales['C6']."
-          WHERE IDEstudiante = ".$_SESSION['usuario']." AND IDPrueba = ".$_SESSION['prueba'].";";
+        $con->close();
+        $con = conectar();
+        $sql = "Call GuardarCalificaciones(
+          ".$totales['A1'].",".$totales['N1'].",".$totales['E1'].",".$totales['O1'].",".$totales['C1'].",
+          ".$totales['A2'].",".$totales['N2'].",".$totales['E2'].",".$totales['O2'].",".$totales['C2'].",
+          ".$totales['A3'].",".$totales['N3'].",".$totales['E3'].",".$totales['O3'].",".$totales['C3'].",
+          ".$totales['A4'].",".$totales['N4'].",".$totales['E4'].",".$totales['O4'].",".$totales['C4'].",
+          ".$totales['A5'].",".$totales['N5'].",".$totales['E5'].",".$totales['O5'].",".$totales['C5'].",
+          ".$totales['A6'].",".$totales['N6'].",".$totales['E6'].",".$totales['O6'].",".$totales['C6'].", 
+          ".$_SESSION['usuario'].", ".$_SESSION['prueba'].");";
         $respuesta = $con->query($sql);
+        $con->close();
         break;
       case 2: //Siguiente
         if($_SESSION['numPregunta']>=220){
@@ -152,7 +154,7 @@
         break;
     }
   } else {
-    $_SESSION['numPregunta'] = 0;
+    $_SESSION['numPregunta'] = 1;
   }
 ?>
 
@@ -172,7 +174,7 @@
       if($_POST['btn'] == 1){?>
         <script>
           $(document).ready(function(){
-            alert(<?php echo("Sus respuestas han sido guardadas. Favor presione el botón SIGUIENTE."); ?>); 
+            alert("<?php echo("Sus respuestas han sido guardadas. Favor presione el botón SIGUIENTE."); ?>"); 
           });
         </script>
     <?php }} ?>
@@ -281,14 +283,11 @@
         <form action="prueba.php" method="post">
           <!--Preguntas -->
           <?php
+            $con = conectar();
             $pregunta = 1;
-            $sql = "SELECT IDPregunta, TextoPregunta, formatos.Valor1, formatos.Valor2, 
-                      formatos.Valor3, formatos.Valor4, formatos.Valor5 FROM preguntas
-                      JOIN formatos ON formatos.IDFormato = preguntas.Formato;";
-            $respuesta = $con->query($sql);
-            for($for = $_SESSION['numPregunta']; $for<($_SESSION['cantPreguntas']+$_SESSION['numPregunta']); $for++ ){
-              $respuesta->data_seek($for);
-              $fila = $respuesta->fetch_assoc();
+            $sql = "Call PreguntasPrueba(".$_SESSION['numPregunta'].")";
+            $respuesta = $con->query($sql) or die($con->error);
+            while($fila = $respuesta->fetch_assoc()){
               ?>
               <div class="pregunta">
                 <p><?php echo($fila['IDPregunta'].". ".$fila['TextoPregunta']);?></p>
@@ -317,7 +316,7 @@
               </div>
               <?php $pregunta++;
             }
-            print_r($totales);
+          $con->close();
           ?>
           <!--Botones de la prueba -->
           <div class="botonesPrueba">
@@ -330,3 +329,4 @@
   </body>
 
 </html>
+

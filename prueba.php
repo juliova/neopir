@@ -1,5 +1,7 @@
 <?php 
   session_start();
+  $_SESSION['usuario'] = 116360429;
+  $_SESSION['prueba'] = 1;
   $siguiente = false;
   include 'Base.php';
   $con = conectar();
@@ -8,15 +10,138 @@
   } else {
     $_SESSION['numPregunta'] = 0;
     $sql = "SELECT PreguntasxVista FROM variables;";
-    $resultado = $con->query($sql);
-    $fila = $resultado->fetch_assoc();
+    $respuesta = $con->query($sql);
+    $fila = $respuesta->fetch_assoc();
     $_SESSION['cantPreguntas'] = $fila['PreguntasxVista'];
   }
   if(isset($_POST['btn'])){
     switch ($_POST['btn']) {
       case 1: //Guardar
         $siguiente = true;
-
+        //Valores del 1 al 20.
+        $puntos = array();
+        for($i = 1; $i<=$_SESSION['cantPreguntas']; $i++){
+          if(!isset($_POST['radio'.$i])){
+            $_POST['radio'.$i] = 0;
+          }
+          array_push($puntos,$_POST['radio'.$i]);
+        }
+        //totales;
+        $totales = array("A1"=>0,"N1"=>0,"E1"=>0,"O1"=>0,"C1"=>0,
+                         "A2"=>0,"N2"=>0,"E2"=>0,"O2"=>0,"C2"=>0,
+                         "A3"=>0,"N3"=>0,"E3"=>0,"O3"=>0,"C3"=>0,
+                         "A4"=>0,"N4"=>0,"E4"=>0,"O4"=>0,"C4"=>0,
+                         "A5"=>0,"N5"=>0,"E5"=>0,"O5"=>0,"C5"=>0,
+                         "A6"=>0,"N6"=>0,"E6"=>0,"O6"=>0,"C6"=>0);
+        $sql = "SELECT Tipo from preguntas;";
+        $respuesta = $con->query($sql);
+        $i = 0;
+        for($for = $_SESSION['numPregunta']; $for<($_SESSION['cantPreguntas']+$_SESSION['numPregunta']); $for++ ){
+          $respuesta->data_seek($for);
+          $fila = $respuesta->fetch_assoc();
+          switch($fila['Tipo']){
+            case "A1":
+              $totales['A1'] += $puntos[$i];
+              break;
+            case "A2":
+              $totales['A2'] += $puntos[$i]; 
+              break;
+            case "A3":
+              $totales['A3'] += $puntos[$i]; 
+              break;
+            case "A4":
+              $totales['A4'] += $puntos[$i]; 
+              break;
+            case "A5":
+              $totales['A5'] += $puntos[$i]; 
+              break;
+            case "A6":
+              $totales['A6'] += $puntos[$i]; 
+              break;
+            case "N1":
+              $totales['N1'] += $puntos[$i]; 
+              break;
+            case "N2":
+              $totales['N2'] += $puntos[$i]; 
+              break;
+            case "N3":
+              $totales['N3'] += $puntos[$i]; 
+              break;
+            case "N4":
+              $totales['N4'] += $puntos[$i]; 
+              break;
+            case "N5":
+              $totales['N5'] += $puntos[$i]; 
+              break;
+            case "N6":
+              $totales['N6'] += $puntos[$i]; 
+              break;
+            case "E1":
+              $totales['E1'] += $puntos[$i]; 
+              break;
+            case "E2":
+              $totales['E2'] += $puntos[$i];
+              break;
+            case "E3":
+              $totales['E3'] += $puntos[$i]; 
+              break;
+            case "E4":
+              $totales['E4'] += $puntos[$i]; 
+              break;
+            case "E5":
+              $totales['E5'] += $puntos[$i]; 
+              break;
+            case "E6":
+              $totales['E6'] += $puntos[$i]; 
+              break;
+            case "O1":
+              $totales['O1'] += $puntos[$i]; 
+              break;
+            case "O2":
+              $totales['O2'] += $puntos[$i]; 
+              break;
+            case "O3":
+              $totales['O3'] += $puntos[$i]; 
+              break;
+            case "O4":
+              $totales['O4'] += $puntos[$i]; 
+              break;
+            case "O5":
+              $totales['O5'] += $puntos[$i]; 
+              break;
+            case "O6":
+              $totales['O6'] += $puntos[$i]; 
+              break;
+            case "C1":
+              $totales['C1'] += $puntos[$i]; 
+              break;
+            case "C2":
+              $totales['C2'] += $puntos[$i]; 
+              break;
+            case "C3":
+              $totales['C3'] += $puntos[$i]; 
+              break;
+            case "C4":
+              $totales['C4'] += $puntos[$i]; 
+              break;
+            case "C5":
+              $totales['C5'] += $puntos[$i]; 
+              break;
+            case "C6":
+              $totales['C6'] += $puntos[$i]; 
+              break;
+          }
+          $i++;
+        }
+        $sql = "UPDATE calificaciones SET 
+          A1 = A1+".$totales['A1'].", N1 = N1+".$totales['N1'].", E1 = E1+".$totales['E1'].", O1 = O1+".$totales['O1'].", C1 = C1+".$totales['C1'].", 
+          A2 = A2+".$totales['A2'].", N2 = N2+".$totales['N2'].", E2 = E2+".$totales['E2'].", O2 = O2+".$totales['O2'].", C2 = C2+".$totales['C2'].", 
+          A3 = A3+".$totales['A3'].", N3 = N3+".$totales['N3'].", E3 = E3+".$totales['E3'].", O3 = O3+".$totales['O3'].", C3 = C3+".$totales['C3'].", 
+          A4 = A4+".$totales['A4'].", N4 = N4+".$totales['N4'].", E4 = E4+".$totales['E4'].", O4 = O4+".$totales['O4'].", C4 = C4+".$totales['C4'].", 
+          A5 = A5+".$totales['A5'].", N5 = N5+".$totales['N5'].", E5 = E5+".$totales['E5'].", O5 = O5+".$totales['O5'].", C5 = C5+".$totales['C5'].", 
+          A6 = A6+".$totales['A6'].", N6 = N6+".$totales['N6'].", E6 = E6+".$totales['E6'].", O6 = O6+".$totales['O6'].", C6 = C6+".$totales['C6']."
+          WHERE IDEstudiante = ".$_SESSION['usuario']." AND IDPrueba = ".$_SESSION['prueba'].";";
+        $respuesta = $con->query($sql);
         break;
       case 2: //Siguiente
         if($_SESSION['numPregunta']>=220){
@@ -47,7 +172,7 @@
       if($_POST['btn'] == 1){?>
         <script>
           $(document).ready(function(){
-            alert("Sus respuestas han sido guardadas. Favor presione el botón SIGUIENTE."); 
+            alert(<?php echo("Sus respuestas han sido guardadas. Favor presione el botón SIGUIENTE."); ?>); 
           });
         </script>
     <?php }} ?>
@@ -153,7 +278,7 @@
             </tr>
           </table>
         </div>
-        <form action="prueba_temp.php" method="post">
+        <form action="prueba.php" method="post">
           <!--Preguntas -->
           <?php
             $pregunta = 1;
@@ -192,8 +317,8 @@
               </div>
               <?php $pregunta++;
             }
+            print_r($totales);
           ?>
-          <?php echo "num = ". $_SESSION['numPregunta'] . " cant = ".$_SESSION['cantPreguntas']; ?>
           <!--Botones de la prueba -->
           <div class="botonesPrueba">
             <button type="submit" name="btn" class="posicionIzquierda" value="1">GUARDAR</button>

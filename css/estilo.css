@@ -629,8 +629,12 @@ input[type="text"], input[type="file"], input[type="number"],
 
 /*Para las que aún no han sido realizadas se pintan de un color mas llamativo
     para que le llame más la atención al usuario. En este caso un rojo*/
-.noRevisado{
-  background-color: #f66055 !important;
+.norevisado {
+  background-color: #EF5350 !important;
+}
+
+.sindatos {
+  background-color: #EDF6F7 !important
 }
 
 /*Se le da posición y tamaño a los botones contenidos en las tablas del

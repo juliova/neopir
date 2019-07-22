@@ -1,5 +1,6 @@
 <?php 
   session_start();
+  date_default_timezone_set("America/Costa_Rica");
   $_SESSION['usuario'] = 116360429;
   $siguiente = false;
   include 'Base.php';

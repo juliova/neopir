@@ -1,11 +1,14 @@
 <?php 
     session_start();
+    date_default_timezone_set("America/Costa_Rica");
+    $_SESSION['usuario'] = 116360429;
     include 'Base.php';
     $con = conectar();
     $error = false;
     if(isset($_POST['token'])){
-        $sql = "";
+        $sql = "Call IngresoPrueba(".$_SESSION['usuario'].",'".$_POST['token']."','".date("Y-m-d H:i:s")."')";
         $respuesta = $con->query($sql);
+        $fila = $respuesta->fetch_assoc();
     }
 ?>
 
@@ -13,15 +16,20 @@
 <html>
 
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link type="text/css" rel="stylesheet" href="css/estilo.css" />
-  <link type="text/css" rel="stylesheet" href="css/all.css" />
-  <script src="js/jquery-3.4.1.min.js"></script>
-  <script src="js/scripts.js"></script>
-  <?php //alerta de error. 
-    
-  ?>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link type="text/css" rel="stylesheet" href="css/estilo.css" />
+    <link type="text/css" rel="stylesheet" href="css/all.css" />
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/scripts.js"></script>
+    <script>
+        <?php if($fila['examen']!=0) { ?>
+            alert("Tiquete correcto.");
+            window.location.href = "prueba.php";
+        <?php } else { ?>
+            alert("Error de tiquete o hora incorrecta.");
+        <?php } ?>
+    </script>
 </head>
 
 <body>

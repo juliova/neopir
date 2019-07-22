@@ -1,8 +1,6 @@
 <?php 
   //inicio de variables de session
   session_start();
-  $_SESSION['usuario'] = 116360429;
-  $_SESSION['prueba'] = 1;
   //Cambio a la siguiente página como falso.
   $siguiente = false;
   //Incluir función de conexión a la base

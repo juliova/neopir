@@ -58,18 +58,18 @@
              $con = conectar();
              $sql = "CALL obtener_fechas()";
              $result = $con->query($sql);
-             echo "<table class='tablaB' id='estudiantes'><tr><th>Fechas de Examenes realizados</th>";
+             echo "<table class='tablaB' id='estudiantes'><tr><th>Fechas de Examenes realizados</th><th>Estudiantes que realizaron la prueba</th></tr>";
              if ($result->num_rows > 0) {
                 while($row = $result->fetch_assoc()) {
                   if(strcmp ($row["Estado"] ,"SIN REVISAR") == 0){ 
-                    echo "<tr class='norevisado' onclick='examenesxestudiante.php?fecha=".$row["IDPrueba"].";'><td>" . $row["Fechar"]."</td></tr>";
+                    echo "<tr class='norevisado' onclick='examenesxestudiante.php?fecha=".$row["IDPrueba"].";'><td>" . $row["Fechar"]."</td><td>" . $row["numestudiantes"]."</td></tr>";
                   }else{
-                    echo "<tr class='revisado'  onclick='examenesxestudiante.php?fecha=".$row["IDPrueba"].";' ><td>" . $row["Fechar"]."</td></tr>";
+                    echo "<tr class='revisado'  onclick='examenesxestudiante.php?fecha=".$row["IDPrueba"].";' ><td>" . $row["Fechar"]."</td><td>" . $row["numestudiantes"]."</td></tr>";
                   }  
               } 
             echo "</table>";
       } else { 
-          echo "<tr class='sindatos'><td>....</td></tr>
+          echo "<tr class='sindatos'><td>....</td><td>....</td></tr>
           </table> 
                <h1>SIN DATOS</h1>";
       }

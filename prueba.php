@@ -1,7 +1,5 @@
 <?php 
   session_start();
-  $_SESSION['usuario'] = 116360429;
-  $_SESSION['prueba'] = 1;
   $siguiente = false;
   include 'Base.php';
   $con = conectar();
@@ -329,4 +327,3 @@
   </body>
 
 </html>
-

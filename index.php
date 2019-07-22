@@ -1,3 +1,6 @@
+<?php 
+  session_start();
+?>
 <!DOCTYPE html>
 <html>
 
@@ -34,16 +37,7 @@
               <a href="index.html">inicio</a>
             </li>
             <li>
-              <a href="fechaprueba.html">fechas</a>
-            </li>
-            <li>
-              <a href="preguntas.html">preguntas</a>
-            </li>
-            <li>
-              <a href="calificacion.html">evaluación</a>
-            </li>
-            <li>
-              <a href="tokens.html">Tokens</a>
+              <a href="prueba.php">prueba</a>
             </li>
           </ul>
         </div>

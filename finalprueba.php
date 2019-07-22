@@ -3,31 +3,6 @@
   $siguiente = false;
   include 'Base.php';
   $con = conectar();
-  if(isset($_SESSION['numPregunta'])){
-    
-  } else {
-    $_SESSION['numPregunta'] = 1;
-    $sql = "SELECT PreguntasxVista FROM variables;";
-    $resultado = $con->query($sql);
-    $fila = $resultado->fetch_assoc();
-    $_SESSION['cantPreguntas'] = $fila['PreguntasxVista'];
-  }
-  if(isset($_POST['btn'])){
-    switch ($_POST['btn']) {
-      case 1: //Guardar
-        $siguiente = true;
-        break;
-      case 2: //Siguiente
-        if($_SESSION['numPregunta']>240){
-          head("Location: finalprueba.php");
-        }
-        //ingcrementar numPregunta
-        $_SESSION['numPregunta'] = $_SESSION['numPregunta'] + 20; 
-        break;
-    }
-  } else {
-    $_SESSION['numPregunta'] = 1;
-  }
 ?>
 
 <!DOCTYPE html>

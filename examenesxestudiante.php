@@ -65,7 +65,7 @@
                     window.location.href='examenxfecha.php';
                 </script>");
              }else{
-              echo '<script type="text/javascript>alert('No puede formalizar la prueba sin antes revisar todos los estudiantes');</script>"'
+              echo "<script type='text/javascript'>alert('No puede formalizar la prueba sin antes revisar todos los estudiantes');</script>";
             }
             $conectar->close();
     }
@@ -73,7 +73,7 @@
     {
     header('Location: examenxfecha.php');
     }
-     echo "Variable $fecha: $HTTP_GET_VARS["fecha"]";
+     echo "Variable $fecha: $HTTP_GET_VARS['fecha']";
              include 'Base.php';
              $con = conectar();
              $sql = "CALL obtener_fechas(".$fecha.")";
@@ -89,7 +89,7 @@
               } 
             echo "</table> 
                    <div class='flexCentro'>
-                             <button onclick="Formalizar($con,$fecha)">Formalizar Revisión</button>
+                             <button onclick="Formalizar($con,$fecha);">Formalizar Revisión</button>
                    </div>";
 
                   } else { 
@@ -98,7 +98,7 @@
                         </table> 
                         <h1>SIN DATOS</h1>
                         <div class='flexCentro'>
-                        <button onclick="Back()">ATRAS Revisión</button>
+                        <button onclick="Back();">ATRAS Revisión</button>
                         </div>";
       }
     $con->close();

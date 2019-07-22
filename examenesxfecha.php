@@ -62,9 +62,9 @@
              if ($result->num_rows > 0) {
                 while($row = $result->fetch_assoc()) {
                   if(strcmp ($row["Estado"] ,"SIN REVISAR") == 0){ 
-                    echo "<tr class='norevisado' onclick='examenesxestudiante.php?fecha=".$row["IDPrueba"]";'><td>" . $row["Fechar"]."</td></tr>";
+                    echo "<tr class='norevisado' onclick='examenesxestudiante.php?fecha=".$row["IDPrueba"].";'><td>" . $row["Fechar"]."</td></tr>";
                   }else{
-                    echo "<tr class='revisado'  onclick='examenesxestudiante.php?fecha=".$row["IDPrueba"]";' ><td>" . $row["Fechar"]."</td></tr>";
+                    echo "<tr class='revisado'  onclick='examenesxestudiante.php?fecha=".$row["IDPrueba"].";' ><td>" . $row["Fechar"]."</td></tr>";
                   }  
               } 
             echo "</table>";

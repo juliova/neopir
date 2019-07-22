@@ -1,10 +1,20 @@
 <?php 
+  //inicio de variables de session
   session_start();
+  $_SESSION['usuario'] = 116360429;
+  $_SESSION['prueba'] = 1;
+  //Cambio a la siguiente página como falso.
   $siguiente = false;
+  //Incluir función de conexión a la base
   include 'Base.php';
+  //Realizar la conexión
   $con = conectar();
+  //Si tenemos el numero de pregunta actual iniciado 
   if(isset($_SESSION['numPregunta'])){
-    
+    //Si ya inició y finalizó la prueba el usuario es devuleto a la pagina de fin.
+    if($_SESSION['numPregunta']== 0){
+      header("Location: finalprueba.php");
+    }
   } else {
     $_SESSION['numPregunta'] = 1;
     $sql = "SELECT PreguntasxVista FROM variables;";
@@ -144,15 +154,14 @@
         $con->close();
         break;
       case 2: //Siguiente
+        //ingcrementar numPregunta
+        $_SESSION['numPregunta'] = $_SESSION['numPregunta'] + $_SESSION['cantPreguntas'];
         if($_SESSION['numPregunta']>=220){
           header("Location: finalprueba.php");
+          $_SESSION['numPregunta'] = 0;
         }
-        //ingcrementar numPregunta
-        $_SESSION['numPregunta'] = $_SESSION['numPregunta'] + 20;
         break;
     }
-  } else {
-    $_SESSION['numPregunta'] = 1;
   }
 ?>
 

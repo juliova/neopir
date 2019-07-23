@@ -43,11 +43,7 @@
             </li>
         <?php    
         if(isset($_SESSION['usuario'])){
-            $sql = "SELECT Rol FROM usuarios where Cedula = ".$_SESSION['usuario'].";";
-            $con = conectar();
-            $respuesta = $con->query($sql);
-            $fila = $respuesta->fetch_assoc();
-            switch($fila['Rol']){
+            switch($_SESSION['Rol']){
                 case 1://evaluación, fechas, preguntas, variables
                     ?>
                         <li>

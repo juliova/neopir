@@ -1,7 +1,7 @@
 <?php 
   session_start();
   include 'Base.php';
-  $_SESSION['usuario'] = 116360429;
+  //$_SESSION['usuario'] = 116360429;
   include '_menu.php';
 ?>
 <!DOCTYPE html>
@@ -45,7 +45,7 @@
             Estar registrado en el sitio.
           </li>
           <li>
-            Haber realizado la validación mediante el tiquete enviado al correo con el cual se registro.
+            Haber realizado la validación mediante el tiquete enviado al correo con el cual se registró.
           </li>
           <li>
             Ser estudiante activo de la carrera de investigación criminal.

@@ -649,6 +649,23 @@ input[type="text"], input[type="file"], input[type="number"],
   margin: 0 auto;
 }
 
+.fechaexamen{
+  position: absolute;
+  background: black;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  left: 50%;
+  bottom: 2px;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%) translateY(0%);
+}
+
+.fechaexamen::after,
+.fechaexamen::before {
+  box-sizing: border-box;
+}
+
 /*EL modo responsivo entra en efecto cuando la ventana se encoge a un ancho
     menor a 1200px. Siendo una de las resoluciones más populares */
 @media only screen and (max-width: 1199px) { /*400*/

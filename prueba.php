@@ -1,6 +1,9 @@
 <?php 
   //inicio de variables de session
   session_start();
+  if(!isset($_SESSION['prueba'])){
+    header("Location: ingresarprueba.php");
+  }
   //Cambio a la siguiente página como falso.
   $siguiente = false;
   //Incluir función de conexión a la base
@@ -192,12 +195,6 @@
     <div class="barraUsuario">
       <div class="contenedor">
         <ul>
-          <li>
-            <a href="Login.html">registro</a>
-          </li>
-          <li>
-            <a href="Login.html">iniciar sesión</a>
-          </li>
         </ul>
       </div>
     </div>
@@ -211,12 +208,6 @@
         <i class="fas fa-bars"></i>
         <div>
           <ul>
-            <li>
-              <a href="index.html">inicio</a>
-            </li>
-            <li>
-              <a href="prueba.html">prueba</a>
-            </li>
           </ul>
         </div>
       </menu>

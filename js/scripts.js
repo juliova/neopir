@@ -1,9 +1,5 @@
 $(document).ready(function(){
 
-  $("#estudiantes tr").click(function(){
-    window.location.href = "graficogeneral.html";
-  });
-
   /*Colorea el icono de menu y muestra el menu responsivo cuando el
       icono es presionado.*/
   $("menu i").click(function(){

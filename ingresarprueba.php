@@ -1,7 +1,6 @@
 <?php 
     session_start();
     date_default_timezone_set("America/Costa_Rica");
-    $_SESSION['usuario'] = 116360429;
     include 'Base.php';
     include '_menu.php';
     $con = conectar();
@@ -10,6 +9,7 @@
         $sql = "Call IngresoPrueba(".$_SESSION['usuario'].",'".$_POST['token']."','".date("Y-m-d H:i:s")."')";
         $respuesta = $con->query($sql);
         $fila = $respuesta->fetch_assoc();
+        $_SESSION['prueba'] = $fila['examen'];
     }
 ?>
 
@@ -24,7 +24,7 @@
     <script src="js/jquery-3.4.1.min.js"></script>
     <script src="js/scripts.js"></script>
     <script>
-        <?php if($fila['examen']!=0) { ?>
+        <?php if($_SESSION['prueba']!=0) { ?>
             alert("Tiquete correcto.");
             window.location.href = "prueba.php";
         <?php } else { ?>

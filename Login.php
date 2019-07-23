@@ -1,45 +1,131 @@
-<?php
-session_start();
-include 'Base.php';
-//Coneccion ala base de datos
-$conn = conectar();
-if($conn->connect_error){
-die("Conexion a la base fallida: " . $connect_error);
-}
-//Obtencion de los datos de los campos
- $cedula = $_POST['cedula'];
-  $contra = $_POST['contra'];
-
-
-//Llamado al procedimiento almacenado
-//$sql = "CALL Login (".$cedula .", '".$contra. "', @Rol2)";
-$sql ="CALL Login(".$cedula.",'".$contra."',@Rol2); SELECT @Rol2 as Rol2;";
-//Puede implicar fallos no probado
-$respuesta = $conn->query($sql);
-if($respuesta->num_rows >0){
-  $fila = $respuesta->fetch_assoc();
-
-  $Rol = $fila['Rol2'];
-  $_SESSION['usuario'] = $cedula;
-  $_SESSION['Rol'] = $Rol;
-  echo "<script type='text/javascript'>alert('Login Exitoso'); window.location.href = 'index.php';</script>";
-  //header('Location:index.php');
-} else {
-  echo "<script type='text/javascript'>alert('Login Fallido'); window.location.href= 'login.html';</script>";
-  //header('Location:login.html');
-}
-//Se determinal la variable de sesion rol para mas adelante
-
-//Se determinar si el login fue exitoso si rol tiene un valor mayor a 0
-/*
-if($Rol = 0)
-{
-  echo "<script type='text/javascript'>alert(Login Fallido);</script>";
-  header('Location:login.php');
-}
-else {
-  echo "<script type='text/javascript'>alert(Login Exitoso);</script>";
-  header('Location:index.php');
-}*/
-
+<?php 
+  session_start();
+  include 'Base.php';
+  include '_menu.php';
 ?>
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link type="text/css" rel="stylesheet" href="css/estilo.css" />
+    <link type="text/css" rel="stylesheet" href="css/all.css" />
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/scripts.js"></script>
+  </head>
+
+  <body>
+    <div class="barraUsuario">
+      <div class="contenedor">
+        <ul>
+          <?php barraUsuario(); ?>
+        </ul>
+      </div>
+    </div>
+    <div class="contenedor">
+      <menu>
+        <img class="logo" src="img/logo-blanco-64.png" />
+
+        <i class="fas fa-bars"></i>
+        <div>
+          <ul>
+            <?php menu(); ?>
+          </ul>
+        </div>
+      </menu>
+
+      <!--Contenido-->
+      <div class="contenido">
+        <div class="seccionMedia">
+
+          <!--Login-->
+          <div>
+            <form action="rlogin.php" method="post" >
+              <div>
+
+                <h1>Login</h1>
+                <div class="columna1">
+                  <label>Cedula</label>
+                </div>
+                <div class="columna2">
+                  <input type="text" name="cedula" />
+                </div>
+                <div class="columna1">
+                  <label>Contraseña</label>
+                </div>
+                <div class="columna2">
+                  <input type="text" name="contra" />
+                </div>
+              </div>
+              <button class="seccionMedia">Iniciar Sesion</button>
+            </form>
+          </div>
+
+          <!--Registro-->
+          <div>
+            <form action="registro.php" method="post">
+              <div>
+                <h1>Registro</h1>
+                <div class="columna1">
+                  <label>Nombre:</label>
+                </div>
+                <div class="columna2">
+                  <input type="text" name="nombre" />
+                </div>
+                <div class="columna1">
+                  <label>Primer Apellido:</label>
+                </div>
+                <div class="columna2">
+                  <input type="text" name="apellidos1" />
+                </div>
+                <div class="columna1">
+                  <label>Segundo Apellido:</label>
+                </div>
+                <div class="columna2">
+                  <input type="text" name="apellidos2" />
+                </div>
+                <div class="columna1">
+                  <label>Cedula:</label>
+                </div>
+                <div class="columna2">
+                  <input type="text" name="cedula2" />
+                </div>
+                <div class="columna1">
+                  <label>Correo:</label>
+                </div>
+                <div class="columna2">
+                  <input type="text" name="correo" />
+                </div>
+                <div class="columna1">
+                  <label>Contraseña:</label>
+                </div>
+                <div class="columna2">
+                  <input type="text" name="contra2" />
+                </div>
+              
+                <div class="columna1">
+                  <label>Sexo:</label>
+                </div>
+
+                <div class="columna2">
+                  <label class="contenedorRadioCheck">
+                    <input value= "Hombre" type="radio" name="radio">
+                    <span class="radioCheck radioH"></span>
+                  </label>
+                  <label class="contenedorRadioCheck">
+                    <input value = "Mujer" type="radio" name="radio">
+                    <span class="radioCheck radioM"></span>
+                  </label>
+                </div>
+
+              </div>
+              <button class="posicionDerecha">Registro</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+</html>

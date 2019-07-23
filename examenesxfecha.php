@@ -1,4 +1,9 @@
 <?php if (substr_count($_SERVER["HTTP_ACCEPT_ENCODING"], "gzip")) { ob_start("ob_gzhandler"); } else { ob_start(); } ?>
+<?php 
+  session_start();
+  include 'Base.php';
+  include '_menu.php';
+?>
 <!DOCTYPE html>
 <html>
 
@@ -18,12 +23,7 @@
   <div class="barraUsuario">
     <div class="contenedor">
       <ul>
-        <li>
-          <a href="login.html">registro</a>
-        </li>
-        <li>
-          <a href="login.html">iniciar sesión</a>
-        </li>
+        <?php barraUsuario(); ?>
       </ul>
     </div>
   </div>
@@ -34,27 +34,12 @@
       <i class="fas fa-bars"></i>
       <div>
         <ul>
-          <li>
-            <a href="index.html">inicio</a>
-          </li>
-          <li>
-            <a href="fechaprueba.html">fechas</a>
-          </li>
-          <li>
-            <a href="preguntas.html">preguntas</a>
-          </li>
-          <li>
-            <a href="calificacion.html">evaluación</a>
-          </li>
-          <li>
-            <a href="tokens.html">Tokens</a>
-          </li>
+          <?php menu(); ?>
         </ul>
       </div>
     </menu>         
     <div class="contenido">
      <?php
-            include 'Base.php';
              $con = conectar();
              $sql = "CALL obtener_fechas()";
              $result = $con->query($sql);

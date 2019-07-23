@@ -1,7 +1,6 @@
 <?php 
   session_start();
   include 'Base.php';
-  //$_SESSION['usuario'] = 116360429;
   include '_menu.php';
 ?>
 <!DOCTYPE html>

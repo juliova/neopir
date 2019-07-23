@@ -17,20 +17,20 @@
             <?php
             } else { ?> 
             <li>
-                <a href="login.html">registro</a>
+                <a href="login.php">registro</a>
             </li>
             <li>
-                <a href="login.html">iniciar sesión</a>
+                <a href="login.php">iniciar sesión</a>
             </li>
             <?php
             } 
             $con->close();
         } else { ?> 
             <li>
-                <a href="login.html">registro</a>
+                <a href="login.php">registro</a>
             </li>
             <li>
-                <a href="login.html">iniciar sesión</a>
+                <a href="login.php">iniciar sesión</a>
             </li>
         <?php
         }

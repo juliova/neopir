@@ -1,10 +1,12 @@
 <?php 
   session_start();
-  date_default_timezone_set("America/Costa_Rica");
-  $_SESSION['usuario'] = 116360429;
-  $siguiente = false;
+  if(!isset($_SESSION['prueba'])){
+    header("Location: ingresarprueba.php");
+  }
   include 'Base.php';
-  $con = conectar();
+  include '_menu.php';
+  date_default_timezone_set("America/Costa_Rica");
+  $siguiente = false;
 ?>
 
 <!DOCTYPE html>
@@ -28,12 +30,7 @@
     <div class="barraUsuario">
       <div class="contenedor">
         <ul>
-          <li>
-            <a href="Login.html">registro</a>
-          </li>
-          <li>
-            <a href="Login.html">iniciar sesión</a>
-          </li>
+          <?php barraUsuario(); ?>
         </ul>
       </div>
     </div>
@@ -47,12 +44,7 @@
         <i class="fas fa-bars"></i>
         <div>
           <ul>
-            <li>
-              <a href="index.html">inicio</a>
-            </li>
-            <li>
-              <a href="prueba.html">prueba</a>
-            </li>
+            <?php menu(); ?>
           </ul>
         </div>
       </menu>
@@ -60,6 +52,7 @@
       <!--Contenido -->
       <div class="contenido">
         <?php 
+          $con = conectar();
           $sql = "Call NombreCorreo(". $_SESSION['usuario'] .");";
           $respuesta = $con->query($sql);
           $fila = $respuesta->fetch_assoc();
@@ -80,3 +73,7 @@
   </body>
 
 </html>
+
+<?php 
+  unset($_SESSION['prueba']);
+?>

@@ -17,7 +17,7 @@ die("Conexion a la base fallida: " . $connect_error);
 
 
 //Llamado al procedimiento almacenado
-$sql = "CALL Registro (".$Cedula .", '".$Nombre."', '".$Apellido1."', '".$Apellido2."', '".$Correo."', '".$Genero."', '".$Contra."', '@Token2', @Mensaje2)";
+$sql = "CALL Registro (".$Cedula .", '".$Nombre."', '".$Apellido1."', '".$Apellido2."', '".$Correo."', '".$Genero."', '".$Contra."')";
 //Puede implicar fallos no probado tomar valores de token y mensaje
 $respuesta = $conn->query($sql);
 $fila = $respuesta->fetch_assoc();

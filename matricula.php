@@ -7,13 +7,10 @@
   if(isset($_GET['prueba'])){
     $con = conectar();
     $sql = "Call Matricula(".$_GET['prueba'].",".$_SESSION['usuario'].");";
-    $respuesta = $con->query($sql);
-    if($respuesta->num_rows >0){
-      $fila = $respuesta->fetch_assoc();
-      mail($fila['Correo'],'Tiquete de ingreso a la prueba.',$fila['Mensaje2']);
-      $exito = true;
-    } else {  
-      
+    if($respuesta = $con->query($sql)){
+    $fila = $respuesta->fetch_assoc();
+    mail($fila['Correo'],'Tiquete de ingreso a la prueba.',$fila['Mensaje2']." ".$fila['Token2'] );
+    $exito = true;
     }
   }
 ?>

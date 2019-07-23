@@ -4,8 +4,7 @@
         if(isset($_SESSION['usuario'])){
             $sql = "Call NombreCorreo(". $_SESSION['usuario'] .");";
             $con = conectar();
-            $respuesta = $con->query($sql);
-            if($respuesta->num_rows >0){
+            if($respuesta = $con->query($sql)){
                 $fila = $respuesta->fetch_assoc();
                 ?>
                 <li>

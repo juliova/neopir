@@ -3,6 +3,7 @@
     date_default_timezone_set("America/Costa_Rica");
     $_SESSION['usuario'] = 116360429;
     include 'Base.php';
+    include '_menu.php';
     $con = conectar();
     $error = false;
     if(isset($_POST['token'])){
@@ -36,12 +37,7 @@
   <div class="barraUsuario">
     <div class="contenedor">
       <ul>
-        <li>
-          <a href="login.html">registro</a>
-        </li>
-        <li>
-          <a href="login.html">iniciar sesión</a>
-        </li>
+        <?php barraUsuario(); ?>
       </ul>
     </div>
   </div>
@@ -52,12 +48,7 @@
       <i class="fas fa-bars"></i>
       <div>
         <ul>
-          <li>
-            <a href="index.html">inicio</a>
-          </li>
-          <li>
-            <a href="prueba.html">prueba</a>
-          </li>
+          <?php menu(); ?>
         </ul>
       </div>
     </menu>
@@ -72,7 +63,7 @@
             <div>
               <h1>Iniciar Examen</h1>
               <div class="columna1">
-                <label>Token</label>
+                <label>Tiquete</label>
               </div>
               <div class="columna2">
                 <input type="text" name="token" />

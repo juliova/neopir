@@ -1,9 +1,4 @@
 <?php if (substr_count($_SERVER["HTTP_ACCEPT_ENCODING"], "gzip")) { ob_start("ob_gzhandler"); } else { ob_start(); } ?>
-<?php 
-  session_start();
-  include 'Base.php';
-  include '_menu.php';
-?>
 <!DOCTYPE html>
 <html>
 
@@ -23,7 +18,12 @@
   <div class="barraUsuario">
     <div class="contenedor">
       <ul>
-        <?php barraUsuario(); ?>
+        <li>
+          <a href="login.html">registro</a>
+        </li>
+        <li>
+          <a href="login.html">iniciar sesión</a>
+        </li>
       </ul>
     </div>
   </div>
@@ -34,12 +34,27 @@
       <i class="fas fa-bars"></i>
       <div>
         <ul>
-          <?php menu(); ?>
+          <li>
+            <a href="index.html">inicio</a>
+          </li>
+          <li>
+            <a href="fechaprueba.html">fechas</a>
+          </li>
+          <li>
+            <a href="preguntas.html">preguntas</a>
+          </li>
+          <li>
+            <a href="calificacion.html">evaluación</a>
+          </li>
+          <li>
+            <a href="tokens.html">Tokens</a>
+          </li>
         </ul>
       </div>
     </menu>         
     <div class="contenido">
      <?php
+             include 'Base.php';
              $con = conectar();
              $sql = "CALL obtener_fechas()";
              $result = $con->query($sql);
@@ -47,9 +62,9 @@
              if ($result->num_rows > 0) {
                 while($row = $result->fetch_assoc()) {
                   if(strcmp ($row["Estado"] ,"SIN REVISAR") == 0){ 
-                    echo "<tr class='norevisado' onclick='examenesxestudiante.php?fecha=".$row["IDPrueba"].";'><td>" . $row["Fechar"]."</td><td>" . $row["numestudiantes"]."</td></tr>";
+                    echo "<tr class='norevisado' onClick=window.location.href='examenesxestudiante?fecha=".$row["IDPrueba"]."'><td>" . $row["Fechar"]."</td><td>" . $row["numestudiantes"]."</td></tr>";
                   }else{
-                    echo "<tr class='revisado'  onclick='examenesxestudiante.php?fecha=".$row["IDPrueba"].";' ><td>" . $row["Fechar"]."</td><td>" . $row["numestudiantes"]."</td></tr>";
+                      echo "<tr class='revisado' onClick=window.location.href='examenesxestudiante?fecha=".$row["IDPrueba"]."'><td>" . $row["Fechar"]."</td><td>" . $row["numestudiantes"]."</td></tr>";
                   }  
               } 
             echo "</table>";

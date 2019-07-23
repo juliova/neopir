@@ -1,7 +1,7 @@
 <?php 
   //inicio de variables de session
   session_start();
-  if(!isset($_SESSION['prueba'] || $_SESSION['prueba']==0)){
+  if(!isset($_SESSION['prueba']) || $_SESSION['prueba']==0){
     header("Location: ingresarprueba.php");
   }
   //Cambio a la siguiente página como falso.

@@ -7,6 +7,14 @@ $(document).ready(function(){
     $("menu ul").toggleClass("mostrar");
   });
 
+  $("input[name=contraC]").keyup(function(){
+    verificarC();
+  });
+
+  $("input[name=contra2]").keyup(function(){
+    verificarC();
+  });
+
   //Inicia el calendario
   $("#selectorFechas").datepicker({
     //Escoje la localización en español
@@ -23,3 +31,13 @@ $(document).ready(function(){
     }
   });
 });
+
+function verificarC(){
+  if ($("input[name=contraC]").val() === $("input[name=contra2]").val()) {
+    $("#registro").attr('disabled', false);
+    $("input[name=contraC]").css("border-color", "#113f67");
+  } else {
+    $("#registro").attr('disabled', true);
+    $("input[name=contraC]").css("border-color", "red");
+  }
+}

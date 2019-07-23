@@ -76,7 +76,7 @@
                 case 3:// inicio, matricula, ingresoprueba;
                     ?>
                         <li>
-                            <a href="#">matrícula</a>
+                            <a href="matricula.php">matrícula</a>
                         </li>
                         <li>
                             <a href="ingresarprueba.php">prueba</a>

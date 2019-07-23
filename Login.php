@@ -49,13 +49,13 @@
                   <label>Cedula</label>
                 </div>
                 <div class="columna2">
-                  <input type="text" name="cedula" />
+                  <input type="text" name="cedula" required/>
                 </div>
                 <div class="columna1">
                   <label>Contraseña</label>
                 </div>
                 <div class="columna2">
-                  <input type="text" name="contra" />
+                  <input type="password" name="contra" required/>
                 </div>
               </div>
               <button class="seccionMedia">Iniciar Sesion</button>
@@ -71,56 +71,61 @@
                   <label>Nombre:</label>
                 </div>
                 <div class="columna2">
-                  <input type="text" name="nombre" />
+                  <input type="text" name="nombre" required/>
                 </div>
                 <div class="columna1">
                   <label>Primer Apellido:</label>
                 </div>
                 <div class="columna2">
-                  <input type="text" name="apellidos1" />
+                  <input type="text" name="apellidos1" required/>
                 </div>
                 <div class="columna1">
                   <label>Segundo Apellido:</label>
                 </div>
                 <div class="columna2">
-                  <input type="text" name="apellidos2" />
+                  <input type="text" name="apellidos2" required/>
                 </div>
                 <div class="columna1">
                   <label>Cedula:</label>
                 </div>
                 <div class="columna2">
-                  <input type="text" name="cedula2" />
+                  <input type="text" name="cedula2" required/>
                 </div>
                 <div class="columna1">
                   <label>Correo:</label>
                 </div>
                 <div class="columna2">
-                  <input type="text" name="correo" />
+                  <input type="text" name="correo" required/>
                 </div>
                 <div class="columna1">
                   <label>Contraseña:</label>
                 </div>
                 <div class="columna2">
-                  <input type="text" name="contra2" />
+                  <input type="password" name="contra2" required/>
                 </div>
-              
+                <div class="columna1">
+                  <label></label>
+                </div>
+                <div class="columna2">
+                  <input type="password" name="contraC" required placeholder="Confirmar contraseña"/>
+                </div>
                 <div class="columna1">
                   <label>Sexo:</label>
                 </div>
 
                 <div class="columna2">
                   <label class="contenedorRadioCheck">
-                    <input value= "Hombre" type="radio" name="radio">
+                    <input value= "Hombre" type="radio" name="radio" required>
                     <span class="radioCheck radioH"></span>
                   </label>
                   <label class="contenedorRadioCheck">
-                    <input value = "Mujer" type="radio" name="radio">
+                    <input value = "Mujer" type="radio" name="radio" required>
                     <span class="radioCheck radioM"></span>
                   </label>
                 </div>
 
               </div>
-              <button class="posicionDerecha">Registro</button>
+              <button id="registro" disabled class="posicionDerecha">Registro</button>
             </form>
           </div>
         </div>

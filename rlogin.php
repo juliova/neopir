@@ -19,6 +19,6 @@ if($respuesta->num_rows >0){
   $_SESSION['Rol'] = $Rol;
   echo "<script type='text/javascript'>alert('Login Exitoso'); window.location.href = 'index.php';</script>";
 } else {
-  echo "<script type='text/javascript'>alert('Login Fallido'); window.location.href= 'login.html';</script>";
+  echo "<script type='text/javascript'>alert('Login Fallido'); window.location.href= 'login.php';</script>";
 }
 ?>

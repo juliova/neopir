@@ -392,7 +392,7 @@ label{
 
 /*Da tamaño y borde de color azul oscuro*/
 input[type="text"], input[type="file"], input[type="number"],
-  input[type="time"] {
+  input[type="time"], input[type="password"] {
   background-color: white;
   width: 100%;
   border: 2px solid #113f67;
@@ -642,6 +642,11 @@ input[type="text"], input[type="file"], input[type="number"],
 .tablaB td button{
     float: left;
     width: 50%;
+}
+
+#fechaMatricula{
+  width: 100;
+  margin: 0 auto;
 }
 
 /*EL modo responsivo entra en efecto cuando la ventana se encoge a un ancho

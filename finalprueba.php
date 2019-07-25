@@ -54,26 +54,36 @@
         <?php 
           $con = conectar();
           $sql = "Call NombreCorreo(". $_SESSION['usuario'] .");";
-          $respuesta = $con->query($sql);
-          $fila = $respuesta->fetch_assoc();
+          if($respuesta = $con->query($sql)){
+            $fila = $respuesta->fetch_assoc();
+            ?>
+            <div class="instrucciones">
+              <h1>Gracias por realizar la prueba <?php echo $fila['Nombre']." ".$fila['Apellido1']." ".$fila['Apellido2']; ?></h1>
+              <ul>
+                <li>Los resultados serán eviados por medio del correo: <?php echo $fila['Correo']; ?></li>
+                <li>Estos serán enviados una vez que todas las pruebas sean evaluadas.</li>
+                <li>Se tarda un plazo mínimo de una semana despues del <?php echo date("d-m-Y"); ?></li>
+                <li>En el caso que el correo previamente mencionado se encuentre incorrecto 
+                  o desactualizado por favor cambiarlo lo mas antes posible. </li>
+              </ul>
+            </div>
+            <?php
+            unset($_SESSION['prueba']);
+          } else {
+            ?>
+            <div class="instrucciones">
+              <h1>Gracias por realizar la prueba</h1>
+              <ul>
+                <li>Los resultados serán eviados por medio del correo ingresado al realizar el registro.</li>
+                <li>Estos serán enviados una vez que todas las pruebas sean evaluadas.</li>
+                <li>Se tarda un plazo mínimo de una semana despues de haber finalizado la prueba.</li>
+              </ul>
+            </div>
+            <?php
+          }
         ?>
-        <!--Instrucciones de la prueba -->
-        <div class="instrucciones">
-          <h1>Gracias por realizar la prueba <?php echo $fila['Nombre']." ".$fila['Apellido1']." ".$fila['Apellido2']; ?></h1>
-          <ul>
-            <li>Los resultados serán eviados por medio del correo: <?php echo $fila['Correo']; ?></li>
-            <li>Estos serán enviados una vez que todas las pruebas sean evaluadas.</li>
-            <li>Se tarda un plazo mínimo de una semana despues del <?php echo date("d-m-Y"); ?></li>
-            <li>En el caso que el correo previamente mencionado se encuentre incorrecto 
-              o desactualizado por favor cambiarlo lo mas antes posible. </li>
-          </ul>
-        </div>
       </div>
     </div>
   </body>
 
 </html>
-
-<?php 
-  unset($_SESSION['prueba']);
-?>

@@ -19,9 +19,10 @@
   } else {
     $_SESSION['numPregunta'] = 1;
     $sql = "SELECT PreguntasxVista FROM variables;";
-    $respuesta = $con->query($sql);
-    $fila = $respuesta->fetch_assoc();
-    $_SESSION['cantPreguntas'] = $fila['PreguntasxVista'];
+    if($respuesta = $con->query($sql)){
+      $fila = $respuesta->fetch_assoc();
+      $_SESSION['cantPreguntas'] = $fila['PreguntasxVista'];
+    }
     $con->close();
   }
   if(isset($_POST['btn'])){
@@ -44,102 +45,105 @@
                          "A5"=>0,"N5"=>0,"E5"=>0,"O5"=>0,"C5"=>0,
                          "A6"=>0,"N6"=>0,"E6"=>0,"O6"=>0,"C6"=>0);
         $sql = "Call TiposXPregunta(".$_SESSION['numPregunta'].");";
-        $respuesta = $con->query($sql);
-        $i = 0;
-        while($fila = $respuesta->fetch_assoc()){
-          switch($fila['Tipo']){
-            case "A1":
-              $totales['A1'] += $puntos[$i];
-              break;
-            case "A2":
-              $totales['A2'] += $puntos[$i]; 
-              break;
-            case "A3":
-              $totales['A3'] += $puntos[$i]; 
-              break;
-            case "A4":
-              $totales['A4'] += $puntos[$i]; 
-              break;
-            case "A5":
-              $totales['A5'] += $puntos[$i]; 
-              break;
-            case "A6":
-              $totales['A6'] += $puntos[$i]; 
-              break;
-            case "N1":
-              $totales['N1'] += $puntos[$i]; 
-              break;
-            case "N2":
-              $totales['N2'] += $puntos[$i]; 
-              break;
-            case "N3":
-              $totales['N3'] += $puntos[$i]; 
-              break;
-            case "N4":
-              $totales['N4'] += $puntos[$i]; 
-              break;
-            case "N5":
-              $totales['N5'] += $puntos[$i]; 
-              break;
-            case "N6":
-              $totales['N6'] += $puntos[$i]; 
-              break;
-            case "E1":
-              $totales['E1'] += $puntos[$i]; 
-              break;
-            case "E2":
-              $totales['E2'] += $puntos[$i];
-              break;
-            case "E3":
-              $totales['E3'] += $puntos[$i]; 
-              break;
-            case "E4":
-              $totales['E4'] += $puntos[$i]; 
-              break;
-            case "E5":
-              $totales['E5'] += $puntos[$i]; 
-              break;
-            case "E6":
-              $totales['E6'] += $puntos[$i]; 
-              break;
-            case "O1":
-              $totales['O1'] += $puntos[$i]; 
-              break;
-            case "O2":
-              $totales['O2'] += $puntos[$i]; 
-              break;
-            case "O3":
-              $totales['O3'] += $puntos[$i]; 
-              break;
-            case "O4":
-              $totales['O4'] += $puntos[$i]; 
-              break;
-            case "O5":
-              $totales['O5'] += $puntos[$i]; 
-              break;
-            case "O6":
-              $totales['O6'] += $puntos[$i]; 
-              break;
-            case "C1":
-              $totales['C1'] += $puntos[$i]; 
-              break;
-            case "C2":
-              $totales['C2'] += $puntos[$i]; 
-              break;
-            case "C3":
-              $totales['C3'] += $puntos[$i]; 
-              break;
-            case "C4":
-              $totales['C4'] += $puntos[$i]; 
-              break;
-            case "C5":
-              $totales['C5'] += $puntos[$i]; 
-              break;
-            case "C6":
-              $totales['C6'] += $puntos[$i]; 
-              break;
+        if($respuesta = $con->query($sql)){
+          $i = 0;
+          while($fila = $respuesta->fetch_assoc()){
+            switch($fila['Tipo']){
+              case "A1":
+                $totales['A1'] += $puntos[$i];
+                break;
+              case "A2":
+                $totales['A2'] += $puntos[$i]; 
+                break;
+              case "A3":
+                $totales['A3'] += $puntos[$i]; 
+                break;
+              case "A4":
+                $totales['A4'] += $puntos[$i]; 
+                break;
+              case "A5":
+                $totales['A5'] += $puntos[$i]; 
+                break;
+              case "A6":
+                $totales['A6'] += $puntos[$i]; 
+                break;
+              case "N1":
+                $totales['N1'] += $puntos[$i]; 
+                break;
+              case "N2":
+                $totales['N2'] += $puntos[$i]; 
+                break;
+              case "N3":
+                $totales['N3'] += $puntos[$i]; 
+                break;
+              case "N4":
+                $totales['N4'] += $puntos[$i]; 
+                break;
+              case "N5":
+                $totales['N5'] += $puntos[$i]; 
+                break;
+              case "N6":
+                $totales['N6'] += $puntos[$i]; 
+                break;
+              case "E1":
+                $totales['E1'] += $puntos[$i]; 
+                break;
+              case "E2":
+                $totales['E2'] += $puntos[$i];
+                break;
+              case "E3":
+                $totales['E3'] += $puntos[$i]; 
+                break;
+              case "E4":
+                $totales['E4'] += $puntos[$i]; 
+                break;
+              case "E5":
+                $totales['E5'] += $puntos[$i]; 
+                break;
+              case "E6":
+                $totales['E6'] += $puntos[$i]; 
+                break;
+              case "O1":
+                $totales['O1'] += $puntos[$i]; 
+                break;
+              case "O2":
+                $totales['O2'] += $puntos[$i]; 
+                break;
+              case "O3":
+                $totales['O3'] += $puntos[$i]; 
+                break;
+              case "O4":
+                $totales['O4'] += $puntos[$i]; 
+                break;
+              case "O5":
+                $totales['O5'] += $puntos[$i]; 
+                break;
+              case "O6":
+                $totales['O6'] += $puntos[$i]; 
+                break;
+              case "C1":
+                $totales['C1'] += $puntos[$i]; 
+                break;
+              case "C2":
+                $totales['C2'] += $puntos[$i]; 
+                break;
+              case "C3":
+                $totales['C3'] += $puntos[$i]; 
+                break;
+              case "C4":
+                $totales['C4'] += $puntos[$i]; 
+                break;
+              case "C5":
+                $totales['C5'] += $puntos[$i]; 
+                break;
+              case "C6":
+                $totales['C6'] += $puntos[$i]; 
+                break;
+            }
+            $i++;
           }
-          $i++;
+        } else {
+          //error intentar de nuevo;
         }
         $con->close();
         $con = conectar();
@@ -151,7 +155,11 @@
           ".$totales['A5'].",".$totales['N5'].",".$totales['E5'].",".$totales['O5'].",".$totales['C5'].",
           ".$totales['A6'].",".$totales['N6'].",".$totales['E6'].",".$totales['O6'].",".$totales['C6'].", 
           ".$_SESSION['usuario'].", ".$_SESSION['prueba'].");";
-        $respuesta = $con->query($sql);
+        if($respuesta = $con->query($sql)){
+          //exitosa
+        } else {
+          //error
+        }
         $con->close();
         break;
       case 2: //Siguiente
@@ -282,35 +290,38 @@
             $con = conectar();
             $pregunta = 1;
             $sql = "Call PreguntasPrueba(".$_SESSION['numPregunta'].")";
-            $respuesta = $con->query($sql) or die($con->error);
-            while($fila = $respuesta->fetch_assoc()){
-              ?>
-              <div class="pregunta">
-                <p><?php echo($fila['IDPregunta'].". ".$fila['TextoPregunta']);?></p>
-                <div class="opciones">
-                  <label class="contenedorRadio">
-                    <input type="radio" name="radio<?php echo($pregunta);?>" value="<?php echo($fila['Valor1']); ?>"/>
-                    <span class="botonRadio so"></span>
-                  </label>
-                  <label class="contenedorRadio">
-                    <input type="radio" name="radio<?php echo($pregunta);?>" value="<?php echo($fila['Valor2']); ?>"/>
-                    <span class="botonRadio o"></span>
-                  </label>
-                  <label class="contenedorRadio">
-                    <input type="radio" name="radio<?php echo($pregunta);?>" value="<?php echo($fila['Valor3']); ?>"/>
-                    <span class="botonRadio n"></span>
-                  </label>
-                  <label class="contenedorRadio">
-                    <input type="radio" name="radio<?php echo($pregunta);?>" value="<?php echo($fila['Valor4']); ?>"/>
-                    <span class="botonRadio c"></span>
-                  </label>
-                  <label class="contenedorRadio">
-                    <input type="radio" name="radio<?php echo($pregunta);?>" value="<?php echo($fila['Valor5']); ?>"/>
-                    <span class="botonRadio cv"></span>
-                  </label>
+            if($respuesta = $con->query($sql)){
+              while($fila = $respuesta->fetch_assoc()){
+                ?>
+                <div class="pregunta">
+                  <p><?php echo($fila['IDPregunta'].". ".$fila['TextoPregunta']);?></p>
+                  <div class="opciones">
+                    <label class="contenedorRadio">
+                      <input type="radio" name="radio<?php echo($pregunta);?>" value="<?php echo($fila['Valor1']); ?>"/>
+                      <span class="botonRadio so"></span>
+                    </label>
+                    <label class="contenedorRadio">
+                      <input type="radio" name="radio<?php echo($pregunta);?>" value="<?php echo($fila['Valor2']); ?>"/>
+                      <span class="botonRadio o"></span>
+                    </label>
+                    <label class="contenedorRadio">
+                      <input type="radio" name="radio<?php echo($pregunta);?>" value="<?php echo($fila['Valor3']); ?>"/>
+                      <span class="botonRadio n"></span>
+                    </label>
+                    <label class="contenedorRadio">
+                      <input type="radio" name="radio<?php echo($pregunta);?>" value="<?php echo($fila['Valor4']); ?>"/>
+                      <span class="botonRadio c"></span>
+                    </label>
+                    <label class="contenedorRadio">
+                      <input type="radio" name="radio<?php echo($pregunta);?>" value="<?php echo($fila['Valor5']); ?>"/>
+                      <span class="botonRadio cv"></span>
+                    </label>
+                  </div>
                 </div>
-              </div>
-              <?php $pregunta++;
+                <?php $pregunta++;
+              }
+            } else {
+              echo "error de base";
             }
           $con->close();
           ?>

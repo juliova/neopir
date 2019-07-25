@@ -9,8 +9,7 @@ $token = $_POST['token'];
 
 //Llamado al procedimiento almacenado
 $sql = "CALL Validacion (".$cedula .", '".$token. "');";
-$conn->query($sql);
-if($conn->affected_rows >0){
+if($conn->query($sql)){
   echo "<script type='text/javascript'>alert('Validacion Correcta'); window.location.href='index.php';</script>";
   //header('Location:index.html');
 }else{

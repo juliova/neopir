@@ -8,9 +8,9 @@
     $con = conectar();
     $sql = "Call Matricula(".$_GET['prueba'].",".$_SESSION['usuario'].");";
     if($respuesta = $con->query($sql)){
-    $fila = $respuesta->fetch_assoc();
-    mail($fila['Correo'],'Tiquete de ingreso a la prueba.',$fila['Mensaje2']." ".$fila['Token2'] );
-    $exito = true;
+      $fila = $respuesta->fetch_assoc();
+      mail($fila['Correo'],'Tiquete de ingreso a la prueba.',$fila['Mensaje2']." ".$fila['Token2'] );
+      $exito = true;
     }
   }
 ?>
@@ -64,8 +64,7 @@
             <?php 
               $con = conectar();
               $sql = "CALL PruebasDisponibles('".date("Y-m-d H:i:s")."');";
-              $respuesta = $con->query($sql);
-              if($respuesta->num_rows > 0){  
+              if($respuesta = $con->query($sql)){
                 while($fila = $respuesta->fetch_assoc()){
                   ?>
                   <tr onclick="window.location.href='matricula.php?prueba=<?php echo $fila['IDPrueba']; ?>'">
@@ -77,7 +76,6 @@
                 }
               }
             ?>
-
           </tr>
         </table>
       </div>

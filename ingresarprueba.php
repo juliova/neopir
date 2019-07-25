@@ -7,9 +7,10 @@
     $error = false;
     if(isset($_POST['token'])){
         $sql = "Call IngresoPrueba(".$_SESSION['usuario'].",'".$_POST['token']."','".date("Y-m-d H:i:s")."')";
-        $respuesta = $con->query($sql);
-        $fila = $respuesta->fetch_assoc();
-        $_SESSION['prueba'] = $fila['examen'];
+        if($respuesta = $con->query($sql)){
+          $fila = $respuesta->fetch_assoc();
+          $_SESSION['prueba'] = $fila['examen'];
+        }
     }
 ?>
 
@@ -24,12 +25,19 @@
     <script src="js/jquery-3.4.1.min.js"></script>
     <script src="js/scripts.js"></script>
     <script>
-        <?php if($_SESSION['prueba']!=0) { ?>
+        <?php 
+        if(isset($_SESSION['prueba'])){
+          if($_SESSION['prueba']!=0) {
+            ?>
             alert("Tiquete correcto.");
             window.location.href = "prueba.php";
-        <?php } else { ?>
+            <?php
+          } else { ?>
             alert("Error de tiquete o hora incorrecta.");
-        <?php } ?>
+            <?php
+          }
+        }
+        ?>
     </script>
 </head>
 

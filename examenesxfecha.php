@@ -39,27 +39,45 @@
       </div>
     </menu>         
     <div class="contenido">
-     <?php
-             $con = conectar();
-             $sql = "CALL obtener_fechas()";
-             $result = $con->query($sql);
-             echo "<table class='tablaB' id='estudiantes'><tr><th>Fechas de Examenes realizados</th><th>Estudiantes que realizaron la prueba</th></tr>";
-             if ($result->num_rows > 0) {
-                while($row = $result->fetch_assoc()) {
-                  if(strcmp ($row["Estado"] ,"SIN REVISAR") == 0){ 
-                    echo "<tr class='norevisado' onClick=window.location.href='examenesxestudiante?fecha=".$row["IDPrueba"]."'><td>" . $row["Fechar"]."</td><td>" . $row["numestudiantes"]."</td></tr>";
-                  }else{
-                      echo "<tr class='revisado' onClick=window.location.href='examenesxestudiante?fecha=".$row["IDPrueba"]."'><td>" . $row["Fechar"]."</td><td>" . $row["numestudiantes"]."</td></tr>";
-                  }  
-              } 
-            echo "</table>";
-      } else { 
-          echo "<tr class='sindatos'><td>....</td><td>....</td></tr>
-          </table> 
-               <h1>SIN DATOS</h1>";
+    <?php
+      $con = conectar();
+      $sql = "CALL obtener_fechas()";
+      if($result = $con->query($sql)){
+      ?> 
+        <table class="tablaB" id="estudiantes"><tr><th>Fechas de Examenes realizados</th><th>Estudiantes que realizaron la prueba</th></tr>
+        <?php
+        if ($result->num_rows > 0) {
+          while($row = $result->fetch_assoc()) {
+            if(strcmp ($row["Estado"] ,"SIN REVISAR") == 0){  ?>
+              <tr class="norevisado" onclick="window.location.href='exemenes.php?fecha=<?php echo($row["IDPrueba"]);?>'">
+              <td><?php echo($row["Fechar"]);?></td>
+              <td><?php echo($row["numestudiantes"]);?></td>
+               </tr>
+              <?php
+            }else{?>
+              <tr class="revisado" onclick="window.location.href='exemenes.php?fecha=<?php echo($row["IDPrueba"]);?>'">
+              <td><?php echo($row["Fechar"]);?></td>
+              <td><?php echo($row["numestudiantes"]);?></td>
+              </tr>
+            <?php 
+            }
+          } ?>
+          </table>
+        <?php
+        } else { ?>
+          <tr class="sindatos">
+          <td>....</td>
+          <td>....</td>
+          </tr>
+          </table>
+          <h1>SIN DATOS</h1>" 
+          <?php
+        }
+      } else {
+        echo "Error Base";
       }
-    $con->close();
-  ?>  
+      $con->close();
+      ?>  
     </div>
   </div>
 </body>

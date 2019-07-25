@@ -30,7 +30,7 @@
         <i class="fas fa-bars"></i>
         <div>
           <ul>
-            <?php menu(); ?>
+             
           </ul>
         </div>
       </menu>

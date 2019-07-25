@@ -40,52 +40,80 @@
     </menu>         
     <div class="contenido">
     <?php
-    function Formalizar($conectar, $fechas)
-    {   
-             $sql = "CALL formalizar(".$fechas.")";
-             $result = $conectar->query($sql);
-             if($result["Estado"]='FORMALIZADO')
-             {
-               echo ("<script LANGUAGE='JavaScript'>
-                    alert('La prueba ha sido formalizada con exito');
-                    location.href='examenxfecha.php';
-                </script>");
-             }else{
-              echo "<script type='text/javascript'>alert('No puede formalizar la prueba sin antes revisar todos los estudiantes');</script>";
-            }
-            $conectar->close();
+    if(isset($_GET['fecha'])){
+      $_SESSION['fecha']=$_GET['fecha'];
     }
+    $con = conectar();
+    $sql = "CALL obtener_Examenes(".$_SESSION['fecha'].")";
+    if($result = $con->query($sql)){
+      ?>
+      <table class="tablaB"><tr><th>IDENTIFICACIÓN</th><th>FECHA PRUEBA</th><th>ESTADO</th></tr>
+      <?php
+       
+      if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+          if(strcmp ($row["Estado"] ,"SIN REVISAR") == 0){ 
+            ?>
+            <tr class="norevisado" onClick=window.location.href='grafico.php?idfecha=<?php echo($_SESSION['fecha']);?>&idestudiante=<?php echo($row["IDEstudiante"]);?>'>
+              <td><?php echo($row["IDEstudiante"]);?></td>
+              <td><?php echo($row["Fechar"]);?></td>
+              <td><?php echo($row["Estado"]);?></td>
+            </tr><?php
+          }else{?>
+            <tr class="revisado" onClick=window.location.href='grafico.php?idfecha=<?php echo($_SESSION['fecha']);?>&idestudiante=<?php echo($row["IDEstudiante"]);?>'>
+              <td><?php echo($row["IDEstudiante"]);?></td>
+              <td><?php echo($row["Fechar"]);?></td>
+              <td><?php echo($row["Estado"]);?></td>
+            </tr><?php 
+          }  
+        } ?>
+        </table> 
+        <div class="flexCentro">
+          <form method="post" action="examenesxestudiante.php">
+            <button name="btn" type="submit">Formalizar Revisión</button>
+          </form> 
+        </div>
+<?php
+      } else { ?>
 
-             $fecha=$_GET['fecha'];
-             $con = conectar();
-             $sql = "CALL obtener_fechas(".$fecha.")";
-             $result = $con->query($sql);
-             echo "<table class='tablaB'><tr><th>IDENTIFICACIÓN</th><th>FECHA PRUEBA</th><th>ESTADO</th></tr>";
-             if ($result->num_rows > 0) {
-              while($row = $result->fetch_assoc()) {
-                  if(strcmp ($row["estadoestudiante.Estado"] ,"SIN REVISAR") == 0){ 
-                       echo "<tr class='norevisado' onClick=window.location.href='examenesxestudiante?idfecha=".$fecha."&idestudiante=".$row["IDEstudiante"]."><td>" . $row["IDEstudiante"]."</td><td>" . $row["Fechar"]."</td> <td>".$row["estadoestudiante.Estado"]."</td></tr>";
-                  }else{
-                       echo "<tr class='revisado' onClick=window.location.href='examenesxestudiante?idfecha=".$fecha."&idestudiante=".$row["IDEstudiante"]."><td>" . $row["IDEstudiante"]."</td><td>" . $row["Fechar"]."</td> <td>".$row["estadoestudiante.Estado"]."</td></tr>";                  }  
-              } 
-            echo "</table> 
-                   <div class='flexCentro'>
-                             <button onclick=".Formalizar($con,$fecha).">Formalizar Revisión</button>
-                   </div>";
-
-                  } else { 
-
-                   echo "<tr class='sindatos'><td>....</td></tr>
-                        </table> 
-                        <h1>SIN DATOS</h1>
-                        <div class='flexCentro'>
-                           <button onClick=window.location.href='examenesxfecha>ATRAS Revisión</button>
-                        </div>";
+      <tr class='sindatos'><td>....</td></tr>
+            </table> 
+            <h1>SIN DATOS</h1>
+            <div class='flexCentro'>
+                <button onClick=window.location.href='examenesxfecha>ATRAS Revisión</button>
+            </div> 
+            <?php
       }
+    } else {
+      echo "Error Base";
+    }
     $con->close();
-  ?>  
+    ?>  
     </div>
   </div>
+  <?php
+    $con = conectar();
+    if(isset($_POST['btn'])){
+      $sql = "CALL formalizar(".$_SESSION['fecha'].")";
+      if( $result = $con->query($sql)){
+        $fila = $result->fetch_assoc();
+        if($fila["Estado"] == 'FORMALIZADO')
+        { ?>
+          <script LANGUAGE='JavaScript'>
+            alert('La prueba ha sido formalizada con exito');
+            location.href='examenesxfecha.php';
+          </script>
+          <?php
+        }else{ ?>
+    
+        <script type='text/javascript'>alert('No puede formalizar la prueba sin antes revisar todos los estudiantes');</script>
+        <?php
+      }
+    } else {
+      echo "Error Base Formalizar";
+    }
+    $con->close();
+  }
+  ?>
 </body>
-
 </html>

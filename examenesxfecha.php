@@ -49,13 +49,13 @@
         if ($result->num_rows > 0) {
           while($row = $result->fetch_assoc()) {
             if(strcmp ($row["Estado"] ,"SIN REVISAR") == 0){  ?>
-              <tr class="norevisado" onclick="window.location.href='exemenes.php?fecha=<?php echo($row["IDPrueba"]);?>'">
+              <tr class="norevisado" onclick="window.location.href='examenesxestudiante.php?fecha=<?php echo($row["IDPrueba"]);?>'">
               <td><?php echo($row["Fechar"]);?></td>
               <td><?php echo($row["numestudiantes"]);?></td>
                </tr>
               <?php
             }else{?>
-              <tr class="revisado" onclick="window.location.href='exemenes.php?fecha=<?php echo($row["IDPrueba"]);?>'">
+              <tr class="revisado" onclick="window.location.href='examenesxestudiante.php?fecha=<?php echo($row["IDPrueba"]);?>'">
               <td><?php echo($row["Fechar"]);?></td>
               <td><?php echo($row["numestudiantes"]);?></td>
               </tr>

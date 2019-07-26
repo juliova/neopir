@@ -80,7 +80,7 @@
             </table> 
             <h1>SIN DATOS</h1>
             <div class='flexCentro'>
-                <button onClick=window.location.href='examenesxfecha>ATRAS Revisión</button>
+                <button onClick=window.location.href='examenesxfecha.php'>ATRAS Revisión</button>
             </div> 
             <?php
       }

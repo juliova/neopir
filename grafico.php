@@ -3,8 +3,8 @@
   session_start();
   include 'Base.php';
   include '_menu.php';
-  if(isset($_GET["fecha"]) && isset($_GET["idestudiante"])){
-    $_SESSION["fecha"] = $_GET["fecha"];
+  if(isset($_GET["idfecha"]) && isset($_GET["idestudiante"])){
+    $_SESSION["fecha"] = $_GET["idfecha"];
     $_SESSION["idestudiante"] = $_GET["idestudiante"];
   }
   
@@ -319,7 +319,7 @@
               });
               grafico.render();
             
-  <?php $con->close(); } ?>
+  <?php $con->close(); } else { echo "alert('Fallo en el if');"; } ?>
   </script>
           
       
@@ -402,34 +402,46 @@
         
            <div>
              <?php
-
-          function Back()
-          {
-            //header("Location: examenxestudiante.php?fecha=".$_SESSION['fecha']);
-          }
-  
-            $con = conectar();
-          $con->query("CALL obtener_resultados(".$_SESSION["idestudiante"].",".$_SESSION['fecha'].",".$calificacion.")");
-          Back();
-        
-            if($result["Estado"]='FORMALIZADO')
+             
+              if(isset($_POST['calificacion'])){
+                if(strcmp($calificacion,"APROBAR")==0)
+                {
+                  $con->close();
+                  $con=conectar();
+                  $con->query("CALL obtener_resultados(".$_SESSION["idestudiante"].",".$_SESSION['fecha'].", APROBAR)");
+                  $con->close();
+                }else{
+                  $con->close();
+                  $con=conectar();
+                  $con->query("CALL obtener_resultados(".$_SESSION["idestudiante"].",".$_SESSION['fecha'].", REPROBAR)");
+                  $con->close();
+                }
+              }
+              
+      
+      
+            if(strcmp($estado["Estado"],"FORMALIZADO")=0)
             {
-              echo "<div class='botonesGraficos'>
-                  
-                  <button class='seccionMedia aprobado'onclick=".calificar('APROBADO')." >✔ Aprobar  </button>
-                  <br/>
-                  <button class='seccionMedia rechazado' onclick=".calificar('REPROBADO')." >X Rechazar </button>
-                  <br/>
-                  <button class='seccionMedia especificos' onclick=".Back().">Atras</button>
-                  
-                </div>";
-            }else{
-              echo"
+              ?>
               <div class='botonesGraficos'>
-               
-                  <button class='seccionMedia especificos' onclick=".Back().">Atras</button>
                   
-                </div>";
+                  
+                  <button class='seccionMedia especificos' onclick=".Back().">Atras</button>
+                </div>
+                <?php
+            }else{?>
+            
+              <div class='botonesGraficos'>
+             <form method="post" action="grafico.php">
+               <button class='seccionMedia aprobado' name="calificacion" value="APROBAR">✔ Aprobar  </button>
+                  <br/>
+                  <button class='seccionMedia rechazado' name="calificacion" value="RECHAZAR" >X Rechazar </button>
+                  <br/>
+                  
+                </form> 
+                <button class='seccionMedia especificos' onclick=".Back().">Atras</button>
+              </div>
+              <?php
             }
            ?>
           </div>

@@ -5,7 +5,9 @@
     header("Location: ingresarprueba.php");
   }
   //Cambio a la siguiente página como falso.
-  $siguiente = false;
+  if(!isset($_SESSION['siguiente'])){
+    $_SESSION['siguiente'] = false;
+  }
   //Incluir función de conexión a la base
   include 'Base.php';
   //Realizar la conexión
@@ -22,13 +24,16 @@
     if($respuesta = $con->query($sql)){
       $fila = $respuesta->fetch_assoc();
       $_SESSION['cantPreguntas'] = $fila['PreguntasxVista'];
+    } else {
+      $_SESSION['mensaje'] = "Error de conexión. Favor intentarlo más tarde";
+      $_SESSION['tipoerror'] = 1;
     }
     $con->close();
   }
   if(isset($_POST['btn'])){
     switch ($_POST['btn']) {
       case 1: //Guardar
-        $siguiente = true;
+        $_SESSION['siguiente'] = true;
         //Valores del 1 al 20.
         $puntos = array();
         for($i = 1; $i<=$_SESSION['cantPreguntas']; $i++){
@@ -143,7 +148,8 @@
             $i++;
           }
         } else {
-          //error intentar de nuevo;
+          $_SESSION['mensaje'] = "Error de conexión. Favor intentarlo más tarde";
+          $_SESSION['tipoerror'] = 1;
         }
         $con->close();
         $con = conectar();
@@ -157,12 +163,18 @@
           ".$_SESSION['usuario'].", ".$_SESSION['prueba'].");";
         if($respuesta = $con->query($sql)){
           //exitosa
+          $_SESSION['mensaje'] = "Sus respuestas han sido guardadas. Favor presione el botón SIGUIENTE.";
+          $_SESSION['tipoerror'] = 0;
+          $con->close();
+          //header("Location: #siguiente");
         } else {
-          //error
+          $_SESSION['mensaje'] = "Error al guardar sus respuestas. Favor intentarlo de nuevo";
+          $_SESSION['tipoerror'] = 1;
+          $con->close();
         }
-        $con->close();
         break;
       case 2: //Siguiente
+        $_SESSION['siguiente']=false;
         //ingcrementar numPregunta
         $_SESSION['numPregunta'] = $_SESSION['numPregunta'] + $_SESSION['cantPreguntas'];
         if($_SESSION['numPregunta']>=220){
@@ -186,14 +198,15 @@
     <link type="text/css" rel="stylesheet" href="css/all.css" />
     <script src="js/jquery-3.4.1.min.js"></script>
     <script src="js/scripts.js"></script>
-    <?php if(isset($_POST['btn'])) {
-      if($_POST['btn'] == 1){?>
-        <script>
-          $(document).ready(function(){
-            alert("<?php echo("Sus respuestas han sido guardadas. Favor presione el botón SIGUIENTE."); ?>"); 
-          });
-        </script>
-    <?php }} ?>
+    <script> 
+      <?php if($_SESSION['siguiente']){ ?>
+        $(document).ready(function(){
+          $('html, body').animate({
+            scrollTop: $("#siguiente").offset().top,
+          }, 2500, 'linear')
+        });
+      <?php } ?>
+    </script>
   </head>
 
   <!--Cuerpo -->
@@ -326,12 +339,13 @@
           $con->close();
           ?>
           <!--Botones de la prueba -->
-          <div class="botonesPrueba">
+          <div id="siguiente" class="botonesPrueba">
             <button type="submit" name="btn" class="posicionIzquierda" value="1">GUARDAR</button>
-            <button type="submit" name="btn" <?php if($siguiente){ echo "";} else { echo "disabled"; } ?> class="posicionDerecha" value="2">SIGUIENTE</button>
+            <button type="submit" name="btn" <?php if($_SESSION['siguiente']){ echo "";} else { echo "disabled"; } ?> class="posicionDerecha" value="2">SIGUIENTE</button>
           </div>
         </form>
       </div>
+      <?php include 'error.php'; ?>
     </div>
   </body>
 

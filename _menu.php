@@ -10,8 +10,8 @@
                 <li>
                     <a>Bienvenido: <?php echo $fila['Nombre']." ".$fila['Apellido1']." ".$fila['Apellido2']; ?></a>
                 </li>
-                <li>
-                    <a href="cerrar.php">Cerrar Sessión</a>
+                <li class="cerrarsesion">
+                    <a href="cerrar.php">Cerrar Sesión</a>
                 </li>
             <?php
             } else { ?> 

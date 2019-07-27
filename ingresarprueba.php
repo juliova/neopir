@@ -9,7 +9,19 @@
         $sql = "Call IngresoPrueba(".$_SESSION['usuario'].",'".$_POST['token']."','".date("Y-m-d H:i:s")."')";
         if($respuesta = $con->query($sql)){
           $fila = $respuesta->fetch_assoc();
-          $_SESSION['prueba'] = $fila['examen'];
+          if($fila['examen'] != 0){
+            $_SESSION['prueba'] = $fila['examen'];
+            $_SESSION['mensaje'] = "Tiquete correcto";
+            $_SESSION['tipoerror'] = 0;
+            header("Location: prueba.php");
+          } else {
+            $_SESSION['mensaje'] = "Tiquete o hora incorrecta";
+            $_SESSION['tipoerror'] = 1;
+          }
+          $con->close();
+        } else {
+          $_SESSION['mensaje'] = "Error de conexión. Favor intentarlo más tarde";
+          $_SESSION['tipoerror'] = 1;
         }
     }
 ?>
@@ -24,21 +36,6 @@
     <link type="text/css" rel="stylesheet" href="css/all.css" />
     <script src="js/jquery-3.4.1.min.js"></script>
     <script src="js/scripts.js"></script>
-    <script>
-        <?php 
-        if(isset($_SESSION['prueba'])){
-          if($_SESSION['prueba']!=0) {
-            ?>
-            alert("Tiquete correcto.");
-            window.location.href = "prueba.php";
-            <?php
-          } else { ?>
-            alert("Error de tiquete o hora incorrecta.");
-            <?php
-          }
-        }
-        ?>
-    </script>
 </head>
 
 <body>
@@ -82,6 +79,7 @@
         </div>
       </div>
     </div>
+    <?php include 'error.php';?>
   </div>
 </body>
 

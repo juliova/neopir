@@ -98,6 +98,10 @@ menu ul li a{
   margin: 5px 10px;
 }
 
+.barraUsuario ul li.cerrarsesion{
+  float: right;
+}
+
 /*Se le da a cada elemento su color gris y se ponen las letras en mayuscula.*/
 .barraUsuario ul li a{
   color: #c2c9cf;
@@ -640,8 +644,8 @@ input[type="text"], input[type="file"], input[type="number"],
 /*Se le da posición y tamaño a los botones contenidos en las tablas del
     backend.*/
 .tablaB td button{
-    float: left;
-    width: 50%;
+  float: left;
+  width: 50%;
 }
 
 #fechaMatricula{
@@ -665,6 +669,43 @@ input[type="text"], input[type="file"], input[type="number"],
 .fechaexamen::before {
   box-sizing: border-box;
 }
+
+/*Mensaje de error en el fondo dela pantalla
+  color con clase rechazado y aprobado.*/
+#mensaje{
+  text-align: center;
+  min-width: 250px;
+  padding: 10px;
+  margin: 0 auto;
+  position: fixed;
+  bottom: -100px;
+  border-radius: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: animensaje;
+  animation-duration: 12s;
+}
+
+
+#mensaje p{
+  font-weight: bolder;
+}
+
+@keyframes animensaje{
+  0%{
+    bottom: -100px;
+  }
+  15%{
+    bottom: 10px;
+  }
+  85%{
+    bottom: 10px;
+  }
+  100%{
+    bottom: -100px;
+  }
+}
+
 
 /*EL modo responsivo entra en efecto cuando la ventana se encoge a un ancho
     menor a 1200px. Siendo una de las resoluciones más populares */
@@ -709,6 +750,7 @@ input[type="text"], input[type="file"], input[type="number"],
   .pregunta{
     width: 95%;
     padding: 10px 0;
+    height: 160px;
   }
 
   /*Se ajusta el tamaño del parrafo*/

@@ -80,6 +80,7 @@
               </ul>
             </div>
             <?php
+            unset($_SESSION['prueba']);
           }
         ?>
       </div>

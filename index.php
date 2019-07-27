@@ -30,7 +30,7 @@
         <i class="fas fa-bars"></i>
         <div>
           <ul>
-             
+            <?php menu(); ?>
           </ul>
         </div>
       </menu>
@@ -71,6 +71,7 @@
         <br>
         <br>
       </div>
+      <?php include 'error.php';?>
     </div>
   </body>
 

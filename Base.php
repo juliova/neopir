@@ -7,7 +7,8 @@
             $ini["contraBase"], $ini["nombreBase"]);
         //Revisar que funcione la conexión.
         if($con->connect_errno){
-            echo "Fallo al conectar a la base.";
+            $_SESSION['mensaje'] = "Error de conexión. Favor intentarlo más tarde";
+            $_SESSION['tipoerror'] = 1;
         }
         //Cambiar idioma para poder escribir las letras como 'ñ'
         $con->set_charset("utf8");

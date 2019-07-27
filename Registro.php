@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'Base.php';
 //Coneccion ala base de datos
 $conn = conectar();
@@ -29,12 +30,18 @@ if($respuesta = $conn->query($sql)){
     $Mensaje2 = $Mensaje. "\n";
     $Mensaje2 .= $Token;
     //Envio de Correo el orden de los datos es destinatario,asunto y mensaje
-    mail($Correo,'Tiquete Validacion de Registro',$Mensaje2);
-    echo "<script type='text/javascript'>alert('Registro Exitoso favor revisar su Correo'); window.location.href= 'login.php';</script>";
+    //mail($Correo,'Tiquete Validacion de Registro',$Mensaje2);
+    $_SESSION['mensaje'] = "Registro Exitoso favor revisar su Correo";
+    $_SESSION['tipoerror'] = 0;
+    header("Location: login.php");
   } else {
-    echo "<script type='text/javascript'>alert('Registro Fallido favor intente de nuevo mas tarde'); window.location.href= 'login.php';</script>";
+    $_SESSION['mensaje'] = "Registro Fallido favor intente de nuevo mas tarde";
+    $_SESSION['tipoerror'] = 1;
+    header("Location: login.php");
   }
 }else{
-  echo "<script type='text/javascript'>alert('Registro Fallido favor intente de nuevo mas tarde'); window.location.href= 'login.php';</script>";
+  $_SESSION['mensaje'] = "Error de conexión. Favor intentarlo más tarde";
+  $_SESSION['tipoerror'] = 1;
+  header("Location: login.php");
 }
 ?>

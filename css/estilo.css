@@ -706,6 +706,62 @@ input[type="text"], input[type="file"], input[type="number"],
   }
 }
 
+@keyframes hoverFicha {
+  from {
+    transform: rotate(0deg) skew(0deg, 0deg);
+  }
+
+  to {
+    transform: rotate(2deg) skew(0deg, 1deg);
+  }
+}
+
+.ficha {
+  position: relative;
+  width: 400px;
+  min-height: 210px;
+  float: left;
+  margin: 15px;
+  background-color: #FFF;
+}
+
+.ficha:hover {
+  transform: rotate(2deg) skew(0deg, 1deg);
+  transform-origin: top left;
+  animation-name: hoverFicha;
+  animation-duration: 1s;
+  cursor: pointer;
+}
+
+.head {
+  font-size: 38px;
+  min-height: 50px;
+  text-align: center;
+  line-height: 50px;
+}
+
+.cuerpo {
+  font-size: 30px;
+  min-height: 160px;
+  line-height: 34px;
+  background: -webkit-gradient(linear, 0 0, 0 100%, from(#d9eaf3), color-stop(4%, #FFF)) 0 4px;
+  background: -webkit-linear-gradient(top, #d9eaf3 0%, #FFF 8%) 0 4px;
+  background: -moz-linear-gradient(top, #d9eaf3 0%, #FFF 8%) 0 4px;
+  background: -ms-linear-gradient(top, #d9eaf3 0%, #FFF 8%) 0 4px;
+  background: -o-linear-gradient(top, #d9eaf3 0%, #FFF 8%) 0 4px;
+  background: linear-gradient(top, #d9eaf3 0%, #FFF 8%) 0 4px;
+  -webkit-background-size: 100% 33px;
+  -moz-background-size: 100% 33px;
+  -ms-background-size: 100% 33px;
+  -o-background-size: 100% 33px;
+  background-size: 100% 33px;
+}
+
+ul {
+  padding-left: 6px;
+  padding-top: 8px;
+  list-style: none;
+}
 
 /*EL modo responsivo entra en efecto cuando la ventana se encoge a un ancho
     menor a 1200px. Siendo una de las resoluciones más populares */
@@ -944,6 +1000,19 @@ input[type="text"], input[type="file"], input[type="number"],
       Solo se muestra mediante el color de la fila.*/
   #estudiantes th:last-child, #estudiantes td:last-child{
     display:none;
+  }
+
+  .ficha {
+    width: 100%;
+    min-height: 210px;
+    margin: 5px 0px;
+  }
+
+  .head {
+    font-size: 26px;
+    min-height: 50px;
+    text-align: center;
+    line-height: 50px;
   }
 
 }

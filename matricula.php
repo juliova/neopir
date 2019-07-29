@@ -56,28 +56,40 @@
 
       <!--Contenido-->
       <div class="contenido">
-        <table class="tablaB">
-          <tr>
-            <th>Fecha Inicio</th>
-            <th>Fecha Fin</th>
-            <th>Campos disponible</th>
-            <?php 
-              $con = conectar();
-              $sql = "CALL PruebasDisponibles('".date("Y-m-d H:i:s")."');";
-              if($respuesta = $con->query($sql)){
-                while($fila = $respuesta->fetch_assoc()){
-                  ?>
-                  <tr onclick="window.location.href='matricula.php?prueba=<?php echo $fila['IDPrueba']; ?>'">
-                    <td><?php echo $fila['Fechar']; ?></td></a>
-                    <td><?php echo $fila['fechaF']; ?></td></a>
-                    <td><?php echo 20-$fila['cupo']; ?></td></a>
-                  </tr>
-                  <?php 
-                }
-              }
-            ?>
-          </tr>
-        </table>
+        <div class="ficha" onclick="window.location.href='matricula.php?prueba=<?php echo 1; ?>'">
+                <div class="head">
+                  <?php echo "8 Mayo, 2019"; ?>
+                </div>
+                <div class="cuerpo">
+                  <ul>
+                    <li>Hora Inicio: <?php echo "2:00 pm"; ?></li>
+                    <li>Hora Final : <?php echo "4:00 pm"; ?></li>
+                    <li>Campos Disp: <?php echo 20-8; ?></li>
+                  </ul>
+                </div>
+              </div>
+        <?php 
+          $con = conectar();
+          $sql = "CALL PruebasDisponibles('".date("Y-m-d H:i:s")."');";
+          if($respuesta = $con->query($sql)){
+            while($fila = $respuesta->fetch_assoc()){
+              ?>
+              <div class="ficha" onclick="window.location.href='matricula.php?prueba=<?php echo $fila['IDPrueba']; ?>'">
+                <div class="head">
+                  <?php echo $fila['Fechar']; ?>
+                </div>
+                <div class="cuerpo">
+                  <ul>
+                    <li>Hora Inicio: <?php echo $fila['Fechar']; ?></li>
+                    <li>Hora Final : <?php echo $fila['fechaF']; ?></li>
+                    <li>Campos Disp: <?php echo 20-$fila['cupo']; ?></li>
+                  </ul>
+                </div>
+              </div>
+              <?php 
+            }
+          }
+        ?>
       </div>
     </div>
   </body>

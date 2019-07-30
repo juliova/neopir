@@ -390,6 +390,10 @@ div.columna2 {
   width: 70%;
 }
 
+div.columna2.botonesRadio{
+  min-height: 56px;
+}
+
 /*Ancho de los labels para los forms*/
 label{
   width: 100%;
@@ -397,10 +401,14 @@ label{
 
 /*Da tamaño y borde de color azul oscuro*/
 input[type="text"], input[type="file"], input[type="number"],
-  input[type="time"], input[type="password"], input[type="date"] {
+  input[type="time"], input[type="password"], input[type="date"], textarea{
   background-color: white;
   width: 100%;
   border: 2px solid #113f67;
+}
+
+textarea{
+  resize:vertical;
 }
 
 /*Mover el calendario al centro de su contenedor*/
@@ -767,6 +775,18 @@ ul {
   list-style: none;
 }
 
+/*Boton para mujer*/
+.uno:after {
+  content: "1";
+  left: 21px;
+}
+
+/*Boton para radio comun*/
+.dos:after {
+  content: "2";
+  left: 17px;
+}
+
 /*EL modo responsivo entra en efecto cuando la ventana se encoge a un ancho
     menor a 1200px. Siendo una de las resoluciones más populares */
 @media only screen and (max-width: 1199px) { /*400*/
@@ -1026,6 +1046,10 @@ ul {
   .ficha:hover {
     transform: rotate(0deg) skew(0deg, 0deg);
     animation-name: none;
+  }
+
+  .botonesPrueba{
+    padding-bottom: 120px;
   }
 
 }

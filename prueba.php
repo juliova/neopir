@@ -15,15 +15,16 @@
   //Si tenemos el numero de pregunta actual iniciado 
   if(isset($_SESSION['numPregunta'])){
     //Si ya inició y finalizó la prueba el usuario es devuleto a la pagina de fin.
-    if($_SESSION['numPregunta']== 0){
+    if($_SESSION['numPregunta'] == 0){
       header("Location: finalprueba.php");
     }
   } else {
     $_SESSION['numPregunta'] = 1;
-    $sql = "SELECT PreguntasxVista FROM variables;";
+    $sql = "CALL datosPreguntas();";
     if($respuesta = $con->query($sql)){
       $fila = $respuesta->fetch_assoc();
-      $_SESSION['cantPreguntas'] = $fila['PreguntasxVista'];
+      $_SESSION['cantPreguntas'] = $fila['xvista'];
+      $_SESSION['totalPreguntas'] = $fila['total'];
     } else {
       $_SESSION['mensaje'] = "Error de conexión. Favor intentarlo más tarde";
       $_SESSION['tipoerror'] = 1;
@@ -177,7 +178,7 @@
         $_SESSION['siguiente']=false;
         //ingcrementar numPregunta
         $_SESSION['numPregunta'] = $_SESSION['numPregunta'] + $_SESSION['cantPreguntas'];
-        if($_SESSION['numPregunta']>=220){
+        if($_SESSION['numPregunta']>$_SESSION['totalPreguntas']){
           header("Location: finalprueba.php");
           $_SESSION['numPregunta'] = 0;
         }

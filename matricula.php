@@ -2,7 +2,9 @@
   session_start();
   include 'Base.php';
   include '_menu.php';
-  $exito = false;
+  if(!isset($_SESSION['usuario'])){
+    header("Location: index.php");
+  }
   date_default_timezone_set("America/Costa_Rica");
   if(isset($_GET['prueba'])){
     $con = conectar();
@@ -55,150 +57,6 @@
 
       <!--Contenido-->
       <div class="contenido">
-        <div class="ficha" onclick="window.location.href='matricula.php?prueba=<?php echo 1; ?>'">
-          <div class="head">
-            <?php echo "8 Mayo, 2019"; ?>
-          </div>
-          <div class="cuerpo">
-            <ul>
-              <li>Hora Inicio: <?php echo "2:00 pm"; ?></li>
-              <li>Hora Final: <?php echo "4:00 pm"; ?></li>
-              <li>Campos: <?php echo 20-8; ?></li>
-            </ul>
-          </div>
-        </div>
-        <div class="ficha" onclick="window.location.href='matricula.php?prueba=<?php echo 1; ?>'">
-          <div class="head">
-            <?php echo "8 Mayo, 2019"; ?>
-          </div>
-          <div class="cuerpo">
-            <ul>
-              <li>Hora Inicio: <?php echo "2:00 pm"; ?></li>
-              <li>Hora Final : <?php echo "4:00 pm"; ?></li>
-              <li>Campos     : <?php echo 20-8; ?></li>
-            </ul>
-          </div>
-        </div>
-        <div class="ficha" onclick="window.location.href='matricula.php?prueba=<?php echo 1; ?>'">
-          <div class="head">
-            <?php echo "8 Mayo, 2019"; ?>
-          </div>
-          <div class="cuerpo">
-            <ul>
-              <li>Hora Inicio: <?php echo "2:00 pm"; ?></li>
-              <li>Hora Final : <?php echo "4:00 pm"; ?></li>
-              <li>Campos     : <?php echo 20-8; ?></li>
-            </ul>
-          </div>
-        </div>
-        <div class="ficha" onclick="window.location.href='matricula.php?prueba=<?php echo 1; ?>'">
-          <div class="head">
-            <?php echo "8 Mayo, 2019"; ?>
-          </div>
-          <div class="cuerpo">
-            <ul>
-              <li>Hora Inicio: <?php echo "2:00 pm"; ?></li>
-              <li>Hora Final : <?php echo "4:00 pm"; ?></li>
-              <li>Campos     : <?php echo 20-8; ?></li>
-            </ul>
-          </div>
-        </div>
-        <div class="ficha" onclick="window.location.href='matricula.php?prueba=<?php echo 1; ?>'">
-          <div class="head">
-            <?php echo "8 Mayo, 2019"; ?>
-          </div>
-          <div class="cuerpo">
-            <ul>
-              <li>Hora Inicio: <?php echo "2:00 pm"; ?></li>
-              <li>Hora Final : <?php echo "4:00 pm"; ?></li>
-              <li>Campos     : <?php echo 20-8; ?></li>
-            </ul>
-          </div>
-        </div>
-        <div class="ficha" onclick="window.location.href='matricula.php?prueba=<?php echo 1; ?>'">
-          <div class="head">
-            <?php echo "8 Mayo, 2019"; ?>
-          </div>
-          <div class="cuerpo">
-            <ul>
-              <li>Hora Inicio: <?php echo "2:00 pm"; ?></li>
-              <li>Hora Final : <?php echo "4:00 pm"; ?></li>
-              <li>Campos     : <?php echo 20-8; ?></li>
-            </ul>
-          </div>
-        </div>
-        <div class="ficha" onclick="window.location.href='matricula.php?prueba=<?php echo 1; ?>'">
-          <div class="head">
-            <?php echo "8 Mayo, 2019"; ?>
-          </div>
-          <div class="cuerpo">
-            <ul>
-              <li>Hora Inicio: <?php echo "2:00 pm"; ?></li>
-              <li>Hora Final : <?php echo "4:00 pm"; ?></li>
-              <li>Campos     : <?php echo 20-8; ?></li>
-            </ul>
-          </div>
-        </div>
-        <div class="ficha" onclick="window.location.href='matricula.php?prueba=<?php echo 1; ?>'">
-          <div class="head">
-            <?php echo "8 Mayo, 2019"; ?>
-          </div>
-          <div class="cuerpo">
-            <ul>
-              <li>Hora Inicio: <?php echo "2:00 pm"; ?></li>
-              <li>Hora Final : <?php echo "4:00 pm"; ?></li>
-              <li>Campos     : <?php echo 20-8; ?></li>
-            </ul>
-          </div>
-        </div>
-        <div class="ficha" onclick="window.location.href='matricula.php?prueba=<?php echo 1; ?>'">
-          <div class="head">
-            <?php echo "8 Mayo, 2019"; ?>
-          </div>
-          <div class="cuerpo">
-            <ul>
-              <li>Hora Inicio: <?php echo "2:00 pm"; ?></li>
-              <li>Hora Final : <?php echo "4:00 pm"; ?></li>
-              <li>Campos     : <?php echo 20-8; ?></li>
-            </ul>
-          </div>
-        </div>
-        <div class="ficha" onclick="window.location.href='matricula.php?prueba=<?php echo 1; ?>'">
-          <div class="head">
-            <?php echo "8 Mayo, 2019"; ?>
-          </div>
-          <div class="cuerpo">
-            <ul>
-              <li>Hora Inicio: <?php echo "2:00 pm"; ?></li>
-              <li>Hora Final : <?php echo "4:00 pm"; ?></li>
-              <li>Campos     : <?php echo 20-8; ?></li>
-            </ul>
-          </div>
-        </div>
-        <div class="ficha" onclick="window.location.href='matricula.php?prueba=<?php echo 1; ?>'">
-          <div class="head">
-            <?php echo "8 Mayo, 2019"; ?>
-          </div>
-          <div class="cuerpo">
-            <ul>
-              <li>Hora Inicio: <?php echo "2:00 pm"; ?></li>
-              <li>Hora Final : <?php echo "4:00 pm"; ?></li>
-              <li>Campos     : <?php echo 20-8; ?></li>
-            </ul>
-          </div>
-        </div>
-        <div class="ficha" onclick="window.location.href='matricula.php?prueba=<?php echo 1; ?>'">
-          <div class="head">
-            <?php echo "8 Mayo, 2019"; ?>
-          </div>
-          <div class="cuerpo">
-            <ul>
-              <li>Hora Inicio: <?php echo "2:00 pm"; ?></li>
-              <li>Hora Final : <?php echo "4:00 pm"; ?></li>
-              <li>Campos     : <?php echo 20-8; ?></li>
-            </ul>
-          </div>
-        </div>
         <?php 
           $con = conectar();
           $sql = "CALL PruebasDisponibles('".date("Y-m-d H:i:s")."');";
@@ -207,18 +65,23 @@
               ?>
               <div class="ficha" onclick="window.location.href='matricula.php?prueba=<?php echo $fila['IDPrueba']; ?>'">
                 <div class="head">
-                  <?php echo $fila['Fechar']; ?>
+                  <?php
+                    echo date("d-m-Y",strtotime($fila['Fechar'])); 
+                  ?>
                 </div>
                 <div class="cuerpo">
                   <ul>
-                    <li>Hora Inicio: <?php echo $fila['Fechar']; ?></li>
-                    <li>Hora Final: <?php echo $fila['fechaF']; ?></li>
-                    <li>Campos: <?php echo 20-$fila['cupo']; ?></li>
+                    <li>Hora Inicio: <?php echo date("h:i:s A",strtotime($fila['Fechar'])); ?></li>
+                    <li>Hora Final: <?php echo date("h:i:s A",strtotime($fila['fechaF'])); ?></li>
+                    <li>Campos: <?php echo $fila['cupo']; ?></li>
                   </ul>
                 </div>
               </div>
               <?php 
             }
+          } else {
+            $_SESSION['mensaje'] = "Error de conexión. Favor intentarlo de nuevo";
+            $_SESSION['tipoerror'] = 1;
           }
         ?>
       </div>

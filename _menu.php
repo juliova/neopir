@@ -55,7 +55,7 @@
                             <a href="preguntas.html">preguntas</a>
                         </li>
                         <li>
-                            <a href="#">variables</a>
+                            <a href="mensajes.php">mensajes</a>
                         </li>
                     <?php
                     break;
@@ -69,6 +69,9 @@
                         </li>
                         <li>
                             <a href="preguntas.html">preguntas</a>
+                        </li>
+                        <li>
+                            <a href="mensajes.php">mensajes</a>
                         </li>
                     <?php
                     break;

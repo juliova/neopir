@@ -3,6 +3,17 @@
   session_start();
   include 'Base.php';
   include '_menu.php';
+  if(!isset($_SESSION['Rol'])){
+    $_SESSION['mensaje'] = "Debe identificarse antes de continuar";
+    $_SESSION['tipoerror'] = 1;
+    header("Location: login.php");
+  } else {
+    if($_SESSION['Rol'] == 3){
+      $_SESSION['mensaje'] = "No posee los permisos necesarios.";
+      $_SESSION['tipoerror'] = 1;
+      header("Location: index.php");
+    }
+  }
   date_default_timezone_set("America/Costa_Rica");
   $fechaini = date("Y")."-01-01";
   $fechafin = date("Y")."-12-31";
@@ -109,11 +120,13 @@
           <?php
         }
       } else {
-        echo "Error Base";
+        $_SESSION['mensaje'] = "Error de conexión. Favor intentarlo más tarde";
+        $_SESSION['tipoerror'] = 1;
       }
       $con->close();
       ?>  
     </div>
+    <?php include 'error.php'; ?>
   </div>
 </body>
 

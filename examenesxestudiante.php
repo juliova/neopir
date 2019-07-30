@@ -3,6 +3,17 @@
   session_start();
   include 'Base.php';
   include '_menu.php';
+  if(!isset($_SESSION['Rol'])){
+    $_SESSION['mensaje'] = "Debe identificarse antes de continuar";
+    $_SESSION['tipoerror'] = 1;
+    header("Location: login.php");
+  } else {
+    if($_SESSION['Rol'] == 3){
+      $_SESSION['mensaje'] = "No posee los permisos necesarios.";
+      $_SESSION['tipoerror'] = 1;
+      header("Location: index.php");
+    }
+  }
 ?>
 <!DOCTYPE html>
 <html>
@@ -101,7 +112,8 @@
             <?php
       }
     } else {
-      echo "Error Base";
+      $_SESSION['mensaje'] = "Error de conexión. Favor intentarlo más tarde";
+      $_SESSION['tipoerror'] = 1;
     }
     $con->close();
     ?>  
@@ -115,22 +127,21 @@
       if( $result = $con->query($sql)){
         $fila = $result->fetch_assoc();
         if($fila["Estado"] == 'FORMALIZADO')
-        { ?>
-          <script LANGUAGE='JavaScript'>
-            alert('La prueba ha sido formalizada con exito');
-            location.href='examenesxfecha.php';
-          </script>
-          <?php
-        }else{ ?>
-    
-        <script type='text/javascript'>alert('No puede formalizar la prueba sin antes revisar todos los estudiantes');</script>
-        <?php
+        { 
+          $_SESSION['mensaje'] = "La prueba ha sido formalizada con exito";
+          $_SESSION['tipoerror'] = 0;
+          header("Location: examenesxfecha.php");
+        }else{ 
+          $_SESSION['mensaje'] = "No puede formalizar la prueba sin antes revisar todos los estudiantes";
+          $_SESSION['tipoerror'] = 1;
       }
     } else {
-      echo "Error Base Formalizar";
+      $_SESSION['mensaje'] = "Error de conexión. Favor intentarlo más tarde";
+      $_SESSION['tipoerror'] = 1;
     }
     $con->close();
   }
   ?>
+  <?php include 'error.php'; ?>
 </body>
 </html>

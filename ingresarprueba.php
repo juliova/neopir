@@ -4,7 +4,6 @@
     include 'Base.php';
     include '_menu.php';
     $con = conectar();
-    $error = false;
     if(isset($_POST['token'])){
         $sql = "Call IngresoPrueba(".$_SESSION['usuario'].",'".$_POST['token']."','".date("Y-m-d H:i:s")."')";
         if($respuesta = $con->query($sql)){

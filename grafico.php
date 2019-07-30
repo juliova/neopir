@@ -3,6 +3,17 @@
   session_start();
   include 'Base.php';
   include '_menu.php';
+  if(!isset($_SESSION['Rol'])){
+    $_SESSION['mensaje'] = "Debe identificarse antes de continuar";
+    $_SESSION['tipoerror'] = 1;
+    header("Location: login.php");
+  } else {
+    if($_SESSION['Rol'] == 3){
+      $_SESSION['mensaje'] = "No posee los permisos necesarios.";
+      $_SESSION['tipoerror'] = 1;
+      header("Location: index.php");
+    }
+  }
   if(isset($_GET["idfecha"]) && isset($_GET["idestudiante"])){
     $_SESSION["fecha"] = $_GET["idfecha"];
     $_SESSION["idestudiante"] = $_GET["idestudiante"];
@@ -390,7 +401,10 @@ $conc4->close();
 $conc5->close();
 $conc6->close();
 $cong->close();
- } else { echo "alert('Fallo en el if');"; } ?>
+ } else { 
+    $_SESSION['mensaje'] = "Error de conexión. Favor intentarlo más tarde";
+    $_SESSION['tipoerror'] = 1; 
+  } ?>
   </script>
           
   </head>
@@ -421,6 +435,9 @@ $cong->close();
               if($fecha = $con->query("CALL fecha(".$_SESSION["fecha"].")")){
                 $fechaf=$fecha->fetch_assoc();
                echo"Fecha: ".date("d/m/Y  h:i:s A", strtotime($fechaf["Fechar"]));
+              } else {
+                $_SESSION['mensaje'] = "Error de conexión. Favor intentarlo más tarde";
+                $_SESSION['tipoerror'] = 1; 
               }
 
     
@@ -486,7 +503,8 @@ $cong->close();
                   if($con->query("CALL  calificar(".$_SESSION['idestudiante'].",".$_SESSION['fecha'].",'Aprobado')")){
                     header("Location: examenesxestudiante.php");
                   }else{
-                    echo "alert('no se pudo aprobar');";
+                    $_SESSION['mensaje'] = "no se pudo aprobar";
+                    $_SESSION['tipoerror'] = 1; 
                   }
                   $con->close();
 
@@ -496,7 +514,8 @@ $cong->close();
                    if($con->query("CALL  calificar(".$_SESSION['idestudiante'].",".$_SESSION['fecha'].",'Reprobado')")){
                     header("Location: examenesxestudiante.php");
                   }else{
-                     echo "alert('no se pudo reprobar');";
+                    $_SESSION['mensaje'] = "no se pudo reprobar";
+                    $_SESSION['tipoerror'] = 1;
                   }
                   $con->close();
                 }
@@ -526,11 +545,12 @@ $cong->close();
                 }
           
               }else{
-                echo "alert('error de conexion');";
-
+                $_SESSION['mensaje'] = "Error de conexión. Favor intentarlo más tarde";
+                $_SESSION['tipoerror'] = 1; 
               }
            ?>
           </div>
+          <?php include 'error.php'; ?>
       </div>
   </body>
 </html>

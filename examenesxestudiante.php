@@ -52,24 +52,36 @@
        
       if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
+             $con2=conectar();
           if(strcmp ($row["Estado"] ,"SIN REVISAR") == 0){ 
+         
+            if($veces=$con2->query("CALL veces(".$row["IDEstudiante"].")"))
+            {
+              $ves=$veces->fetch_assoc();
             ?>
             <tr class="norevisado" onClick=window.location.href='grafico.php?idfecha=<?php echo($_SESSION['fecha']);?>&idestudiante=<?php echo($row["IDEstudiante"]);?>'>
               <td><?php echo($row["IDEstudiante"]);?></td>
               <td><?php echo($row["Fechar"]);?></td>
               <td><?php echo($row["Estado"]);?></td>
-              <td><?php echo($row["veces"]);?></td>
+              <td><?php echo($ves["veces"]);?></td>
               <td><?php echo($row["Utilizada"]);?></td>
             </tr><?php
-          }else{?>
-            <tr class="revisado" onClick=window.location.href='grafico.php?idfecha=<?php echo($_SESSION['fecha']);?>&idestudiante=<?php echo($row["IDEstudiante"]);?>'>
+            }
+            
+          }else{
+             if($veces=$con2->query("CALL veces(".$row["IDEstudiante"].")"))
+            {
+               $ves=$veces->fetch_assoc();?>
+            
+             <tr class="revisado" onClick=window.location.href='grafico.php?idfecha=<?php echo($_SESSION['fecha']);?>&idestudiante=<?php echo($row["IDEstudiante"]);?>'>
               <td><?php echo($row["IDEstudiante"]);?></td>
               <td><?php echo($row["Fechar"]);?></td>
               <td><?php echo($row["Estado"]);?></td>
-              <td><?php echo($row["veces"]);?></td>
+              <td><?php echo($ves["veces"]);?></td>
               <td><?php echo($row["Utilizada"]);?></td>
             </tr><?php 
-          }  
+          } 
+        } 
         } ?>
         </table> 
         <div class="flexCentro">

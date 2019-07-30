@@ -6,7 +6,8 @@
   if(isset($_GET["idfecha"]) && isset($_GET["idestudiante"])){
     $_SESSION["fecha"] = $_GET["idfecha"];
     $_SESSION["idestudiante"] = $_GET["idestudiante"];
-  }
+  } 
+  echo $_SESSION["idestudiante"];
   
 ?>
 <!DOCTYPE html>
@@ -477,26 +478,25 @@ $cong->close();
              <?php
              
               if(isset($_POST['calificacion'])){
-                if(strcmp($calificacion,"APROBAR")==0)
+                $calificacion=$_POST['calificacion'];
+                if(strcmp($calificacion,"Aprobado")==0)
                 {
                   $con->close();
                   $con=conectar();
-                  if($con->query("CALL  calificar(".$_SESSION["idestudiante"].",".$_SESSION['fecha']."'APROBAR')")){
+                  if($con->query("CALL  calificar(".$_SESSION['idestudiante'].",".$_SESSION['fecha'].",'Aprobado')")){
                     header("Location: examenesxestudiante.php");
                   }else{
                     echo "alert('no se pudo aprobar');";
-
                   }
                   $con->close();
 
                 }else{
                   $con->close();
                   $con=conectar();
-                   if($con->query("CALL  calificar(".$_SESSION["idestudiante"].",".$_SESSION['fecha']."'REPROBAR')")){
+                   if($con->query("CALL  calificar(".$_SESSION['idestudiante'].",".$_SESSION['fecha'].",'Reprobado')")){
                     header("Location: examenesxestudiante.php");
                   }else{
                      echo "alert('no se pudo reprobar');";
-
                   }
                   $con->close();
                 }
@@ -512,16 +512,15 @@ $cong->close();
                     </div>
                   <?php
                 }else{?>
-            
                   <div class='botonesGraficos'>
                     <form method="post" action="grafico.php">
-                      <button class='seccionMedia aprobado' name="calificacion" value="APROBAR">✔ Aprobar  </button>
+                      <button class='seccionMedia aprobado' name="calificacion" value="Aprobado">✔ Aprobar  </button>
                       <br/>
-                      <button class='seccionMedia rechazado' name="calificacion" value="RECHAZAR" >X Rechazar </button>
+                      <button class='seccionMedia rechazado' name="calificacion" value="Reprobado" >X Rechazar </button>
                       <br/>
-                  
+                      <button class='seccionMedia especificos' onclick="window.location.href='examenesxestudiante.php'">Atras</button>
                     </form> 
-                    <button class='seccionMedia especificos' onclick="window.location.href='examenesxestudiante.php'">Atras</button>
+                    
                   </div>
                   <?php
                 }

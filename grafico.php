@@ -502,7 +502,7 @@ $cong->close();
                   $con=conectar();
                   $coreo=conectar();
                   if($con->query("CALL  calificar(".$_SESSION['idestudiante'].",".$_SESSION['fecha'].",'Aprobado')")){
-                      if($correo->query("selcet Correo from ususarios where Cedula=".$SESSION['idestudiante'].""))
+                      if($correo->query("select Correo from ususarios where Cedula=".$SESSION['idestudiante'].""))
                       {
                         $Correo=$correo->fetch_assoc();
                     if(mail($Correo['Correo'],' Resultado Neo_pir','su estado es Aprobado')){
@@ -523,7 +523,7 @@ $cong->close();
                   $con->close();
                   $con=conectar();
                    if($con->query("CALL  calificar(".$_SESSION['idestudiante'].",".$_SESSION['fecha'].",'Reprobado')")){
-                     if($correo->query("selcet Correo from ususarios where Cedula=".$SESSION['idestudiante'].""))
+                     if($correo->query("select Correo from ususarios where Cedula=".$SESSION['idestudiante'].""))
                       {
                         $Correo=$correo->fetch_assoc();
                     if(mail($Correo['Correo'],' Resultado Neo_pir','su estado es Reprobo')){

@@ -49,10 +49,10 @@
                             <a href="examenesxfecha.php">evaluación</a>
                         </li>
                         <li>
-                            <a href="fechaprueba.html">fechas</a>
+                            <a href="fechaprueba.php">fechas</a>
                         </li>
                         <li>
-                            <a href="preguntas.html">preguntas</a>
+                            <a href="preguntas.php">preguntas</a>
                         </li>
                         <li>
                             <a href="mensajes.php">mensajes</a>
@@ -65,10 +65,10 @@
                             <a href="examenesxfecha.php">evaluación</a>
                         </li>
                         <li>
-                            <a href="fechaprueba.html">fechas</a>
+                            <a href="fechaprueba.php">fechas</a>
                         </li>
                         <li>
-                            <a href="preguntas.html">preguntas</a>
+                            <a href="preguntas.php">preguntas</a>
                         </li>
                         <li>
                             <a href="mensajes.php">mensajes</a>

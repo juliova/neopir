@@ -11,9 +11,13 @@
     $sql = "Call Matricula(".$_GET['prueba'].",".$_SESSION['usuario'].");";
     if($respuesta = $con->query($sql)){
       $fila = $respuesta->fetch_assoc();
-      mail($fila['Correo'],'Tiquete de ingreso a la prueba.',$fila['Mensaje2']." ".$fila['Token2'] );
-      $_SESSION['mensaje'] = "Matrícula realizada con éxito. El tiquete fué enviado al correo";
-      $_SESSION['tipoerror'] = 0;
+      if(mail($fila['Correo'],'Tiquete de ingreso a la prueba.',$fila['Mensaje2']." ".$fila['Token2'] )){
+        $_SESSION['mensaje'] = "Matrícula realizada con éxito. El tiquete fué enviado al correo";
+        $_SESSION['tipoerror'] = 0;
+      } else {
+        $_SESSION['mensaje'] = "Matrícula realizada con éxito. Error al enviar el correo";
+        $_SESSION['tipoerror'] = 1;
+      }
     } else {
       $_SESSION['mensaje'] = "Error de conexión. Favor intentarlo de nuevo";
       $_SESSION['tipoerror'] = 1;

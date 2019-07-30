@@ -30,10 +30,16 @@ if($respuesta = $conn->query($sql)){
     $Mensaje2 = $Mensaje. "\n";
     $Mensaje2 .= $Token;
     //Envio de Correo el orden de los datos es destinatario,asunto y mensaje
-    //mail($Correo,'Tiquete Validacion de Registro',$Mensaje2);
-    $_SESSION['mensaje'] = "Registro Exitoso favor revisar su Correo";
-    $_SESSION['tipoerror'] = 0;
-    header("Location: login.php");
+    if(mail($Correo,'Tiquete Validacion de Registro',$Mensaje2)){
+      $_SESSION['mensaje'] = "Registro Exitoso favor revisar su Correo";
+      $_SESSION['tipoerror'] = 0;
+      header("Location: login.php");
+    } else {
+      $_SESSION['mensaje'] = "Registro exitosos, Envío de correo fallido";
+      $_SESSION['tipoerror'] = 1;
+      header("Location: login.php");
+    }
+    
   } else {
     $_SESSION['mensaje'] = "Registro Fallido favor intente de nuevo mas tarde";
     $_SESSION['tipoerror'] = 1;

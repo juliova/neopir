@@ -404,7 +404,7 @@ $cong->close();
  } else { 
     $_SESSION['mensaje'] = "Error de conexión. Favor intentarlo más tarde";
     $_SESSION['tipoerror'] = 1; 
-  } ?>
+  }  ?>
   </script>
           
   </head>
@@ -500,7 +500,18 @@ $cong->close();
                 {
                   $con->close();
                   $con=conectar();
+                  $coreo=conectar();
                   if($con->query("CALL  calificar(".$_SESSION['idestudiante'].",".$_SESSION['fecha'].",'Aprobado')")){
+                      if($correo->query("selcet Correo from ususarios where Cedula=".$SESSION['idestudiante'].""))
+                      {
+                        $Correo=$correo->fetch_assoc();
+                    if(mail($Correo['Correo'],' Resultado Neo_pir','su estado es Aprobado')){
+                      
+                    } else {
+                      
+                    }
+                  }
+                  $correo->close();
                     header("Location: examenesxestudiante.php");
                   }else{
                     $_SESSION['mensaje'] = "no se pudo aprobar";
@@ -512,6 +523,17 @@ $cong->close();
                   $con->close();
                   $con=conectar();
                    if($con->query("CALL  calificar(".$_SESSION['idestudiante'].",".$_SESSION['fecha'].",'Reprobado')")){
+                     if($correo->query("selcet Correo from ususarios where Cedula=".$SESSION['idestudiante'].""))
+                      {
+                        $Correo=$correo->fetch_assoc();
+                    if(mail($Correo['Correo'],' Resultado Neo_pir','su estado es Reprobo')){
+                      
+                    } else {
+                      
+                    }
+                  }
+                  $correo->close();
+                    
                     header("Location: examenesxestudiante.php");
                   }else{
                     $_SESSION['mensaje'] = "no se pudo reprobar";

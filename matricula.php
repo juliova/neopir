@@ -10,9 +10,13 @@
     if($respuesta = $con->query($sql)){
       $fila = $respuesta->fetch_assoc();
       mail($fila['Correo'],'Tiquete de ingreso a la prueba.',$fila['Mensaje2']." ".$fila['Token2'] );
-      $exito = true;
+      $_SESSION['mensaje'] = "Matrícula realizada con éxito. El tiquete fué enviado al correo";
+      $_SESSION['tipoerror'] = 0;
+    } else {
+      $_SESSION['mensaje'] = "Error de conexión. Favor intentarlo de nuevo";
+      $_SESSION['tipoerror'] = 1;
     }
-  }
+  } 
 ?>
 <!DOCTYPE html>
 <html>
@@ -27,11 +31,6 @@
     <script src="js/datepicker.min.js"></script>
     <script src="js/datepicker.es.js"></script>
     <script src="js/scripts.js"></script>
-    <?php if($exito){  ?>
-    <script> 
-      alert("Matrícula realizada con éxito. El tiquete fué enviado al correo");
-    </script>
-    <?php } ?>
   </head>
 
   <body>
@@ -57,17 +56,149 @@
       <!--Contenido-->
       <div class="contenido">
         <div class="ficha" onclick="window.location.href='matricula.php?prueba=<?php echo 1; ?>'">
-                <div class="head">
-                  <?php echo "8 Mayo, 2019"; ?>
-                </div>
-                <div class="cuerpo">
-                  <ul>
-                    <li>Hora Inicio: <?php echo "2:00 pm"; ?></li>
-                    <li>Hora Final : <?php echo "4:00 pm"; ?></li>
-                    <li>Campos Disp: <?php echo 20-8; ?></li>
-                  </ul>
-                </div>
-              </div>
+          <div class="head">
+            <?php echo "8 Mayo, 2019"; ?>
+          </div>
+          <div class="cuerpo">
+            <ul>
+              <li>Hora Inicio: <?php echo "2:00 pm"; ?></li>
+              <li>Hora Final: <?php echo "4:00 pm"; ?></li>
+              <li>Campos: <?php echo 20-8; ?></li>
+            </ul>
+          </div>
+        </div>
+        <div class="ficha" onclick="window.location.href='matricula.php?prueba=<?php echo 1; ?>'">
+          <div class="head">
+            <?php echo "8 Mayo, 2019"; ?>
+          </div>
+          <div class="cuerpo">
+            <ul>
+              <li>Hora Inicio: <?php echo "2:00 pm"; ?></li>
+              <li>Hora Final : <?php echo "4:00 pm"; ?></li>
+              <li>Campos     : <?php echo 20-8; ?></li>
+            </ul>
+          </div>
+        </div>
+        <div class="ficha" onclick="window.location.href='matricula.php?prueba=<?php echo 1; ?>'">
+          <div class="head">
+            <?php echo "8 Mayo, 2019"; ?>
+          </div>
+          <div class="cuerpo">
+            <ul>
+              <li>Hora Inicio: <?php echo "2:00 pm"; ?></li>
+              <li>Hora Final : <?php echo "4:00 pm"; ?></li>
+              <li>Campos     : <?php echo 20-8; ?></li>
+            </ul>
+          </div>
+        </div>
+        <div class="ficha" onclick="window.location.href='matricula.php?prueba=<?php echo 1; ?>'">
+          <div class="head">
+            <?php echo "8 Mayo, 2019"; ?>
+          </div>
+          <div class="cuerpo">
+            <ul>
+              <li>Hora Inicio: <?php echo "2:00 pm"; ?></li>
+              <li>Hora Final : <?php echo "4:00 pm"; ?></li>
+              <li>Campos     : <?php echo 20-8; ?></li>
+            </ul>
+          </div>
+        </div>
+        <div class="ficha" onclick="window.location.href='matricula.php?prueba=<?php echo 1; ?>'">
+          <div class="head">
+            <?php echo "8 Mayo, 2019"; ?>
+          </div>
+          <div class="cuerpo">
+            <ul>
+              <li>Hora Inicio: <?php echo "2:00 pm"; ?></li>
+              <li>Hora Final : <?php echo "4:00 pm"; ?></li>
+              <li>Campos     : <?php echo 20-8; ?></li>
+            </ul>
+          </div>
+        </div>
+        <div class="ficha" onclick="window.location.href='matricula.php?prueba=<?php echo 1; ?>'">
+          <div class="head">
+            <?php echo "8 Mayo, 2019"; ?>
+          </div>
+          <div class="cuerpo">
+            <ul>
+              <li>Hora Inicio: <?php echo "2:00 pm"; ?></li>
+              <li>Hora Final : <?php echo "4:00 pm"; ?></li>
+              <li>Campos     : <?php echo 20-8; ?></li>
+            </ul>
+          </div>
+        </div>
+        <div class="ficha" onclick="window.location.href='matricula.php?prueba=<?php echo 1; ?>'">
+          <div class="head">
+            <?php echo "8 Mayo, 2019"; ?>
+          </div>
+          <div class="cuerpo">
+            <ul>
+              <li>Hora Inicio: <?php echo "2:00 pm"; ?></li>
+              <li>Hora Final : <?php echo "4:00 pm"; ?></li>
+              <li>Campos     : <?php echo 20-8; ?></li>
+            </ul>
+          </div>
+        </div>
+        <div class="ficha" onclick="window.location.href='matricula.php?prueba=<?php echo 1; ?>'">
+          <div class="head">
+            <?php echo "8 Mayo, 2019"; ?>
+          </div>
+          <div class="cuerpo">
+            <ul>
+              <li>Hora Inicio: <?php echo "2:00 pm"; ?></li>
+              <li>Hora Final : <?php echo "4:00 pm"; ?></li>
+              <li>Campos     : <?php echo 20-8; ?></li>
+            </ul>
+          </div>
+        </div>
+        <div class="ficha" onclick="window.location.href='matricula.php?prueba=<?php echo 1; ?>'">
+          <div class="head">
+            <?php echo "8 Mayo, 2019"; ?>
+          </div>
+          <div class="cuerpo">
+            <ul>
+              <li>Hora Inicio: <?php echo "2:00 pm"; ?></li>
+              <li>Hora Final : <?php echo "4:00 pm"; ?></li>
+              <li>Campos     : <?php echo 20-8; ?></li>
+            </ul>
+          </div>
+        </div>
+        <div class="ficha" onclick="window.location.href='matricula.php?prueba=<?php echo 1; ?>'">
+          <div class="head">
+            <?php echo "8 Mayo, 2019"; ?>
+          </div>
+          <div class="cuerpo">
+            <ul>
+              <li>Hora Inicio: <?php echo "2:00 pm"; ?></li>
+              <li>Hora Final : <?php echo "4:00 pm"; ?></li>
+              <li>Campos     : <?php echo 20-8; ?></li>
+            </ul>
+          </div>
+        </div>
+        <div class="ficha" onclick="window.location.href='matricula.php?prueba=<?php echo 1; ?>'">
+          <div class="head">
+            <?php echo "8 Mayo, 2019"; ?>
+          </div>
+          <div class="cuerpo">
+            <ul>
+              <li>Hora Inicio: <?php echo "2:00 pm"; ?></li>
+              <li>Hora Final : <?php echo "4:00 pm"; ?></li>
+              <li>Campos     : <?php echo 20-8; ?></li>
+            </ul>
+          </div>
+        </div>
+        <div class="ficha" onclick="window.location.href='matricula.php?prueba=<?php echo 1; ?>'">
+          <div class="head">
+            <?php echo "8 Mayo, 2019"; ?>
+          </div>
+          <div class="cuerpo">
+            <ul>
+              <li>Hora Inicio: <?php echo "2:00 pm"; ?></li>
+              <li>Hora Final : <?php echo "4:00 pm"; ?></li>
+              <li>Campos     : <?php echo 20-8; ?></li>
+            </ul>
+          </div>
+        </div>
         <?php 
           $con = conectar();
           $sql = "CALL PruebasDisponibles('".date("Y-m-d H:i:s")."');";
@@ -81,8 +212,8 @@
                 <div class="cuerpo">
                   <ul>
                     <li>Hora Inicio: <?php echo $fila['Fechar']; ?></li>
-                    <li>Hora Final : <?php echo $fila['fechaF']; ?></li>
-                    <li>Campos Disp: <?php echo 20-$fila['cupo']; ?></li>
+                    <li>Hora Final: <?php echo $fila['fechaF']; ?></li>
+                    <li>Campos: <?php echo 20-$fila['cupo']; ?></li>
                   </ul>
                 </div>
               </div>
@@ -91,6 +222,7 @@
           }
         ?>
       </div>
+      <?php include 'error.php';?>
     </div>
   </body>
 

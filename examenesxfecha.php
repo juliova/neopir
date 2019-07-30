@@ -3,6 +3,15 @@
   session_start();
   include 'Base.php';
   include '_menu.php';
+  date_default_timezone_set("America/Costa_Rica");
+  $fechaini = date("Y")."-01-01";
+  $fechafin = date("Y")."-12-31";
+  if(isset($_POST["fechaini"])){
+    $fechaini=$_POST["fechaini"];
+  }
+   if(isset($_POST["fechafin"])){
+    $fechafin=$_POST["fechafin"];
+  }
 ?>
 <!DOCTYPE html>
 <html>
@@ -39,25 +48,50 @@
       </div>
     </menu>         
     <div class="contenido">
-    <?php
+    <div class="seccionMedia">
+          <div>
+            <form action="examenesxfecha.php" method="post" >
+            <h1>Filtro por fechas</h1>
+              <div class="columna1">
+                <label>Fecha Inicio</label>
+              </div>
+              <div class="columna2">
+                <input type="date" name="fechaini" value="<?php echo $fechaini; ?>" required/>
+              </div>
+              <div class="columna1">
+                <label>Fecha Fin</label>
+              </div>
+              <div class="columna2">
+                <input type="date" name="fechafin" value="<?php echo $fechafin; ?>" required/>
+              </div>
+              <button type="submit">Filtrar</button>
+            </form>
+          </div>
+    </div>
+    <?php 
+    
+    
+
       $con = conectar();
-      $sql = "CALL obtener_fechas()";
+      $sql = "CALL obtener_fechas('".$fechaini."','".$fechafin."')";
       if($result = $con->query($sql)){
       ?> 
-        <table class="tablaB" id="estudiantes"><tr><th>Fechas de Examenes realizados</th><th>Estudiantes que realizaron la prueba</th></tr>
+        <table class="tablaB" id="estudiantes"><tr><th>Fechas de Examenes realizados</th><th>Estudiantes que realizaron la prueba</th><th>Estado</th></tr>
         <?php
         if ($result->num_rows > 0) {
           while($row = $result->fetch_assoc()) {
             if(strcmp ($row["Estado"] ,"SIN REVISAR") == 0){  ?>
               <tr class="norevisado" onclick="window.location.href='examenesxestudiante.php?fecha=<?php echo($row["IDPrueba"]);?>'">
-              <td><?php echo($row["Fechar"]);?></td>
+              <td><?php echo(date("d/m/Y  h:i:s A", strtotime($row["Fechar"])));?></td>
               <td><?php echo($row["numestudiantes"]);?></td>
+              <td><?php echo($row["Estado"]);?></td>
                </tr>
               <?php
             }else{?>
               <tr class="revisado" onclick="window.location.href='examenesxestudiante.php?fecha=<?php echo($row["IDPrueba"]);?>'">
-              <td><?php echo($row["Fechar"]);?></td>
+              <td><?php echo(date("d/m/Y  h:i:s A", strtotime($row["Fechar"])));?></td>
               <td><?php echo($row["numestudiantes"]);?></td>
+              <td><?php echo($row["Estado"]);?></td>
               </tr>
             <?php 
             }
@@ -66,6 +100,7 @@
         <?php
         } else { ?>
           <tr class="sindatos">
+          <td>....</td>
           <td>....</td>
           <td>....</td>
           </tr>

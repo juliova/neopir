@@ -242,7 +242,7 @@
           <h1>Instrucciones</h1>
           <ul>
             <li>
-              Esta prueba contiene un total de 240 afirmaciones.
+              Esta prueba contiene un total de <?php echo $_SESSION['totalPreguntas']; ?> afirmaciones.
             </li>
 
             <li>

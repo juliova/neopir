@@ -150,6 +150,9 @@
                 colorSet: 'coloresGrafico',
                 title: { text: "<?php echo $gg["Genero"];?>"},
                 animationEnabled: true,
+                axisX: {
+                  interval: 1
+                },
                 axisY: {
                 maximum: 34,
                 interval: 2

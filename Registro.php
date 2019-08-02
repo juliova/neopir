@@ -35,7 +35,7 @@ if($respuesta = $conn->query($sql)){
       $_SESSION['tipoerror'] = 0;
       header("Location: login.php");
     } else {
-      $_SESSION['mensaje'] = "Registro exitosos, Envío de correo fallido";
+      $_SESSION['mensaje'] = "Registro exitoso, Envío de correo fallido";
       $_SESSION['tipoerror'] = 1;
       header("Location: login.php");
     }

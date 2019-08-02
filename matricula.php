@@ -74,7 +74,7 @@
               <div class="ficha" onclick="window.location.href='matricula.php?prueba=<?php echo $fila['IDPrueba']; ?>'">
                 <div class="head">
                   <?php
-                    echo date("d-m-Y",strtotime($fila['Fechar'])); 
+                    echo date("d/m/Y",strtotime($fila['Fechar'])); 
                   ?>
                 </div>
                 <div class="cuerpo">

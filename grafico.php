@@ -18,8 +18,6 @@
     $_SESSION["fecha"] = $_GET["idfecha"];
     $_SESSION["idestudiante"] = $_GET["idestudiante"];
   } 
-  echo $_SESSION["idestudiante"];
-  
 ?>
 <!DOCTYPE html>
 <html>

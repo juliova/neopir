@@ -501,18 +501,20 @@ $cong->close();
                 {
                   $con->close();
                   $con=conectar();
-                  $coreo=conectar();
+                  $correo=conectar();
                   if($con->query("CALL  calificar(".$_SESSION['idestudiante'].",".$_SESSION['fecha'].",'Aprobado')")){
-                      if($correo->query("select Correo from ususarios where Cedula=".$SESSION['idestudiante'].""))
-                      {
-                        $Correo=$correo->fetch_assoc();
-                    if(mail($Correo['Correo'],' Resultado Neo_pir','su estado es Aprobado')){
-                      
-                    } else {
-                      
+                    if($correo->query("select Correo from ususarios where Cedula=".$SESSION['idestudiante'].""))
+                    {
+                      $Correo=$correo->fetch_assoc();
+                      if(mail($Correo['Correo'],' Resultado Neo_pir','su estado es Aprobado')){
+                        $_SESSION['mensaje'] = "Envío exitoso";
+                        $_SESSION['tipoerror'] = 0;
+                      } else {
+                        $_SESSION['mensaje'] = "Error de envío";
+                        $_SESSION['tipoerror'] = 1;
+                      }
                     }
-                  }
-                  $correo->close();
+                    $correo->close();
                     header("Location: examenesxestudiante.php");
                   }else{
                     $_SESSION['mensaje'] = "no se pudo aprobar";
@@ -523,17 +525,20 @@ $cong->close();
                 }else{
                   $con->close();
                   $con=conectar();
+                  $correo=conectar();
                    if($con->query("CALL  calificar(".$_SESSION['idestudiante'].",".$_SESSION['fecha'].",'Reprobado')")){
-                     if($correo->query("select Correo from ususarios where Cedula=".$SESSION['idestudiante'].""))
-                      {
-                        $Correo=$correo->fetch_assoc();
-                    if(mail($Correo['Correo'],' Resultado Neo_pir','su estado es Reprobo')){
-                      
-                    } else {
-                      
+                    if($correo->query("select Correo from ususarios where Cedula=".$SESSION['idestudiante'].""))
+                    {
+                      $Correo=$correo->fetch_assoc();
+                      if(mail($Correo['Correo'],' Resultado Neo_pir','su estado es Reprobo')){
+                        $_SESSION['mensaje'] = "Envío exitoso";
+                        $_SESSION['tipoerror'] = 0;
+                      } else {
+                        $_SESSION['mensaje'] = "Error de envío";
+                        $_SESSION['tipoerror'] = 1;
+                      }
                     }
-                  }
-                  $correo->close();
+                    $correo->close();
                     
                     header("Location: examenesxestudiante.php");
                   }else{
@@ -545,7 +550,7 @@ $cong->close();
               }
               
               $con=conectar();
-              if($estado=$con->query("CALL  obtener_estado_examen(".$_SESSION['fecha'].")")){
+              if($estado=$con->query("CALL obtener_estado_examen(".$_SESSION['fecha'].")")){
                 $fila = $estado->fetch_assoc();
                 if(strcmp($fila["Estado"],"FORMALIZADO")==0){             
                   ?>

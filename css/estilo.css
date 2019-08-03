@@ -787,6 +787,39 @@ ul {
   left: 17px;
 }
 
+.paginacion{
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  text-align: center;
+  overflow: auto;
+}
+
+.paginacion li{
+  float: left;
+  border: 1px solid black;
+  background-color: #226597;
+  width: 25px;
+  height: 25px;
+}
+
+.paginacion li a{
+  color: white;
+}
+
+.paginacion li:hover {
+  background-color: black;
+}
+
+.paginacion .actual{
+  font-weight: bold;
+  background-color: white;
+}
+
+.paginacion .actual a{
+  color: black;
+}
+
 /*EL modo responsivo entra en efecto cuando la ventana se encoge a un ancho
     menor a 1200px. Siendo una de las resoluciones más populares */
 @media only screen and (max-width: 1199px) { /*400*/
@@ -1050,6 +1083,13 @@ ul {
 
   .botonesPrueba{
     padding-bottom: 120px;
+  }
+
+  .paginacion {
+    text-align: center;
+    overflow: auto;
+    left: 5%;
+    transform: translate(-5%);
   }
 
 }

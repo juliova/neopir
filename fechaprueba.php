@@ -94,6 +94,7 @@
               <div class="columna2">
                 <input type="time" name="hora" value="12:00" />
               </div>
+              <!--
               <label class="contenedorRadioCheck" id="am">AM
                 <input type="radio" name="radio">
                 <span class="radioCheck check"></span>
@@ -101,7 +102,7 @@
               <label class="contenedorRadioCheck" id="pm">PM
                 <input type="radio" name="radio">
                 <span class="radioCheck check"></span>
-              </label>
+              </label>-->
                 <button type="submit" name="insert" value ="Agregar">Agregar</button>
             </form>
             

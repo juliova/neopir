@@ -8,7 +8,7 @@
                 $fila = $respuesta->fetch_assoc();
                 ?>
                 <li>
-                    <a>Bienvenido: <?php echo $fila['Nombre']." ".$fila['Apellido1']." ".$fila['Apellido2']; ?></a>
+                    <a>Bienvenido: <?php echo $fila['Nombre']." ".$fila['Apellido1']; ?></a>
                 </li>
                 <li class="cerrarsesion">
                     <a href="cerrar.php">Cerrar Sesión</a>
@@ -57,6 +57,9 @@
                         <li>
                             <a href="mensajes.php">mensajes</a>
                         </li>
+                        <li>
+                            <a href="variables.php">variables</a>
+                        </li>
                     <?php
                     break;
                 case 2://evaluación, fechas, preguntas, 
@@ -72,6 +75,9 @@
                         </li>
                         <li>
                             <a href="mensajes.php">mensajes</a>
+                        </li>
+                        <li>
+                            <a href="variables.php">variables</a>
                         </li>
                     <?php
                     break;

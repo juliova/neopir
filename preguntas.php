@@ -3,23 +3,21 @@ session_start();
   include 'Base.php';
   include '_menu.php';
   
-  if(!isset($_SESSION['totalPreguntas'])){
-    $con = conectar();
-    $_SESSION['numPregunta'] = 1;
-    $sql = "CALL datosPreguntas();";
-    if($respuesta = $con->query($sql)){
-      $fila = $respuesta->fetch_assoc();
-      $_SESSION['cantPreguntas'] = $fila['xvista'];
-      $_SESSION['totalPreguntas'] = $fila['total'];
-    } else {
-      $_SESSION['mensaje'] = "Error de conexión. Favor intentarlo más tarde";
-      $_SESSION['tipoerror'] = 1;
-    }
-    $con->close();
+  $_SESSION['numPregunta'] = 1;
+
+  $con = conectar();
+  $sql = "CALL datosPreguntas();";
+  if($respuesta = $con->query($sql)){
+    $fila = $respuesta->fetch_assoc();
+    $_SESSION['cantPreguntas'] = $fila['xvista'];
+    $_SESSION['totalPreguntas'] = $fila['total'];
+  } else {
+    $_SESSION['mensaje'] = "Error de conexión. Favor intentarlo más tarde";
+    $_SESSION['tipoerror'] = 1;
   }
+  $con->close();
 
   if(isset($_GET['indice'])){
-    $_SESSION['numPregunta'] = 1;
     for($i = 2; $i<=$_GET['indice']; $i++){
       $_SESSION['numPregunta'] += $_SESSION['cantPreguntas'];
     }
@@ -65,7 +63,7 @@ session_start();
     <!--Contenido-->
     <div class="contenido">
       <div class="flexCentro">
-        <button class="button button2">Agregar Pregunta</button>
+        <button onclick="window.location.href='preguntasnueva.php'" class="button button2">Agregar Pregunta</button>
       </div>
       <!--Lista-->
       <table class="tablaB">
@@ -98,7 +96,7 @@ session_start();
       </table>
       <ul class="paginacion">
       <?php
-      $paginas = $_SESSION['totalPreguntas']/$_SESSION['cantPreguntas'];
+      $paginas = ceil($_SESSION['totalPreguntas']/$_SESSION['cantPreguntas']);
       for($i=1; $i<=$paginas; $i++){
         ?>
         <li 

@@ -68,6 +68,14 @@
               </ul>
             </div>
             <?php
+            $Mensaje = "Este es un correo para confirmar que realizó la prueba";
+            if(mail($fila['Correo'],'Gracias por realizar la prueba',$Mensaje)){
+              $_SESSION['mensaje'] = "Correo enviado";
+              $_SESSION['tipoerror'] = 0;
+            } else {
+              $_SESSION['mensaje'] = "Error al enviar el correo";
+              $_SESSION['tipoerror'] = 1;
+            }
             unset($_SESSION['prueba']);
           } else {
             ?>
@@ -84,7 +92,7 @@
           }
         ?>
       </div>
+      <?php include 'error.php'; ?>
     </div>
   </body>
-
 </html>

@@ -3,25 +3,42 @@
     date_default_timezone_set("America/Costa_Rica");
     include 'Base.php';
     include '_menu.php';
-    $con = conectar();
+    
     if(isset($_POST['token'])){
-        $sql = "Call IngresoPrueba(".$_SESSION['usuario'].",'".$_POST['token']."','".date("Y-m-d H:i:s")."')";
-        if($respuesta = $con->query($sql)){
-          $fila = $respuesta->fetch_assoc();
-          if($fila['examen'] != 0){
-            $_SESSION['prueba'] = $fila['examen'];
-            $_SESSION['mensaje'] = "Tiquete correcto";
-            $_SESSION['tipoerror'] = 0;
-            header("Location: prueba.php");
-          } else {
-            $_SESSION['mensaje'] = "Tiquete o hora incorrecta";
-            $_SESSION['tipoerror'] = 1;
-          }
-          $con->close();
+      $con = conectar();
+      $sql = "Call ContinuarPrueba(".$_SESSION['usuario'].")";
+      if($respuesta = $con->query($sql)){
+        $fila = $respuesta->fetch_assoc();
+        if($fila['guardada'] == 1){
+          $_SESSION['numPregunta'] = $fila['pregunta'];
+          $_SESSION['cantPreguntas'] = $fila['xvista'];
+          $_SESSION['totalPreguntas'] = $fila['total'];
+          $_SESSION['prueba'] = $fila['IDPrueba'];
+          header("Location: prueba.php");
+        }
+      } else {
+        $_SESSION['mensaje'] = "Error de conexión. Favor intentarlo más tarde";
+        $_SESSION['tipoerror'] = 1;
+      }
+      $con->close();
+      $con = conectar();
+      $sql = "Call IngresoPrueba(".$_SESSION['usuario'].",'".$_POST['token']."','".date("Y-m-d H:i:s")."')";
+      if($respuesta = $con->query($sql)){
+        $fila = $respuesta->fetch_assoc();
+        if($fila['examen'] != 0){
+          $_SESSION['prueba'] = $fila['examen'];
+          $_SESSION['mensaje'] = "Tiquete correcto";
+          $_SESSION['tipoerror'] = 0;
+          header("Location: prueba.php");
         } else {
-          $_SESSION['mensaje'] = "Error de conexión. Favor intentarlo más tarde";
+          $_SESSION['mensaje'] = "Tiquete o hora incorrecta";
           $_SESSION['tipoerror'] = 1;
         }
+        $con->close();
+      } else {
+        $_SESSION['mensaje'] = "Error de conexión. Favor intentarlo más tarde";
+        $_SESSION['tipoerror'] = 1;
+      }
     }
 ?>
 

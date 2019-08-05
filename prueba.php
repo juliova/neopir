@@ -1,6 +1,9 @@
 <?php 
   //inicio de variables de session
   session_start();
+  //Incluir función de conexión a la base
+  include 'Base.php';
+  
   if(!isset($_SESSION['prueba']) || $_SESSION['prueba']==0){
     header("Location: ingresarprueba.php");
   }
@@ -8,8 +11,7 @@
   if(!isset($_SESSION['siguiente'])){
     $_SESSION['siguiente'] = false;
   }
-  //Incluir función de conexión a la base
-  include 'Base.php';
+  
   //Realizar la conexión
   $con = conectar();
   //Si tenemos el numero de pregunta actual iniciado 
@@ -167,20 +169,32 @@
           $_SESSION['mensaje'] = "Sus respuestas han sido guardadas. Favor presione el botón SIGUIENTE.";
           $_SESSION['tipoerror'] = 0;
           $con->close();
-          //header("Location: #siguiente");
+          $con = conectar();
+          $suma = $_SESSION['numPregunta'] + $_SESSION['cantPreguntas'];
+          $sql = "CALL AlmacenarProgreso(".$_SESSION['usuario'].",".$_SESSION['prueba'].",".$suma.");";
+          if($con->query($sql)){
+
+          }
+          $con->close();
         } else {
           $_SESSION['mensaje'] = "Error al guardar sus respuestas. Favor intentarlo de nuevo";
           $_SESSION['tipoerror'] = 1;
           $con->close();
         }
+
         break;
       case 2: //Siguiente
         $_SESSION['siguiente']=false;
         //ingcrementar numPregunta
         $_SESSION['numPregunta'] = $_SESSION['numPregunta'] + $_SESSION['cantPreguntas'];
         if($_SESSION['numPregunta']>$_SESSION['totalPreguntas']){
-          header("Location: finalprueba.php");
+          $con = conectar();
+          $sql = "Call EliminarProgreso(".$_SESSION['usuario'].");";
+          if($con->query($sql)){
+            
+          }
           $_SESSION['numPregunta'] = 0;
+          header("Location: finalprueba.php");
         }
         break;
     }

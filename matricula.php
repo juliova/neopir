@@ -67,25 +67,30 @@
       <div class="contenido">
         <?php 
           $con = conectar();
-          $sql = "CALL PruebasDisponibles('".date("Y-m-d H:i:s")."');";
+          $sql = "CALL PruebasDisponibles('".date("Y-m-d H:i:s")."',".$_SESSION['usuario'].");";
           if($respuesta = $con->query($sql)){
             while($fila = $respuesta->fetch_assoc()){
-              ?>
-              <div class="ficha" onclick="window.location.href='matricula.php?prueba=<?php echo $fila['IDPrueba']; ?>'">
-                <div class="head">
-                  <?php
-                    echo date("d/m/Y",strtotime($fila['Fechar'])); 
-                  ?>
+              if($fila['pendiente'] == 0){
+                ?>
+                <div class="ficha" onclick="window.location.href='matricula.php?prueba=<?php echo $fila['IDPrueba']; ?>'">
+                  <div class="head">
+                    <?php
+                      echo date("d/m/Y",strtotime($fila['Fechar'])); 
+                    ?>
+                  </div>
+                  <div class="cuerpo">
+                    <ul>
+                      <li>Hora Inicio: <?php echo date("h:i:s A",strtotime($fila['Fechar'])); ?></li>
+                      <li>Hora Final: <?php echo date("h:i:s A",strtotime($fila['fechaF'])); ?></li>
+                      <li>Campos: <?php echo $fila['cupo']; ?></li>
+                    </ul>
+                  </div>
                 </div>
-                <div class="cuerpo">
-                  <ul>
-                    <li>Hora Inicio: <?php echo date("h:i:s A",strtotime($fila['Fechar'])); ?></li>
-                    <li>Hora Final: <?php echo date("h:i:s A",strtotime($fila['fechaF'])); ?></li>
-                    <li>Campos: <?php echo $fila['cupo']; ?></li>
-                  </ul>
-                </div>
-              </div>
-              <?php 
+                <?php
+              } else {
+                $_SESSION['mensaje'] = "No es elegible para realizar la matrícula";
+                $_SESSION['tipoerror'] = 1;
+              }
             }
           } else {
             $_SESSION['mensaje'] = "Error de conexión. Favor intentarlo de nuevo";

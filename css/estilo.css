@@ -312,6 +312,7 @@ button{
   background-color: #87c0cd;
   border: none;
   font-size: 1.1em;
+  overflow: hidden;
 }
 
 /* Añadir la manita al pasar el cursor sobre el boton */
@@ -820,6 +821,10 @@ ul {
 
 .paginacion .actual a{
   color: black;
+}
+
+#tablapreguntas button{
+  width: 100%;
 }
 
 /*EL modo responsivo entra en efecto cuando la ventana se encoge a un ancho

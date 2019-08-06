@@ -67,7 +67,7 @@ session_start();
         <button onclick="window.location.href='preguntasnueva.php'" class="button button2">Agregar Pregunta</button>
       </div>
       <!--Lista-->
-      <table class="tablaB">
+      <table class="tablaB" id="tablapreguntas">
         <tr>
           <th>#</th>
           <th>Pregunta</th>
@@ -91,7 +91,12 @@ session_start();
           <td><?php echo $id; ?></td>
           <td><?php echo $texto; ?></td>
           <td><?php echo $tipo; ?></td>
-          <td> <a href = "preguntas.php?editar=<?php echo $id; ?>">Editar</a></td>
+          <td>
+            <button class="aprobado" onclick="window.location.href='preguntas.php?editar=<?php echo $id; ?>';">Editar</button>
+            <?php if($_SESSION['totalPreguntas']==$id){ ?>
+            <button class="rechazado" onclick="window.location.href='preguntas.php?eliminar=<?php echo $id; ?>';">Eliminar</button>
+            <?php } ?>
+          </td>
           </tr>
         <?php } ?>
       </table>

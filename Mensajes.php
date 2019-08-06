@@ -14,7 +14,7 @@
     }
   }
   $conn = conectar();
-  $CodigoMensaje = "";
+  $CodigoMensaje = 0;
   $Mensaje3 = "";
   //Obtencion de los datos de los campos
   if(isset($_POST['radio'])){
@@ -117,11 +117,11 @@
 
                 <div class="columna2 botonesRadio">
                   <label class="contenedorRadioCheck">
-                    <input value= "1" type="radio" name="radio" required <?php if($CodigoMensaje ==1){ echo "checked"; } ?>>
+                    <input value= "1" type="radio" name="radio" required <?php if($CodigoMensaje ==1){ echo "checked"; } if($CodigoMensaje!=0){echo " disabled";}?>>
                     <span class="radioCheck uno"></span>
                   </label>
                   <label class="contenedorRadioCheck">
-                    <input value = "2" type="radio" name="radio" required <?php if($CodigoMensaje ==2){ echo "checked"; } ?>>
+                    <input value = "2" type="radio" name="radio" required <?php if($CodigoMensaje ==2){ echo "checked"; } if($CodigoMensaje!=0){echo " disabled";} ?>>
                     <span class="radioCheck dos"></span>
                   </label>
                 </div>

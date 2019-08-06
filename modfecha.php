@@ -79,7 +79,7 @@
 								<label> mes/dia/año</label>
 							</div>
 							<div class="columna1">
-								<label>Fecha:</label>
+								<label>Fecha inicio:</label>
 							</div>
 							<div class="columna2">
 								<input type="date" name="fecha" required value="<?php echo date("Y-m-d",strtotime($inicio)); ?>"/>
@@ -90,6 +90,12 @@
 							<div class="columna2">
 								<input type="time" name="horainicio" required  value="<?php echo $inicio; ?>"/>
               </div>
+              <div class="columna1">
+								<label>Fecha fin:</label>
+							</div>
+							<div class="columna2">
+								<input type="date" name="fecha" required value="<?php echo date("Y-m-d",strtotime($inicio)); ?>"/>
+							</div>
               <div class="columna1">
 								<label>Hora fin:</label>
 							</div>

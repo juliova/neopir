@@ -60,39 +60,33 @@
             <li>
               En esta ventana puede determinar la fecha y hora en que se realizaran las pruebas.
             </li>
-
             <li>
-              Primero seleccione la fecha en que quiera que se realize la prueba en este formato DIA/MES/AÑO.
+              Primero seleccione la fecha en que quiera que se realize la prueba.
             </li>
             <li>
-              Determine la hora en que se realizara la prueba en este formato HORA/MINUTOS.
+              Determine la hora en que se realizara la prueba.
             </li>
             <li>
-              Seleccione el tipo de hora que requiera AM o PM.
-            </li>
-            <li>
-              Al terminar de ingresar estos datos pulse el boton "GUARDAR".
+              Al terminar de ingresar estos datos pulse el boton "AGREGAR".
             </li>
           </ul>
         </div>
 
         <!--Ingreso de datos -->
         <div class="seccionMedia">
-
-          <!--contenedor para el calendario-->
           <div>
             <form method="POST" action="fechaprueba.php">
               <div class="columna1">
                 <label>Fecha prueba:</label>
               </div>
               <div class="columna2">
-                <input type="text" name="fecha" />
+                <input type="date" name="fecha" required />
               </div>
               <div class="columna1">
                 <label>Hora prueba:</label>
               </div>
               <div class="columna2">
-                <input type="time" name="hora" value="12:00" />
+                <input type="time" name="hora" required />
               </div>
               <!--
               <label class="contenedorRadioCheck" id="am">AM
@@ -103,11 +97,9 @@
                 <input type="radio" name="radio">
                 <span class="radioCheck check"></span>
               </label>-->
-                <button type="submit" name="insert" value ="Agregar">Agregar</button>
+              <button class="seccionMedia" type="submit" name="insert" value ="Agregar">Agregar</button>
             </form>
-            
           </div>
-
         </div>
       </div>
     </div>
@@ -115,48 +107,48 @@
 	<?php
 	if(isset($_POST ['insert'])){
 		$fecha = $_POST['fecha'];
-		$hora = $_POST['hora'];
-		$fechaf =date ($fecha ."".$hora);
-		$fechaFinal=date("Y/d/m H:i",strtotime($fechaf."+ 2 hour"));
+    $hora = $_POST['hora'];
+		$fechaf =date ($fecha ." ".$hora);
+    $fechaFinal=date("Y/d/m H:i",strtotime($fechaf."+ 2 hour"));
 		$consulta = "SELECT * from prueba";
-
+		$fechaComoEntero = strtotime($fechaf);
+		$anio = date("Y", $fechaComoEntero);
+		$mes = date("m", $fechaComoEntero);
     $ciclo =mysqli_query($con,$consulta);
     $i = 0;
     $Paso = false;
-    while($fila = mysqli_fetch_array($ciclo)){
-    $fechap = $fila['Fechar'];
-    
-    if($fechaf > $fechap)
-    {
+	  while($fila = mysqli_fetch_array($ciclo)){
+  	  $fechap = $fila['Fechar'];
+      $fechaEntero = strtotime($fechap);
+      $annio = date("Y", $fechaEntero);
+      $mess = date("m", $fechaEntero);
+      if($fechaf > $fechap and !($annio==$anio and $mess ==$mes))
+      {
 
-    }else
+      }else
       {
         $Paso = true;
-    }
-      $i++;
-    }        
-
-      $i++;
-      echo $i;
-      if($Paso){
-        //echo "La fecha ya paso";
-        $_SESSION['mensaje'] = "La fecha ya paso";
-        $_SESSION['tipoerror'] = 1;
       }
-      else{
-        $insertar ="INSERT INTO prueba (IDPrueba,Fechar,fechaF) VALUES ($i,'$fechaf','$fechaFinal')";
+		  $i++;
+	  }        
 
-        $ejecutar = mysqli_query($con,$insertar);
+		$i++;
+		if($Paso){
+      $_SESSION['mensaje'] = "La fecha que se ingreso no es correcta";
+      $_SESSION['tipoerror'] = 1;
+		}
+		else{
+			$insertar ="INSERT INTO prueba (Fechar,fechaF) VALUES ('$fechaf','$fechaFinal')";
+
+			$ejecutar = mysqli_query($con,$insertar);
       if($ejecutar){
         $_SESSION['mensaje'] = "Fecha creada";
         $_SESSION['tipoerror'] = 0;
-  }
       }
-      }
-      
-				
+		}
+  }				
 ?>	
-  <?php include 'error.php'; ?>
+  <?php include "error.php"; ?>
   </body>
 
 </html>

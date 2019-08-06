@@ -14,7 +14,7 @@ $(document).ready(function(){
   $("input[name=contra2]").keyup(function(){
     verificarC();
   });
-
+ /*
   //Inicia el calendario
   $("#selectorFechas").datepicker({
     //Escoje la localización en español
@@ -29,7 +29,7 @@ $(document).ready(function(){
       //Los datos son escritos en el campo de fecha
       $("input[name='fecha']").val(fechaF);
     }
-  });
+  }); */
 });
 
 function verificarC(){

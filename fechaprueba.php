@@ -3,6 +3,7 @@
   include 'Base.php';
   include '_menu.php';
   $con = conectar();
+  date_default_timezone_set("America/Costa_Rica");
 ?>
 
 <!DOCTYPE html>
@@ -53,7 +54,7 @@
 
       <!--Contenido -->
       <div class="contenido">
-        <!--Instrucciones de la prueba -->
+        <!--Instrucciones de la prueba 
         <div class="instrucciones">
           <h1>Instrucciones</h1>
           <ul>
@@ -70,12 +71,13 @@
               Al terminar de ingresar estos datos pulse el boton "AGREGAR".
             </li>
           </ul>
-        </div>
+        </div>-->
 
         <!--Ingreso de datos -->
         <div class="seccionMedia">
           <div>
             <form method="POST" action="fechaprueba.php">
+              <h1>Agregar Prueba</h1>
               <div class="columna1">
                 <label>Fecha prueba:</label>
               </div>
@@ -88,28 +90,57 @@
               <div class="columna2">
                 <input type="time" name="hora" required />
               </div>
-              <!--
-              <label class="contenedorRadioCheck" id="am">AM
-                <input type="radio" name="radio">
-                <span class="radioCheck check"></span>
-              </label>
-              <label class="contenedorRadioCheck" id="pm">PM
-                <input type="radio" name="radio">
-                <span class="radioCheck check"></span>
-              </label>-->
               <button class="seccionMedia" type="submit" name="insert" value ="Agregar">Agregar</button>
             </form>
           </div>
         </div>
+        <table class="tablaB">
+          <tr>
+            <th>Fecha Inicio</th>
+            <th>Fecha Fin</th>
+          </tr>
+          <?php 
+            $sql = "Call PruebasAno('".date("Y-m-d H:i:s")."');";
+            if($respuesta = $con->query($sql)){
+              while($fila = $respuesta->fetch_assoc()){
+                ?>
+                <tr>
+                  <td><?php echo date("d/m/Y  h:i:s A",strtotime($fila['Fechar'])); ?></td>
+                  <td><?php echo date("d/m/Y  h:i:s A",strtotime($fila['fechaF'])); ?></td>
+                  <td>
+                    <button class="aprobado" onclick="window.location.href='modfecha.php?prueba=<?php echo $fila['IDPrueba']; ?>';">Modificar</button>
+                    <?php if($fila['Fechar']>date("Y-m-d H:i:s")) {?>
+                    <button class="rechazado" onclick="window.location.href='eliminarfecha.php?prueba=<?php echo $fila['IDPrueba']; ?>';">Eliminar</button>
+                    <?php } ?>
+                  </td>
+                </tr>
+                <?php
+              }
+            } else {
+              $_SESSION['mensaje'] = "Error de conexión. Favor intentarlo de nuevo";
+              $_SESSION['tipoerror'] = 1;
+            }
+            $con->close();
+          ?>
+        </table>
       </div>
     </div>
 	
 	<?php
 	if(isset($_POST ['insert'])){
+    $con = conectar();
 		$fecha = $_POST['fecha'];
     $hora = $_POST['hora'];
-		$fechaf =date ($fecha ." ".$hora);
-    $fechaFinal=date("Y/d/m H:i",strtotime($fechaf."+ 2 hour"));
+    $fechaf =date ($fecha ." ".$hora);
+    $sql = "CALL variables();";
+    $sumahoras = 2;
+    if($respuesta = $con->query($sql)){
+      $fila = $respuesta->fetch_assoc();
+      $sumahoras = $fila['DuracionPrueba'];
+    }
+    $con->close();
+    $con = conectar();
+    $fechaFinal=date("Y/m/d H:i",strtotime($fechaf."+ ".$sumahoras." hour"));
 		$consulta = "SELECT * from prueba";
 		$fechaComoEntero = strtotime($fechaf);
 		$anio = date("Y", $fechaComoEntero);

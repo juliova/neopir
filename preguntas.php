@@ -62,6 +62,7 @@ session_start();
 
     <!--Contenido-->
     <div class="contenido">
+      <br>
       <div class="flexCentro">
         <button onclick="window.location.href='preguntasnueva.php'" class="button button2">Agregar Pregunta</button>
       </div>

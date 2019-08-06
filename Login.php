@@ -49,7 +49,7 @@
                   <label>Cedula</label>
                 </div>
                 <div class="columna2">
-                  <input type="text" name="cedula" required/>
+                  <input type="number" name="cedula" required/>
                 </div>
                 <div class="columna1">
                   <label>Contraseña</label>
@@ -89,7 +89,7 @@
                   <label>Cedula:</label>
                 </div>
                 <div class="columna2">
-                  <input type="text" name="cedula2" required/>
+                  <input type="number" name="cedula2" required/>
                 </div>
                 <div class="columna1">
                   <label>Correo:</label>

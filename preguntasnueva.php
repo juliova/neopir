@@ -142,7 +142,7 @@
                             </div>
                         </div>
                         <button type="submit" name="btn" class="posicionDerecha" value="1">Añadir</button>
-                
+                        <button onclick="window.location.href='preguntas.php'">Atras</button>
                     </form>
                 </div>
             </div>

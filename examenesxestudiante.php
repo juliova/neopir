@@ -123,14 +123,33 @@
   <?php
     $con = conectar();
     if(isset($_POST['btn'])){
+    	$corr=0;
       $sql = "CALL formalizar(".$_SESSION['fecha'].")";
       if( $result = $con->query($sql)){
         $fila = $result->fetch_assoc();
         if($fila["Estado"] == 'FORMALIZADO')
         { 
-          $_SESSION['mensaje'] = "La prueba ha sido formalizada con exito";
-          $_SESSION['tipoerror'] = 0;
-          header("Location: examenesxfecha.php");
+         if($correo->query("CALL correos_formalizar(".$SESSION['idestudiante'].")"))
+                    {
+                    if ($correo->num_rows > 0) {
+                        while($cor = $correo->fetch_assoc()) {
+                       if(mail($cor['Correo'],' Resultado Neo_pir','su estado es'.$cor['Estado'].'.')){
+                        $corr=$corr + 0;
+                      } else {
+                        $corr=1;
+                      }
+                  }
+                  if( $corr==0 )
+                  {
+                  	 $_SESSION['mensaje'] = "La prueba ha sido formalizada con exito";
+                      header("Location: examenesxfecha.php");
+                  }else{
+                  	    $_SESSION['mensaje'] = "No pudieron enviar todos los correos debido a un fallo con el servidor. Intentelo mas tarde";
+                        $_SESSION['tipoerror'] = 1;
+                  }
+              }
+                    }
+         
         }else{ 
           $_SESSION['mensaje'] = "No puede formalizar la prueba sin antes revisar todos los estudiantes";
           $_SESSION['tipoerror'] = 1;

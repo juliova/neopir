@@ -92,15 +92,16 @@ session_start();
           <td><?php echo $texto; ?></td>
           <td><?php echo $tipo; ?></td>
           <td>
-            <button class="aprobado" onclick="window.location.href='preguntas.php?editar=<?php echo $id; ?>';">Editar</button>
+            <button class="aprobado" onclick="window.location.href='modificarpregunta.php?pregunta=<?php echo $id; ?>';">Editar</button>
             <?php if($_SESSION['totalPreguntas']==$id){ ?>
-            <button class="rechazado" onclick="window.location.href='preguntas.php?eliminar=<?php echo $id; ?>';">Eliminar</button>
+            <button class="rechazado" onclick="window.location.href='eliminarpregunta.php?pregunta=<?php echo $id; ?>';">Eliminar</button>
             <?php } ?>
           </td>
           </tr>
         <?php } ?>
       </table>
-      <ul class="paginacion">
+    </div>
+    <ul class="paginacion">
       <?php
       $paginas = ceil($_SESSION['totalPreguntas']/$_SESSION['cantPreguntas']);
       for($i=1; $i<=$paginas; $i++){
@@ -121,8 +122,7 @@ session_start();
         </li>
         <?php 
       }?>
-      </ul>
-    </div>
+    </ul>
     <?php include 'error.php'; ?>
   </div>
 </body>

@@ -121,6 +121,7 @@
 
   </div>
   <?php
+    $correo = conectar();
     $con = conectar();
     if(isset($_POST['btn'])){
     	$corr=0;
@@ -129,10 +130,10 @@
         $fila = $result->fetch_assoc();
         if($fila["Estado"] == 'FORMALIZADO')
         { 
-         if($correo->query("CALL correos_formalizar(".$SESSION['idestudiante'].")"))
+         if($result =$correo->query("CALL correos_formalizar(".$_SESSION['fecha'].")"))
                     {
-                    if ($correo->num_rows > 0) {
-                        	while($cor = $correo->fetch_assoc()) {
+                    if ($result->num_rows > 0) {
+                        	while($cor = $result->fetch_assoc()) {
                        			if(mail($cor['Correo'],' Resultado Neo_pir','su estado es'.$cor['Estado'].'.')){
                         			$corr=$corr + 0;
                       			} else {

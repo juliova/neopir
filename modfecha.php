@@ -5,17 +5,52 @@
   date_default_timezone_set("America/Costa_Rica");
   $inicio = "";
   $fin ="";
+  $prueba = 0;
 	if(isset($_GET['prueba'])){
+    $prueba = $_GET['prueba'];
     $con = conectar();
-    $sql = "SELECT Fechar, fechaF from prueba where IDPrueba = ".$_GET['prueba'].";";
+    $sql = "SELECT Fechar, fechaF from prueba where IDPrueba = ".$prueba.";";
     if($respuesta = $con->query($sql)){
       $fila = $respuesta->fetch_assoc();
       $inicio = $fila['Fechar'];
       $fin = $fila['fechaF'];
     }
+    $con->close();
 	} else {
-		header("Location: fechaprueba.php");
-	}
+    if(isset($_POST['btn'])){
+      $con = conectar();
+      $prueba = $_POST["btn"];
+      $fechainicio = $_POST['fechainicio']." ".$_POST['horainicio'];
+      $fechafin = $_POST['fechafin']." ".$_POST['horafin'];
+      if($fechainicio>date("Y-m-d H:i:s")){
+        $sql = "CALL ModificarPrueba(".$prueba.",'".$fechainicio."','".$fechafin."');";
+        if($respuesta = $con->query($sql)){
+          $_SESSION['mensaje'] = "Prueba modificada con éxito";
+          $_SESSION['tipoerror'] = 0;
+        } else {
+          $_SESSION['mensaje'] = "Error de conexión. Favor intentarlo de nuevo";
+          $_SESSION['tipoerror'] = 1;
+        }
+      } else {
+        $_SESSION['mensaje'] = "Fecha de inicio debe ser mayor a la fecha de hoy";
+        $_SESSION['tipoerror'] = 1;
+      }
+      
+      $con->close();
+      $con = conectar();
+      $sql = "SELECT Fechar, fechaF from prueba where IDPrueba = ".$prueba.";";
+      if($respuesta = $con->query($sql)){
+        $fila = $respuesta->fetch_assoc();
+        $inicio = $fila['Fechar'];
+        $fin = $fila['fechaF'];
+      }
+      $con->close();
+    } else {
+      header("Location: fechaprueba.php");
+    }
+		
+  }
+  
 ?>
 
 <!DOCTYPE html>
@@ -82,27 +117,28 @@
 								<label>Fecha inicio:</label>
 							</div>
 							<div class="columna2">
-								<input type="date" name="fecha" required value="<?php echo date("Y-m-d",strtotime($inicio)); ?>"/>
+								<input type="date" name="fechainicio" required value="<?php echo date("Y-m-d",strtotime($inicio)); ?>"/>
 							</div>
 							<div class="columna1">
 								<label>Hora inicio:</label>
 							</div>
 							<div class="columna2">
-								<input type="time" name="horainicio" required  value="<?php echo $inicio; ?>"/>
+								<input type="time" name="horainicio" required  value="<?php echo date("H:i:s",strtotime($inicio)); ?>"/>
               </div>
               <div class="columna1">
 								<label>Fecha fin:</label>
 							</div>
 							<div class="columna2">
-								<input type="date" name="fecha" required value="<?php echo date("Y-m-d",strtotime($inicio)); ?>"/>
+								<input type="date" name="fechafin" required value="<?php echo date("Y-m-d",strtotime($fin)); ?>"/>
 							</div>
               <div class="columna1">
 								<label>Hora fin:</label>
 							</div>
 							<div class="columna2">
-								<input type="time" name="horafin" required  value="<?php echo $fin; ?>"/>
+								<input type="time" name="horafin" required  value="<?php echo date("H:i:s",strtotime($fin)); ?>"/>
 							</div>
-							<button class="posicionDerecha" type="submit" name="btn" value ="1">Modificar</button>
+              <button class="posicionDerecha" type="submit" name="btn" value ="<?php echo $prueba;?>">Modificar</button>
+              <button onclick="window.location.href='fechaprueba.php'">Atras</button>
             </form>
           </div>
         </div>
@@ -112,6 +148,7 @@
             <th>Fecha Fin</th>
           </tr>
           <?php 
+            $con = conectar();
             $sql = "Call PruebasAno('".date("Y-m-d H:i:s")."');";
             if($respuesta = $con->query($sql)){
               while($fila = $respuesta->fetch_assoc()){

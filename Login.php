@@ -68,6 +68,12 @@
               <div>
                 <h1>Registro</h1>
                 <div class="columna1">
+                  <label>Cedula:</label>
+                </div>
+                <div class="columna2">
+                  <input type="number" name="cedula2" required/>
+                </div>
+                <div class="columna1">
                   <label>Nombre:</label>
                 </div>
                 <div class="columna2">
@@ -84,12 +90,6 @@
                 </div>
                 <div class="columna2">
                   <input type="text" name="apellidos2" required/>
-                </div>
-                <div class="columna1">
-                  <label>Cedula:</label>
-                </div>
-                <div class="columna2">
-                  <input type="number" name="cedula2" required/>
                 </div>
                 <div class="columna1">
                   <label>Correo:</label>
@@ -110,7 +110,7 @@
                   <input type="password" name="contraC" required placeholder="Confirmar contraseña"/>
                 </div>
                 <div class="columna1">
-                  <label>Sexo:</label>
+                  <label>Genero:</label>
                 </div>
 
                 <div class="columna2">

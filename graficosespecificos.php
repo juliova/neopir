@@ -145,10 +145,10 @@
                 '#FEA90D',
                 '#fd5f00'
               ]);
-              var graficoG = new CanvasJS.Chart('graficoG',
+              var graficoN = new CanvasJS.Chart('graficoN',
               {
                 colorSet: 'coloresGrafico',
-                title: { text: "<?php echo $gg["Genero"];?>"},
+                title: { text: "<?php echo $gg["Genero"];?>-Neurotismo"},
                 animationEnabled: true,
                 axisX: {
                   interval: 1
@@ -166,25 +166,311 @@
                       { y: <?php echo $gn3["muybajo"]; ?>, label: 'N3'},
                       { y: <?php echo $gn4["muybajo"]; ?>, label: 'N4'},
                       { y: <?php echo $gn5["muybajo"]; ?>, label: 'N5'},
-                      { y: <?php echo $gn6["muybajo"]; ?>, label: 'N6'},
+                      { y: <?php echo $gn6["muybajo"]; ?>, label: 'N6'}
+                    ]
+                  },{
+                   type: 'stackedColumn',
+                    dataPoints:[
+                      { y: <?php echo $gn1["bajo"]; ?>, label: 'N1'},
+                      { y: <?php echo $gn2["bajo"]; ?>, label: 'N2'},
+                      { y: <?php echo $gn3["bajo"]; ?>, label: 'N3'},
+                      { y: <?php echo $gn4["bajo"]; ?>, label: 'N4'},
+                      { y: <?php echo $gn5["bajo"]; ?>, label: 'N5'},
+                      { y: <?php echo $gn6["bajo"]; ?>, label: 'N6'}
+                    ]
+                  },{
+                   type: 'stackedColumn',
+                    dataPoints:[
+                      { y: <?php echo $gn1["aceptable"]; ?>, label: 'N1'},
+                      { y: <?php echo $gn2["aceptable"]; ?>, label: 'N2'},
+                      { y: <?php echo $gn3["aceptable"]; ?>, label: 'N3'},
+                      { y: <?php echo $gn4["aceptable"]; ?>, label: 'N4'},
+                      { y: <?php echo $gn5["aceptable"]; ?>, label: 'N5'},
+                      { y: <?php echo $gn6["aceptable"]; ?>, label: 'N6'}
+                    ]
+                  },{
+                    type: 'stackedColumn',
+                    dataPoints:[
+                      { y: <?php echo $gn1["alto"]; ?>, label: 'N1'},
+                      { y: <?php echo $gn2["alto"]; ?>, label: 'N2'},
+                      { y: <?php echo $gn3["alto"]; ?>, label: 'N3'},
+                      { y: <?php echo $gn4["alto"]; ?>, label: 'N4'},
+                      { y: <?php echo $gn5["alto"]; ?>, label: 'N5'},
+                      { y: <?php echo $gn6["alto"]; ?>, label: 'N6'}
+                    ]
+                  },{
+                    type: 'stackedColumn',
+                    dataPoints:[
+                      { y: <?php echo $gn1["muyalto"]; ?>, label: 'N1'},
+                      { y: <?php echo $gn2["muyalto"]; ?>, label: 'N2'},
+                      { y: <?php echo $gn3["muyalto"]; ?>, label: 'N3'},
+                      { y: <?php echo $gn4["muyalto"]; ?>, label: 'N4'},
+                      { y: <?php echo $gn5["muyalto"]; ?>, label: 'N5'},
+                      { y: <?php echo $gn6["muyalto"]; ?>, label: 'N6'}
+                    ]
+                  },{
+                    color: 'black',
+                    type: 'line',
+                    dataPoints:[
+                      { y: <?php echo $suma["N1"]?>, label: 'N1'},
+                      { y: <?php echo $suma["N2"]?>, label: 'N2'},
+                      { y: <?php echo $suma["N3"]?>, label: 'N3'},
+                      { y: <?php echo $suma["N4"]?>, label: 'N4'},
+                      { y: <?php echo $suma["N5"]?>, label: 'N5'},
+                      { y: <?php echo $suma["N6"]?>, label: 'N6'}
+                    ] 
+                  }
+                ]
+              });
+				var graficoE = new CanvasJS.Chart('graficoE',
+              {
+                colorSet: 'coloresGrafico',
+                title: { text: "<?php echo $gg["Genero"];?>.Extraversión"},
+                animationEnabled: true,
+                axisX: {
+                  interval: 1
+                },
+                axisY: {
+                maximum: 34,
+                interval: 2
+                },
+                data: [
+                  {
+                    type: 'stackedColumn',
+                    dataPoints:[
+                     
                       { y: <?php echo $ge1["muybajo"]; ?>, label: 'E1'},
                       { y: <?php echo $ge2["muybajo"]; ?>, label: 'E2'},
                       { y: <?php echo $ge3["muybajo"]; ?>, label: 'E3'},
                       { y: <?php echo $ge4["muybajo"]; ?>, label: 'E4'},
                       { y: <?php echo $ge5["muybajo"]; ?>, label: 'E5'},
-                      { y: <?php echo $ge6["muybajo"]; ?>, label: 'E6'},
+                      { y: <?php echo $ge6["muybajo"]; ?>, label: 'E6'}
+                    ]
+                  },{
+                   type: 'stackedColumn',
+                    dataPoints:[
+                      { y: <?php echo $ge1["bajo"]; ?>, label: 'E1'},
+                      { y: <?php echo $ge2["bajo"]; ?>, label: 'E2'},
+                      { y: <?php echo $ge3["bajo"]; ?>, label: 'E3'},
+                      { y: <?php echo $ge4["bajo"]; ?>, label: 'E4'},
+                      { y: <?php echo $ge5["bajo"]; ?>, label: 'E5'},
+                      { y: <?php echo $ge6["bajo"]; ?>, label: 'E6'}
+                    ]
+                  },{
+                   type: 'stackedColumn',
+                    dataPoints:[
+                      
+                      { y: <?php echo $ge1["aceptable"]; ?>, label: 'E1'},
+                      { y: <?php echo $ge2["aceptable"]; ?>, label: 'E2'},
+                      { y: <?php echo $ge3["aceptable"]; ?>, label: 'E3'},
+                      { y: <?php echo $ge4["aceptable"]; ?>, label: 'E4'},
+                      { y: <?php echo $ge5["aceptable"]; ?>, label: 'E5'},
+                      { y: <?php echo $ge6["aceptable"]; ?>, label: 'E6'}
+                    ]
+                  },{
+                    type: 'stackedColumn',
+                    dataPoints:[
+                      { y: <?php echo $ge1["alto"]; ?>, label: 'E1'},
+                      { y: <?php echo $ge2["alto"]; ?>, label: 'E2'},
+                      { y: <?php echo $ge3["alto"]; ?>, label: 'E3'},
+                      { y: <?php echo $ge4["alto"]; ?>, label: 'E4'},
+                      { y: <?php echo $ge5["alto"]; ?>, label: 'E5'},
+                      { y: <?php echo $ge6["alto"]; ?>, label: 'E6'}
+                    ]
+                  },{
+                    type: 'stackedColumn',
+                    dataPoints:[
+                      { y: <?php echo $ge1["muyalto"]; ?>, label: 'E1'},
+                      { y: <?php echo $ge2["muyalto"]; ?>, label: 'E2'},
+                      { y: <?php echo $ge3["muyalto"]; ?>, label: 'E3'},
+                      { y: <?php echo $ge4["muyalto"]; ?>, label: 'E4'},
+                      { y: <?php echo $ge5["muyalto"]; ?>, label: 'E5'},
+                      { y: <?php echo $ge6["muyalto"]; ?>, label: 'E6'}
+                    ]
+                  },{
+                    color: 'black',
+                    type: 'line',
+                    dataPoints:[
+                      { y: <?php echo $suma["E1"]?>, label: 'E1'},
+                      { y: <?php echo $suma["E2"]?>, label: 'E2'},          
+                      { y: <?php echo $suma["E3"]?>, label: 'E3'},
+                      { y: <?php echo $suma["E4"]?>, label: 'E4'},
+                      { y: <?php echo $suma["E5"]?>, label: 'E5'},
+                      { y: <?php echo $suma["E6"]?>, label: 'E6'}
+                    ] 
+                  }
+                ]
+              });
+              var graficoO = new CanvasJS.Chart('graficoO',
+              {
+                colorSet: 'coloresGrafico',
+                title: { text: "<?php echo $gg["Genero"];?>-Apertura"},
+                animationEnabled: true,
+                axisX: {
+                  interval: 1
+                },
+                axisY: {
+                maximum: 34,
+                interval: 2
+                },
+                data: [
+                  {
+                    type: 'stackedColumn',
+                    dataPoints:[
                       { y: <?php echo $go1["muybajo"]; ?>, label: 'O1'},
                       { y: <?php echo $go2["muybajo"]; ?>, label: 'O2'},
                       { y: <?php echo $go3["muybajo"]; ?>, label: 'O3'},
                       { y: <?php echo $go4["muybajo"]; ?>, label: 'O4'},
                       { y: <?php echo $go5["muybajo"]; ?>, label: 'O5'},
-                      { y: <?php echo $go6["muybajo"]; ?>, label: 'O6'},
+                      { y: <?php echo $go6["muybajo"]; ?>, label: 'O6'}
+                    ]
+                  },{
+                   type: 'stackedColumn',
+                    dataPoints:[  
+                      { y: <?php echo $go1["bajo"]; ?>, label: 'O1'},
+                      { y: <?php echo $go2["bajo"]; ?>, label: 'O2'},
+                      { y: <?php echo $go3["bajo"]; ?>, label: 'O3'},
+                      { y: <?php echo $go4["bajo"]; ?>, label: 'O4'},
+                      { y: <?php echo $go5["bajo"]; ?>, label: 'O5'},
+                      { y: <?php echo $go6["bajo"]; ?>, label: 'O6'}
+                    ]
+                  },{
+                   type: 'stackedColumn',
+                    dataPoints:[
+                      { y: <?php echo $go1["aceptable"]; ?>, label: 'O1'},
+                      { y: <?php echo $go2["aceptable"]; ?>, label: 'O2'},
+                      { y: <?php echo $go3["aceptable"]; ?>, label: 'O3'},
+                      { y: <?php echo $go4["aceptable"]; ?>, label: 'O4'},
+                      { y: <?php echo $go5["aceptable"]; ?>, label: 'O5'},
+                      { y: <?php echo $go6["aceptable"]; ?>, label: 'O6'}
+                    ]
+                  },{
+                    type: 'stackedColumn',
+                    dataPoints:[
+                      { y: <?php echo $go1["alto"]; ?>, label: 'O1'},
+                      { y: <?php echo $go2["alto"]; ?>, label: 'O2'},
+                      { y: <?php echo $go3["alto"]; ?>, label: 'O3'},
+                      { y: <?php echo $go4["alto"]; ?>, label: 'O4'},
+                      { y: <?php echo $go5["alto"]; ?>, label: 'O5'},
+                      { y: <?php echo $go6["alto"]; ?>, label: 'O6'}
+                    ]
+                  },{
+                    type: 'stackedColumn',
+                    dataPoints:[
+                      { y: <?php echo $go1["muyalto"]; ?>, label: 'O1'},
+                      { y: <?php echo $go2["muyalto"]; ?>, label: 'O2'},
+                      { y: <?php echo $go3["muyalto"]; ?>, label: 'O3'},
+                      { y: <?php echo $go4["muyalto"]; ?>, label: 'O4'},
+                      { y: <?php echo $go5["muyalto"]; ?>, label: 'O5'},
+                      { y: <?php echo $go6["muyalto"]; ?>, label: 'O6'}
+                    ]
+                  },{
+                    color: 'black',
+                    type: 'line',
+                    dataPoints:[
+                      { y: <?php echo $suma["O1"]?>, label: 'O1'},
+                      { y: <?php echo $suma["O2"]?>, label: 'O2'},
+                      { y: <?php echo $suma["O3"]?>, label: 'O3'},
+                      { y: <?php echo $suma["O4"]?>, label: 'O4'},
+                      { y: <?php echo $suma["O5"]?>, label: 'O5'},
+                      { y: <?php echo $suma["O6"]?>, label: 'O6'}
+                    ] 
+                  }
+                ]
+              });
+             var graficoA = new CanvasJS.Chart('graficoA',
+              {
+                colorSet: 'coloresGrafico',
+                title: { text: "<?php echo $gg["Genero"];?>-Aceptabilidad"},
+                animationEnabled: true,
+                axisX: {
+                  interval: 1
+                },
+                axisY: {
+                maximum: 34,
+                interval: 2
+                },
+                data: [
+                  {
+                    type: 'stackedColumn',
+                    dataPoints:[
                       { y: <?php echo $ga1["muybajo"]; ?>, label: 'A1'},
                       { y: <?php echo $ga2["muybajo"]; ?>, label: 'A2'},
                       { y: <?php echo $ga3["muybajo"]; ?>, label: 'A3'},
                       { y: <?php echo $ga4["muybajo"]; ?>, label: 'A4'},
                       { y: <?php echo $ga5["muybajo"]; ?>, label: 'A5'},
-                      { y: <?php echo $ga6["muybajo"]; ?>, label: 'A6'},
+                      { y: <?php echo $ga6["muybajo"]; ?>, label: 'A6'}
+                    ]
+                  },{
+                   type: 'stackedColumn',
+                    dataPoints:[
+                      { y: <?php echo $ga1["bajo"]; ?>, label: 'A1'},
+                      { y: <?php echo $ga2["bajo"]; ?>, label: 'A2'},
+                      { y: <?php echo $ga3["bajo"]; ?>, label: 'A3'},
+                      { y: <?php echo $ga4["bajo"]; ?>, label: 'A4'},
+                      { y: <?php echo $ga5["bajo"]; ?>, label: 'A5'},
+                      { y: <?php echo $ga6["bajo"]; ?>, label: 'A6'}
+                    ]
+                  },{
+                   type: 'stackedColumn',
+                    dataPoints:[
+                      { y: <?php echo $ga1["aceptable"]; ?>, label: 'A1'},
+                      { y: <?php echo $ga2["aceptable"]; ?>, label: 'A2'},
+                      { y: <?php echo $ga3["aceptable"]; ?>, label: 'A3'},
+                      { y: <?php echo $ga4["aceptable"]; ?>, label: 'A4'},
+                      { y: <?php echo $ga5["aceptable"]; ?>, label: 'A5'},
+                      { y: <?php echo $ga6["aceptable"]; ?>, label: 'A6'}
+                    ]
+                  },{
+                    type: 'stackedColumn',
+                    dataPoints:[
+                      { y: <?php echo $ga1["alto"]; ?>, label: 'A1'},
+                      { y: <?php echo $ga2["alto"]; ?>, label: 'A2'},
+                      { y: <?php echo $ga3["alto"]; ?>, label: 'A3'},
+                      { y: <?php echo $ga4["alto"]; ?>, label: 'A4'},
+                      { y: <?php echo $ga5["alto"]; ?>, label: 'A5'},
+                      { y: <?php echo $ga6["alto"]; ?>, label: 'A6'}
+                    ]
+                  },{
+                    type: 'stackedColumn',
+                    dataPoints:[
+                      { y: <?php echo $ga1["muyalto"]; ?>, label: 'A1'},
+                      { y: <?php echo $ga2["muyalto"]; ?>, label: 'A2'},
+                      { y: <?php echo $ga3["muyalto"]; ?>, label: 'A3'},
+                      { y: <?php echo $ga4["muyalto"]; ?>, label: 'A4'},
+                      { y: <?php echo $ga5["muyalto"]; ?>, label: 'A5'},
+                      { y: <?php echo $ga6["muyalto"]; ?>, label: 'A6'}
+                    ]
+                  },{
+                    color: 'black',
+                    type: 'line',
+                    dataPoints:[
+                      { y: <?php echo $suma["A1"]?>, label: 'A1'},
+                      { y: <?php echo $suma["A2"]?>, label: 'A2'},
+                      { y: <?php echo $suma["A3"]?>, label: 'A3'},
+                      { y: <?php echo $suma["A4"]?>, label: 'A4'},
+                      { y: <?php echo $suma["A5"]?>, label: 'A5'},
+                      { y: <?php echo $suma["A6"]?>, label: 'A6'}
+                    ] 
+                  }
+                ]
+              });
+              var graficoC = new CanvasJS.Chart('graficoC',
+              {
+                colorSet: 'coloresGrafico',
+                title: { text: "<?php echo $gg["Genero"];?>-Conciencia"},
+                animationEnabled: true,
+                axisX: {
+                  interval: 1
+                },
+                axisY: {
+                maximum: 34,
+                interval: 2
+                },
+                data: [
+                  {
+                    type: 'stackedColumn',
+                    dataPoints:[
                       { y: <?php echo $gc1["muybajo"]; ?>, label: 'C1'},
                       { y: <?php echo $gc2["muybajo"]; ?>, label: 'C2'},
                       { y: <?php echo $gc3["muybajo"]; ?>, label: 'C3'},
@@ -195,30 +481,6 @@
                   },{
                    type: 'stackedColumn',
                     dataPoints:[
-                      { y: <?php echo $gn1["bajo"]; ?>, label: 'N1'},
-                      { y: <?php echo $gn2["bajo"]; ?>, label: 'N2'},
-                      { y: <?php echo $gn3["bajo"]; ?>, label: 'N3'},
-                      { y: <?php echo $gn4["bajo"]; ?>, label: 'N4'},
-                      { y: <?php echo $gn5["bajo"]; ?>, label: 'N5'},
-                      { y: <?php echo $gn6["bajo"]; ?>, label: 'N6'},
-                      { y: <?php echo $ge1["bajo"]; ?>, label: 'E1'},
-                      { y: <?php echo $ge2["bajo"]; ?>, label: 'E2'},
-                      { y: <?php echo $ge3["bajo"]; ?>, label: 'E3'},
-                      { y: <?php echo $ge4["bajo"]; ?>, label: 'E4'},
-                      { y: <?php echo $ge5["bajo"]; ?>, label: 'E5'},
-                      { y: <?php echo $ge6["bajo"]; ?>, label: 'E6'},
-                      { y: <?php echo $go1["bajo"]; ?>, label: 'O1'},
-                      { y: <?php echo $go2["bajo"]; ?>, label: 'O2'},
-                      { y: <?php echo $go3["bajo"]; ?>, label: 'O3'},
-                      { y: <?php echo $go4["bajo"]; ?>, label: 'O4'},
-                      { y: <?php echo $go5["bajo"]; ?>, label: 'O5'},
-                      { y: <?php echo $go6["bajo"]; ?>, label: 'O6'},
-                      { y: <?php echo $ga1["bajo"]; ?>, label: 'A1'},
-                      { y: <?php echo $ga2["bajo"]; ?>, label: 'A2'},
-                      { y: <?php echo $ga3["bajo"]; ?>, label: 'A3'},
-                      { y: <?php echo $ga4["bajo"]; ?>, label: 'A4'},
-                      { y: <?php echo $ga5["bajo"]; ?>, label: 'A5'},
-                      { y: <?php echo $ga6["bajo"]; ?>, label: 'A6'},
                       { y: <?php echo $gc1["bajo"]; ?>, label: 'C1'},
                       { y: <?php echo $gc2["bajo"]; ?>, label: 'C2'},
                       { y: <?php echo $gc3["bajo"]; ?>, label: 'C3'},
@@ -229,30 +491,6 @@
                   },{
                    type: 'stackedColumn',
                     dataPoints:[
-                      { y: <?php echo $gn1["aceptable"]; ?>, label: 'N1'},
-                      { y: <?php echo $gn2["aceptable"]; ?>, label: 'N2'},
-                      { y: <?php echo $gn3["aceptable"]; ?>, label: 'N3'},
-                      { y: <?php echo $gn4["aceptable"]; ?>, label: 'N4'},
-                      { y: <?php echo $gn5["aceptable"]; ?>, label: 'N5'},
-                      { y: <?php echo $gn6["aceptable"]; ?>, label: 'N6'},
-                      { y: <?php echo $ge1["aceptable"]; ?>, label: 'E1'},
-                      { y: <?php echo $ge2["aceptable"]; ?>, label: 'E2'},
-                      { y: <?php echo $ge3["aceptable"]; ?>, label: 'E3'},
-                      { y: <?php echo $ge4["aceptable"]; ?>, label: 'E4'},
-                      { y: <?php echo $ge5["aceptable"]; ?>, label: 'E5'},
-                      { y: <?php echo $ge6["aceptable"]; ?>, label: 'E6'},
-                      { y: <?php echo $go1["aceptable"]; ?>, label: 'O1'},
-                      { y: <?php echo $go2["aceptable"]; ?>, label: 'O2'},
-                      { y: <?php echo $go3["aceptable"]; ?>, label: 'O3'},
-                      { y: <?php echo $go4["aceptable"]; ?>, label: 'O4'},
-                      { y: <?php echo $go5["aceptable"]; ?>, label: 'O5'},
-                      { y: <?php echo $go6["aceptable"]; ?>, label: 'O6'},
-                      { y: <?php echo $ga1["aceptable"]; ?>, label: 'A1'},
-                      { y: <?php echo $ga2["aceptable"]; ?>, label: 'A2'},
-                      { y: <?php echo $ga3["aceptable"]; ?>, label: 'A3'},
-                      { y: <?php echo $ga4["aceptable"]; ?>, label: 'A4'},
-                      { y: <?php echo $ga5["aceptable"]; ?>, label: 'A5'},
-                      { y: <?php echo $ga6["aceptable"]; ?>, label: 'A6'},
                       { y: <?php echo $gc1["aceptable"]; ?>, label: 'C1'},
                       { y: <?php echo $gc2["aceptable"]; ?>, label: 'C2'},
                       { y: <?php echo $gc3["aceptable"]; ?>, label: 'C3'},
@@ -263,30 +501,6 @@
                   },{
                     type: 'stackedColumn',
                     dataPoints:[
-                      { y: <?php echo $gn1["alto"]; ?>, label: 'N1'},
-                      { y: <?php echo $gn2["alto"]; ?>, label: 'N2'},
-                      { y: <?php echo $gn3["alto"]; ?>, label: 'N3'},
-                      { y: <?php echo $gn4["alto"]; ?>, label: 'N4'},
-                      { y: <?php echo $gn5["alto"]; ?>, label: 'N5'},
-                      { y: <?php echo $gn6["alto"]; ?>, label: 'N6'},
-                      { y: <?php echo $ge1["alto"]; ?>, label: 'E1'},
-                      { y: <?php echo $ge2["alto"]; ?>, label: 'E2'},
-                      { y: <?php echo $ge3["alto"]; ?>, label: 'E3'},
-                      { y: <?php echo $ge4["alto"]; ?>, label: 'E4'},
-                      { y: <?php echo $ge5["alto"]; ?>, label: 'E5'},
-                      { y: <?php echo $ge6["alto"]; ?>, label: 'E6'},
-                      { y: <?php echo $go1["alto"]; ?>, label: 'O1'},
-                      { y: <?php echo $go2["alto"]; ?>, label: 'O2'},
-                      { y: <?php echo $go3["alto"]; ?>, label: 'O3'},
-                      { y: <?php echo $go4["alto"]; ?>, label: 'O4'},
-                      { y: <?php echo $go5["alto"]; ?>, label: 'O5'},
-                      { y: <?php echo $go6["alto"]; ?>, label: 'O6'},
-                      { y: <?php echo $ga1["alto"]; ?>, label: 'A1'},
-                      { y: <?php echo $ga2["alto"]; ?>, label: 'A2'},
-                      { y: <?php echo $ga3["alto"]; ?>, label: 'A3'},
-                      { y: <?php echo $ga4["alto"]; ?>, label: 'A4'},
-                      { y: <?php echo $ga5["alto"]; ?>, label: 'A5'},
-                      { y: <?php echo $ga6["alto"]; ?>, label: 'A6'},
                       { y: <?php echo $gc1["alto"]; ?>, label: 'C1'},
                       { y: <?php echo $gc2["alto"]; ?>, label: 'C2'},
                       { y: <?php echo $gc3["alto"]; ?>, label: 'C3'},
@@ -297,30 +511,6 @@
                   },{
                     type: 'stackedColumn',
                     dataPoints:[
-                      { y: <?php echo $gn1["muyalto"]; ?>, label: 'N1'},
-                      { y: <?php echo $gn2["muyalto"]; ?>, label: 'N2'},
-                      { y: <?php echo $gn3["muyalto"]; ?>, label: 'N3'},
-                      { y: <?php echo $gn4["muyalto"]; ?>, label: 'N4'},
-                      { y: <?php echo $gn5["muyalto"]; ?>, label: 'N5'},
-                      { y: <?php echo $gn6["muyalto"]; ?>, label: 'N6'},
-                      { y: <?php echo $ge1["muyalto"]; ?>, label: 'E1'},
-                      { y: <?php echo $ge2["muyalto"]; ?>, label: 'E2'},
-                      { y: <?php echo $ge3["muyalto"]; ?>, label: 'E3'},
-                      { y: <?php echo $ge4["muyalto"]; ?>, label: 'E4'},
-                      { y: <?php echo $ge5["muyalto"]; ?>, label: 'E5'},
-                      { y: <?php echo $ge6["muyalto"]; ?>, label: 'E6'},
-                      { y: <?php echo $go1["muyalto"]; ?>, label: 'O1'},
-                      { y: <?php echo $go2["muyalto"]; ?>, label: 'O2'},
-                      { y: <?php echo $go3["muyalto"]; ?>, label: 'O3'},
-                      { y: <?php echo $go4["muyalto"]; ?>, label: 'O4'},
-                      { y: <?php echo $go5["muyalto"]; ?>, label: 'O5'},
-                      { y: <?php echo $go6["muyalto"]; ?>, label: 'O6'},
-                      { y: <?php echo $ga1["muyalto"]; ?>, label: 'A1'},
-                      { y: <?php echo $ga2["muyalto"]; ?>, label: 'A2'},
-                      { y: <?php echo $ga3["muyalto"]; ?>, label: 'A3'},
-                      { y: <?php echo $ga4["muyalto"]; ?>, label: 'A4'},
-                      { y: <?php echo $ga5["muyalto"]; ?>, label: 'A5'},
-                      { y: <?php echo $ga6["muyalto"]; ?>, label: 'A6'},
                       { y: <?php echo $gc1["muyalto"]; ?>, label: 'C1'},
                       { y: <?php echo $gc2["muyalto"]; ?>, label: 'C2'},
                       { y: <?php echo $gc3["muyalto"]; ?>, label: 'C3'},
@@ -332,30 +522,6 @@
                     color: 'black',
                     type: 'line',
                     dataPoints:[
-                      { y: <?php echo $suma["N1"]?>, label: 'N1'},
-                      { y: <?php echo $suma["N2"]?>, label: 'N2'},
-                      { y: <?php echo $suma["N3"]?>, label: 'N3'},
-                      { y: <?php echo $suma["N4"]?>, label: 'N4'},
-                      { y: <?php echo $suma["N5"]?>, label: 'N5'},
-                      { y: <?php echo $suma["N6"]?>, label: 'N6'},
-                      { y: <?php echo $suma["E1"]?>, label: 'E1'},
-                      { y: <?php echo $suma["E2"]?>, label: 'E2'},          
-                      { y: <?php echo $suma["E3"]?>, label: 'E3'},
-                      { y: <?php echo $suma["E4"]?>, label: 'E4'},
-                      { y: <?php echo $suma["E5"]?>, label: 'E5'},
-                      { y: <?php echo $suma["E6"]?>, label: 'E6'},
-                      { y: <?php echo $suma["O1"]?>, label: 'O1'},
-                      { y: <?php echo $suma["O2"]?>, label: 'O2'},
-                      { y: <?php echo $suma["O3"]?>, label: 'O3'},
-                      { y: <?php echo $suma["O4"]?>, label: 'O4'},
-                      { y: <?php echo $suma["O5"]?>, label: 'O5'},
-                      { y: <?php echo $suma["O6"]?>, label: 'O6'},
-                      { y: <?php echo $suma["A1"]?>, label: 'A1'},
-                      { y: <?php echo $suma["A2"]?>, label: 'A2'},
-                      { y: <?php echo $suma["A3"]?>, label: 'A3'},
-                      { y: <?php echo $suma["A4"]?>, label: 'A4'},
-                      { y: <?php echo $suma["A5"]?>, label: 'A5'},
-                      { y: <?php echo $suma["A6"]?>, label: 'A6'},
                       { y: <?php echo $suma["C1"]?>, label: 'C1'},
                       { y: <?php echo $suma["C2"]?>, label: 'C2'},
                       { y: <?php echo $suma["C3"]?>, label: 'C3'},
@@ -366,7 +532,13 @@
                   }
                 ]
               });
-              graficoG.render();
+
+
+              graficoN.render();
+              graficoE.render();
+              graficoO.render();
+              graficoA.render();
+              graficoC.render();
             }
             
   <?php 
@@ -477,7 +649,7 @@ $cong->close();
             </ul>
             <!--cada grafico tiene la clase grafico y un id que lo diferencia
                 el id es para identificarlo por el script-->
-            <div id="graficoG" class="grafico">
+            <div id="graficoN" class="grafico">
 
             </div>
              <?php
@@ -493,72 +665,13 @@ $cong->close();
          
         
            <div>
-             <?php
-             
-              if(isset($_POST['calificacion'])){
-                $calificacion=$_POST['calificacion'];
-                if(strcmp($calificacion,"Aprobado")==0)
-                {
-                  $con->close();
-                  $con=conectar();
-                  $correo=conectar();
-                  if($con->query("CALL  calificar(".$_SESSION['idestudiante'].",".$_SESSION['fecha'].",'Aprobado')")){
-                
-                    $correo->close();
-                    header("Location: examenesxestudiante.php");
-                  }else{
-                    $_SESSION['mensaje'] = "no se pudo aprobar";
-                    $_SESSION['tipoerror'] = 1; 
-                  }
-                  $con->close();
-
-                }else{
-                  $con=conectar();
-                  $correo=conectar();
-                   if($con->query("CALL  calificar(".$_SESSION['idestudiante'].",".$_SESSION['fecha'].",'Reprobado')")){
-                   $correo->close();
-                   header("Location: examenesxestudiante.php");
-                  }else{
-                    $_SESSION['mensaje'] = "no se pudo reprobar";
-                    $_SESSION['tipoerror'] = 1;
-                  }
-                  $con->close();
-                }
-              }
+            
+              <div class='botonesGraficos'>
               
-              $con=conectar();
-              if($estado=$con->query("CALL obtener_estado_examen(".$_SESSION['fecha'].")")){
-                $fila = $estado->fetch_assoc();
-                if(strcmp($fila["Estado"],"FORMALIZADO")==0){             
-                  ?>
-                    <div class='botonesGraficos'>
-                      <button class='seccionMedia especificos' onclick="window.location.href='graficosespecificos.php'">Especificos</button>
-                      <br/>
-                      <button class='seccionMedia especificos' onclick="window.location.href='examenesxestudiante.php'">Atras</button>
-                    </div>
-                  <?php
-                }else{?>
-                  <div class='botonesGraficos'>
-                    <form method="post" action="grafico.php">
-                      <button class='seccionMedia especificos' onclick="window.location.href='graficosespecificos.php'">Especificos</button>
-                      <br/>
-                      <button class='seccionMedia aprobado' name="calificacion" value="Aprobado">✔ Aprobar  </button>
-                      <br/>
-                      <button class='seccionMedia rechazado' name="calificacion" value="Reprobado" >X Rechazar </button>
-                      <br/>
-                      <button class='seccionMedia especificos' onclick="window.location.href='examenesxestudiante.php'">Atras</button>
-                     
-                    </form> 
-                    
-                  </div>
-                  <?php
-                }
-          
-              }else{
-                $_SESSION['mensaje'] = "Error de conexión. Favor intentarlo más tarde";
-                $_SESSION['tipoerror'] = 1; 
-              }
-           ?>
+             <button class='seccionMedia especificos' onclick="window.location.href='grafico.php'">Atras</button>
+             </div>
+                  
+           
           </div>
           <?php include 'error.php'; ?>
       </div>

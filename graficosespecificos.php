@@ -32,7 +32,11 @@
     <script src="js/scripts.js"></script>
     <script languaje= 'Javascript'>
     <?php
-      $total = 0;
+      $totalN = 0;
+      $totalE = 0;
+      $totalO = 0;
+      $totalA = 0;
+      $totalC = 0;
       $conr = conectar();
       $conn1 = conectar();
       $conn2 = conectar();
@@ -129,11 +133,15 @@
            $gc6 = $c6->fetch_assoc();
            $gg = $genero->fetch_assoc();
            $suma = $resultado->fetch_assoc();
-          $total = 
-          $suma["N1"]+$suma["N2"]+$suma["N3"]+$suma["N4"]+$suma["N5"]+$suma["N6"]+
-          $suma["E1"]+$suma["E2"]+$suma["E3"]+$suma["E4"]+$suma["E5"]+$suma["E6"]+
-          $suma["A1"]+$suma["A2"]+$suma["A3"]+$suma["A4"]+$suma["A5"]+$suma["A6"]+
-          $suma["O1"]+$suma["O2"]+$suma["O3"]+$suma["O4"]+$suma["O5"]+$suma["O6"]+
+          $totalN = 
+          $suma["N1"]+$suma["N2"]+$suma["N3"]+$suma["N4"]+$suma["N5"]+$suma["N6"];
+          $totalE=
+          $suma["E1"]+$suma["E2"]+$suma["E3"]+$suma["E4"]+$suma["E5"]+$suma["E6"];
+          $totalA=
+          $suma["A1"]+$suma["A2"]+$suma["A3"]+$suma["A4"]+$suma["A5"]+$suma["A6"];
+          $totalO=
+          $suma["O1"]+$suma["O2"]+$suma["O3"]+$suma["O4"]+$suma["O5"]+$suma["O6"];
+          $totalC
           $suma["C1"]+$suma["C2"]+$suma["C3"]+$suma["C4"]+$suma["C5"]+$suma["C6"];
           ?>
             window.onload = function() {
@@ -658,12 +666,162 @@ $cong->close();
               <label>Total N:</label>
               </div>
               <div class='columna2'>
-              <label>".$total."</label>
+              <label>".$totalN."</label>
               </div>";
            ?>
           </div>
-         
-        
+          <div>
+            <ul class="guiaGrafico">
+              <li>
+                Muy Bajo
+                <div class="colorMuyBajo"></div>
+              </li>
+              <li>
+                Bajo
+                <div class="colorBajo"></div>
+              </li>
+              <li>
+                Promedio
+                <div class="colorPromedio"></div>
+              </li>
+              <li>
+                Alto
+                <div class="colorAlto"></div>
+              </li>
+              <li>
+                Muy Alto
+                <div class="colorMuyAlto"></div>
+              </li>
+            </ul>
+            <!--cada grafico tiene la clase grafico y un id que lo diferencia
+                el id es para identificarlo por el script-->
+            <div id="graficoE" class="grafico">
+
+            </div>
+             <?php
+              echo"
+              <div class='Columna1'>
+              <label>Total N:</label>
+              </div>
+              <div class='columna2'>
+              <label>".$totalE."</label>
+              </div>";
+           ?>
+          </div>
+         <div>
+            <ul class="guiaGrafico">
+              <li>
+                Muy Bajo
+                <div class="colorMuyBajo"></div>
+              </li>
+              <li>
+                Bajo
+                <div class="colorBajo"></div>
+              </li>
+              <li>
+                Promedio
+                <div class="colorPromedio"></div>
+              </li>
+              <li>
+                Alto
+                <div class="colorAlto"></div>
+              </li>
+              <li>
+                Muy Alto
+                <div class="colorMuyAlto"></div>
+              </li>
+            </ul>
+            <!--cada grafico tiene la clase grafico y un id que lo diferencia
+                el id es para identificarlo por el script-->
+            <div id="graficoO" class="grafico">
+
+            </div>
+             <?php
+              echo"
+              <div class='Columna1'>
+              <label>Total N:</label>
+              </div>
+              <div class='columna2'>
+              <label>".$totalO."</label>
+              </div>";
+           ?>
+          </div>
+        <div>
+            <ul class="guiaGrafico">
+              <li>
+                Muy Bajo
+                <div class="colorMuyBajo"></div>
+              </li>
+              <li>
+                Bajo
+                <div class="colorBajo"></div>
+              </li>
+              <li>
+                Promedio
+                <div class="colorPromedio"></div>
+              </li>
+              <li>
+                Alto
+                <div class="colorAlto"></div>
+              </li>
+              <li>
+                Muy Alto
+                <div class="colorMuyAlto"></div>
+              </li>
+            </ul>
+            <!--cada grafico tiene la clase grafico y un id que lo diferencia
+                el id es para identificarlo por el script-->
+            <div id="graficoA" class="grafico">
+
+            </div>
+             <?php
+              echo"
+              <div class='Columna1'>
+              <label>Total N:</label>
+              </div>
+              <div class='columna2'>
+              <label>".$totalA."</label>
+              </div>";
+           ?>
+          </div>
+          <div>
+            <ul class="guiaGrafico">
+              <li>
+                Muy Bajo
+                <div class="colorMuyBajo"></div>
+              </li>
+              <li>
+                Bajo
+                <div class="colorBajo"></div>
+              </li>
+              <li>
+                Promedio
+                <div class="colorPromedio"></div>
+              </li>
+              <li>
+                Alto
+                <div class="colorAlto"></div>
+              </li>
+              <li>
+                Muy Alto
+                <div class="colorMuyAlto"></div>
+              </li>
+            </ul>
+            <!--cada grafico tiene la clase grafico y un id que lo diferencia
+                el id es para identificarlo por el script-->
+            <div id="graficoC" class="grafico">
+
+            </div>
+             <?php
+              echo"
+              <div class='Columna1'>
+              <label>Total N:</label>
+              </div>
+              <div class='columna2'>
+              <label>".$totalC."</label>
+              </div>";
+           ?>
+          </div>
            <div>
             
               <div class='botonesGraficos'>

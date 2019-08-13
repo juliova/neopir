@@ -640,15 +640,17 @@ textarea{
 
 /*Se utiliza un verde opaco para las evaluaciones que ya fueron realizadas.*/
 .revisado{
-  background-color: #99E8AC !important;
+  background-color: #77DD77 !important;
 }
 
 /*Para las que aún no han sido realizadas se pintan de un color mas llamativo
     para que le llame más la atención al usuario. En este caso un rojo*/
 .norevisado {
-  background-color: #EF5350 !important;
+  background-color: #FF6961 !important;
 }
-
+.porrvisar {
+  background-color: #FDFD96 !important;
+}
 .sindatos {
   background-color: #EDF6F7 !important
 }

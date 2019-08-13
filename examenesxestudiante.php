@@ -71,7 +71,7 @@
             {
               $ves=$veces->fetch_assoc();
             ?>
-            <tr class="norevisado" onClick=window.location.href='grafico.php?idfecha=<?php echo($_SESSION['fecha']);?>&idestudiante=<?php echo($row["IDEstudiante"]);?>'>
+            <tr class="porrevisar" onClick=window.location.href='grafico.php?idfecha=<?php echo($_SESSION['fecha']);?>&idestudiante=<?php echo($row["IDEstudiante"]);?>'>
               <td><?php echo($row["IDEstudiante"]);?></td>
               <td><?php echo($row["Fechar"]);?></td>
               <td><?php echo($row["Estado"]);?></td>
@@ -81,7 +81,10 @@
             }
             
           }else{
+            if(strcmp ($row["Estado"] ,"APTO"))
+            {
              if($veces=$con2->query("CALL veces(".$row["IDEstudiante"].")"))
+            
             {
                $ves=$veces->fetch_assoc();?>
             
@@ -93,6 +96,21 @@
               <td><?php echo($row["Utilizada"]);?></td>
             </tr><?php 
           } 
+          }else{
+            if($veces=$con2->query("CALL veces(".$row["IDEstudiante"].")"))
+            
+            {
+               $ves=$veces->fetch_assoc();?>
+            
+             <tr class="norevisado" onClick=window.location.href='grafico.php?idfecha=<?php echo($_SESSION['fecha']);?>&idestudiante=<?php echo($row["IDEstudiante"]);?>'>
+              <td><?php echo($row["IDEstudiante"]);?></td>
+              <td><?php echo($row["Fechar"]);?></td>
+              <td><?php echo($row["Estado"]);?></td>
+              <td><?php echo($ves["veces"]);?></td>
+              <td><?php echo($row["Utilizada"]);?></td>
+            </tr><?php 
+          } 
+        }
         } 
         } ?>
         </table> 

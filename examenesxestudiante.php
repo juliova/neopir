@@ -63,7 +63,7 @@
               </li>
               <li>
                 Por Revisar
-                <div class="colorporrevisado"></div>
+                <div class="colorporrevisar"></div>
               </li>
             </ul>
        </div>

@@ -24,22 +24,25 @@ if($respuesta = $conn->query($sql)){
   $fila = $respuesta->fetch_assoc();
   
   if(isset($fila['Token2'])){
-    $Token = $fila['Token2'];
-    $Mensaje = $fila['Mensaje2'];
-
-    $Mensaje2 = $Mensaje. "\n";
-    $Mensaje2 .= $Token;
-    //Envio de Correo el orden de los datos es destinatario,asunto y mensaje
-    if(mail($Correo,'Tiquete Validacion de Registro',$Mensaje2)){
+    try{
+      $mail = iniciarCorreo();
+      $mail->addAddress($Correo);
+      $mail->Subject = $fila['@asunto'];
+      $mail->Body = str_replace("{[tiquete]}",$fila['Token2'],$fila['@html']);
+      $mail->AltBody = str_replace("{[tiquete]}",$fila['Token2'],$fila['@texto']); 
+      $mail->send();
       $_SESSION['mensaje'] = "Registro Exitoso favor revisar su Correo";
       $_SESSION['tipoerror'] = 0;
       header("Location: login.php");
-    } else {
+    } catch (Exception $e){
+      $_SESSION['mensaje'] = "Registro exitoso, Envío de correo fallido";
+      $_SESSION['tipoerror'] = 1;
+      header("Location: login.php");
+    }	catch (\Exception $e){
       $_SESSION['mensaje'] = "Registro exitoso, Envío de correo fallido";
       $_SESSION['tipoerror'] = 1;
       header("Location: login.php");
     }
-    
   } else {
     $_SESSION['mensaje'] = "Registro Fallido favor intente de nuevo mas tarde";
     $_SESSION['tipoerror'] = 1;

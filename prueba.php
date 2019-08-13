@@ -3,7 +3,6 @@
   session_start();
   //Incluir función de conexión a la base
   include 'Base.php';
-  
   if(!isset($_SESSION['prueba']) || $_SESSION['prueba']==0){
     header("Location: ingresarprueba.php");
   }
@@ -181,7 +180,6 @@
           $_SESSION['tipoerror'] = 1;
           $con->close();
         }
-
         break;
       case 2: //Siguiente
         $_SESSION['siguiente']=false;
@@ -213,15 +211,6 @@
     <link type="text/css" rel="stylesheet" href="css/all.css" />
     <script src="js/jquery-3.4.1.min.js"></script>
     <script src="js/scripts.js"></script>
-    <script> 
-      <?php if($_SESSION['siguiente']){ ?>
-        $(document).ready(function(){
-          $('html, body').animate({
-            scrollTop: $("#siguiente").offset().top,
-          }, 2500, 'linear')
-        });
-      <?php } ?>
-    </script>
   </head>
 
   <!--Cuerpo -->
@@ -313,6 +302,16 @@
           </table>
         </div>
         <form action="prueba.php" method="post">
+          <div id="siguiente" class="botonesPrueba">
+            <button type="submit" name="btn" class="posicionIzquierda" value="1">GUARDAR</button>
+            <button type="submit" name="btn" <?php if($_SESSION['siguiente']){ echo "";} else { echo "disabled"; } ?> 
+              class="posicionDerecha" value="2"><?php
+              if(($_SESSION['numPregunta']+$_SESSION['cantPreguntas'])>$_SESSION['totalPreguntas']){
+                echo "FINALIZAR";
+              } else {
+                echo "SIGUIENTE";
+              }?></button>
+          </div>
           <!--Preguntas -->
           <?php
             $con = conectar();
@@ -356,7 +355,13 @@
           <!--Botones de la prueba -->
           <div id="siguiente" class="botonesPrueba">
             <button type="submit" name="btn" class="posicionIzquierda" value="1">GUARDAR</button>
-            <button type="submit" name="btn" <?php if($_SESSION['siguiente']){ echo "";} else { echo "disabled"; } ?> class="posicionDerecha" value="2">SIGUIENTE</button>
+            <button type="submit" name="btn" <?php if($_SESSION['siguiente']){ echo "";} else { echo "disabled"; } ?> 
+              class="posicionDerecha" value="2"><?php
+              if(($_SESSION['numPregunta']+$_SESSION['cantPreguntas'])>$_SESSION['totalPreguntas']){
+                echo "FINALIZAR";
+              } else {
+                echo "SIGUIENTE";
+              }?></button>
           </div>
         </form>
       </div>

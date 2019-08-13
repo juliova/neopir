@@ -16,34 +16,38 @@
   $conn = conectar();
   $CodigoMensaje = 0;
   $Mensaje3 = "";
+  $Html = "";
+  $Asunto = "";
   //Obtencion de los datos de los campos
-  if(isset($_POST['radio'])){
-    $CodigoMensaje = $_POST['radio'];
+  if(isset($_POST['listbox'])){
+    $CodigoMensaje = $_POST['listbox'];
   }
-
   if(isset($_POST['mensaje'])){
     $Mensaje3 = $_POST['mensaje'];
   }
-
+  if(isset($_POST['html'])){
+    $Html = $_POST['html'];
+  }
+  if(isset($_POST['asunto'])){
+    $Asunto = $_POST['asunto'];
+  }
   if(isset($_POST['btn'])){
     if($_POST['btn'] == 2){
-    //Llamado al procedimiento almacenado cargar
-    $sql = "CALL MostrarMensaje (".$CodigoMensaje. ")";
-    if($respuesta = $conn->query($sql)){
-    //$conn->query($sql);
-    //$respuesta = $conn->query($sql);
-    $fila = $respuesta->fetch_assoc();
-    $Mensaje3 = $fila['Mensaje2'];
-    }else{
+      //Llamado al procedimiento almacenado cargar
+      $sql = "CALL Correo (".$CodigoMensaje. ")";
+      if($respuesta = $conn->query($sql)){
+      $fila = $respuesta->fetch_assoc();
+      $Mensaje3 = $fila['TextoCorreo'];
+      $Html = $fila['html'];
+      $Asunto = $fila['asunto'];
+      }else{
         $_SESSION['mensaje'] = "Error de conexión. Favor intentarlo más tarde";
         $_SESSION['tipoerror'] = 1;
       }
     }
-
     if($_POST['btn'] == 1){
     //Llamado al procedimiento almacenado guardar
-    $sql = "CALL ModificarMensaje (".$CodigoMensaje. ", '".$Mensaje3. "')";
-
+    $sql = "CALL ModificarMensaje (".$CodigoMensaje. ",'".$Asunto."','".$Html."' ,'".$Mensaje3. "');";
     if($respuesta = $conn->query($sql)){
         $fila = $respuesta->fetch_assoc();
         if($fila['R'] == 0){
@@ -59,7 +63,6 @@
       }
     }
   }
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -102,28 +105,57 @@
             <form  action="mensajes.php" method="POST">
               <div>
                 <h1>Modificar Mensajes</h1>
-             
                 <div class="columna1">
-                  <label>Mensaje:</label>
+                  <label>Asunto:</label>
+                </div>
+
+                <div class="columna2">
+                  <input placeholder="Asunto del correo" type="text" name="asunto" value="<?php if($Asunto!=""){ echo $Asunto; } ?>">
+                </div>
+                <div class="columna1">
+                  <label>Html:</label>
                 </div>
                 <div class="columna2">
-                  <textarea name="mensaje" rows="10" 
-                    placeholder="Texto del mensaje del correo"><?php if($Mensaje3 != ""){ echo $Mensaje3;} ?></textarea>
+                  <textarea name="html" rows="5" 
+                    placeholder="Texto con formato html"><?php if($Html != ""){ echo $Html;} ?></textarea>
+                </div>
+                <div class="columna1">
+                  <label>Texto:</label>
+                </div>
+                <div class="columna2">
+                  <textarea name="mensaje" rows="5" 
+                    placeholder="Texto puro"><?php if($Mensaje3 != ""){ echo $Mensaje3;} ?></textarea>
                 </div>
             
                 <div class="columna1">
                   <label>Tipo de Correos:</label>
                 </div>
 
-                <div class="columna2 botonesRadio">
-                  <label class="contenedorRadioCheck">
-                    <input value= "1" type="radio" name="radio" required <?php if($CodigoMensaje ==1){ echo "checked"; } if($CodigoMensaje!=0){echo " disabled";}?>>
-                    <span class="radioCheck uno"></span>
-                  </label>
-                  <label class="contenedorRadioCheck">
-                    <input value = "2" type="radio" name="radio" required <?php if($CodigoMensaje ==2){ echo "checked"; } if($CodigoMensaje!=0){echo " disabled";} ?>>
-                    <span class="radioCheck dos"></span>
-                  </label>
+                <div class="columna2">
+                  <select name="listbox" size=1>
+                    <?php 
+                      switch($CodigoMensaje){
+                        case 1:
+                          echo "<option value=1>Registro</option>";
+                          break;
+                        case 2:
+                          echo "<option value=2>Matricula</option>";
+                          break;
+                        case 3:
+                          echo "<option value=3>Resultado</option>";
+                          break;
+                        case 4: 
+                          echo "<option value=4>Final de Examen</option>";
+                          break;
+                        default:
+                          break;
+                      }
+                    ?>
+                    <option value=1>Registro</option>
+                    <option value=2>Matricula</option>
+                    <option value=3>Resultado</option>
+                    <option value=4>Final de Examen</option>
+                  </select>
                 </div>
               </div>
               <button  type="submit" name="btn" class="posicionDerecha" value="1">Guardar</button>

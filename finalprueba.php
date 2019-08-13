@@ -5,6 +5,7 @@
   }
   include 'Base.php';
   include '_menu.php';
+  include 'Correo.php';
   date_default_timezone_set("America/Costa_Rica");
   $siguiente = false;
 ?>
@@ -53,30 +54,47 @@
       <div class="contenido">
         <?php 
           $con = conectar();
+          $con2 = conectar();
           $sql = "Call NombreCorreo(". $_SESSION['usuario'] .");";
+          $sql2 = "Call Correo(4)";
           if($respuesta = $con->query($sql)){
-            $fila = $respuesta->fetch_assoc();
-            ?>
-            <div class="instrucciones">
-              <h1>Gracias por realizar la prueba <?php echo $fila['Nombre']." ".$fila['Apellido1']." ".$fila['Apellido2']; ?></h1>
-              <ul>
-                <li>Los resultados serán eviados por medio del correo: <?php echo $fila['Correo']; ?></li>
-                <li>Estos serán enviados una vez que todas las pruebas sean evaluadas.</li>
-                <li>Se tarda un plazo mínimo de una semana despues del <?php echo date("d-m-Y"); ?></li>
-                <li>En el caso que el correo previamente mencionado se encuentre incorrecto 
-                  o desactualizado por favor cambiarlo lo mas antes posible. </li>
-              </ul>
-            </div>
-            <?php
-            $Mensaje = "Este es un correo para confirmar que realizó la prueba";
-            if(mail($fila['Correo'],'Gracias por realizar la prueba',$Mensaje)){
-              $_SESSION['mensaje'] = "Correo enviado";
-              $_SESSION['tipoerror'] = 0;
-            } else {
-              $_SESSION['mensaje'] = "Error al enviar el correo";
-              $_SESSION['tipoerror'] = 1;
+            if($respuesta2 = $con2->query($sql2)){
+              $fila = $respuesta->fetch_assoc();
+              $fila2 = $respuesta2->fetch_assoc();
+              ?>
+              <div class="instrucciones">
+                <h1>Gracias por realizar la prueba <?php echo $fila['Nombre']." ".$fila['Apellido1']." ".$fila['Apellido2']; ?></h1>
+                <ul>
+                  <li>Los resultados serán eviados por medio del correo: <?php echo $fila['Correo']; ?></li>
+                  <li>Estos serán enviados una vez que todas las pruebas sean evaluadas.</li>
+                  <li>Se tarda un plazo mínimo de una semana despues del <?php echo date("d-m-Y"); ?></li>
+                  <li>En el caso que el correo previamente mencionado se encuentre incorrecto 
+                    o desactualizado por favor cambiarlo lo mas antes posible. </li>
+                </ul>
+              </div>
+              <?php
+              try{
+                $mail = iniciarCorreo();
+                $mail->addAddress($fila['Correo']);
+                $mail->Subject = $fila2['asunto'];
+                $message = str_replace("{[nombre]}",$fila['Nombre']." ".$fila['Apellido1']." ".$fila['Apellido2'],$fila2['html']);
+                $message = str_replace("{[fecha]}",date('d/m/Y'),$message);
+                $altmessage = str_replace("{[nombre]}",$fila['Nombre']." ".$fila['Apellido1']." ".$fila['Apellido2'],$fila2['TextoCorreo']);
+                $altmessage = str_replace("{[fecha]}",date('d/m/Y'),$altmessage);
+                $mail->Body = $message;
+                $mail->AltBody = $altmessage; 
+                $mail->send();
+                $_SESSION['mensaje'] = "Correo enviado";
+                $_SESSION['tipoerror'] = 0;
+              } catch (Exception $e){
+                $_SESSION['mensaje'] = "Error al enviar el correo";
+                $_SESSION['tipoerror'] = 1;
+              }	catch (\Exception $e){
+                $_SESSION['mensaje'] = "Error al enviar el correo";
+                $_SESSION['tipoerror'] = 1;
+              }
+              unset($_SESSION['prueba']);
             }
-            unset($_SESSION['prueba']);
           } else {
             ?>
             <div class="instrucciones">

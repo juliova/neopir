@@ -482,8 +482,8 @@ $cong->close();
             </div>
              <?php
               echo"
-              <div class='Columna1'>
-              <label>Total N:</label>
+              <div class='columna1'>
+              <label>Total:</label>
               </div>
               <div class='columna2'>
               <label>".$total."</label>
@@ -540,14 +540,13 @@ $cong->close();
                 }else{?>
                   <div class='botonesGraficos'>
                     <form method="post" action="grafico.php">
-                      <button class='seccionMedia especificos' onclick="window.location.href='graficosespecificos.php'">Especificos</button>
+                      <button type="button" class='seccionMedia especificos' onclick="window.location.href='graficosespecificos.php';">Especificos</button>
                       <br/>
                       <button class='seccionMedia aprobado' name="calificacion" value="Aprobado">✔ Aprobar  </button>
                       <br/>
                       <button class='seccionMedia rechazado' name="calificacion" value="Reprobado" >X Rechazar </button>
                       <br/>
-                      <button class='seccionMedia especificos' onclick="window.location.href='examenesxestudiante.php'">Atras</button>
-                     
+                      <button name="btn" class='seccionMedia especificos' onclick="window.location.href='examenesxestudiante.php';">Atras</button>
                     </form> 
                     
                   </div>

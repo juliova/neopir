@@ -141,7 +141,7 @@
           $suma["A1"]+$suma["A2"]+$suma["A3"]+$suma["A4"]+$suma["A5"]+$suma["A6"];
           $totalO=
           $suma["O1"]+$suma["O2"]+$suma["O3"]+$suma["O4"]+$suma["O5"]+$suma["O6"];
-          $totalC
+          $totalC=
           $suma["C1"]+$suma["C2"]+$suma["C3"]+$suma["C4"]+$suma["C5"]+$suma["C6"];
           ?>
             window.onload = function() {
@@ -233,7 +233,7 @@
 				var graficoE = new CanvasJS.Chart('graficoE',
               {
                 colorSet: 'coloresGrafico',
-                title: { text: "<?php echo $gg["Genero"];?>.Extraversión"},
+                title: { text: "<?php echo $gg["Genero"];?>-Extraversión"},
                 animationEnabled: true,
                 axisX: {
                   interval: 1
@@ -632,6 +632,7 @@ $cong->close();
           </ul>
       </div>
       <br/>
+      <div class="seccionMedia">
         <div>
             <ul class="guiaGrafico">
               <li>
@@ -662,7 +663,7 @@ $cong->close();
             </div>
              <?php
               echo"
-              <div class='Columna1'>
+              <div class='columna1'>
               <label>Total N:</label>
               </div>
               <div class='columna2'>
@@ -700,8 +701,8 @@ $cong->close();
             </div>
              <?php
               echo"
-              <div class='Columna1'>
-              <label>Total N:</label>
+              <div class='columna1'>
+              <label>Total E:</label>
               </div>
               <div class='columna2'>
               <label>".$totalE."</label>
@@ -738,8 +739,8 @@ $cong->close();
             </div>
              <?php
               echo"
-              <div class='Columna1'>
-              <label>Total N:</label>
+              <div class='columna1'>
+              <label>Total O:</label>
               </div>
               <div class='columna2'>
               <label>".$totalO."</label>
@@ -776,8 +777,8 @@ $cong->close();
             </div>
              <?php
               echo"
-              <div class='Columna1'>
-              <label>Total N:</label>
+              <div class='columna1'>
+              <label>Total A:</label>
               </div>
               <div class='columna2'>
               <label>".$totalA."</label>
@@ -814,8 +815,8 @@ $cong->close();
             </div>
              <?php
               echo"
-              <div class='Columna1'>
-              <label>Total N:</label>
+              <div class='columna1'>
+              <label>Total C:</label>
               </div>
               <div class='columna2'>
               <label>".$totalC."</label>

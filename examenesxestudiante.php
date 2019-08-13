@@ -51,6 +51,23 @@
       </div>
     </menu>         
     <div class="contenido">
+     <div>
+            <ul class="guiaGrafico">
+              <li>
+                Apto
+                <div class="colorrevisado"></div>
+              </li>
+              <li>
+                No Apto
+                <div class="colornorevisado"></div>
+              </li>
+              <li>
+                Por Revisar
+                <div class="colorporrevisado"></div>
+              </li>
+            </ul>
+       </div>
+
     <?php
     if(isset($_GET['fecha'])){
       $_SESSION['fecha']=$_GET['fecha'];

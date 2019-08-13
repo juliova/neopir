@@ -588,6 +588,15 @@ textarea{
 .colorMuyAlto{
   background-color: #fd5f00;
 }
+.colorrevisado{
+  background-color: #77DD77;
+}
+.colornorevisado{
+  background-color: #FF6961;
+}
+.colorporrevisar{
+  background-color: #FDFD96;
+}
 
 /*Cuando el menu de celular se despliega pinta el icono de blanco y el
     fondo de azul oscuro*/

@@ -79,6 +79,19 @@
             </form>
           </div>
     </div>
+    </br>
+    <div>
+            <ul class="guiaGrafico">
+              <li>
+                Formalizado
+                <div class="colorrevisado"></div>
+              </li>
+              <li>
+                Sin Formalizar
+                <div class="colornorevisado"></div>
+              </li>
+            </ul>
+       </div>
     <?php 
     
     

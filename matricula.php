@@ -2,6 +2,7 @@
   session_start();
   include 'Base.php';
   include '_menu.php';
+  include 'Correo.php';
   if(!isset($_SESSION['usuario'])){
     header("Location: index.php");
   }
@@ -11,14 +12,19 @@
     $sql = "Call Matricula(".$_GET['prueba'].",".$_SESSION['usuario'].");";
     if($respuesta = $con->query($sql)){
       $fila = $respuesta->fetch_assoc();
-      $Correo = $fila['Correo'];
-      $Mensaje = $fila['Mensaje2'];
-      $Token2 = $fila['Token2'];
-     // if(mail($fila['Correo'],'Tiquete de ingreso a la prueba.',$fila['Mensaje2']." ".$fila['Token2'] )){
-      if(mail($Correo,'Tiquete de ingreso a la prueba.',$Mensaje." ".$Token2 )){
+      try{
+        $mail = iniciarCorreo();
+        $mail->addAddress($fila['Correo']);
+        $mail->Subject = $fila['@asunto'];
+        $mail->Body = str_replace("{[tiquete]}",$fila['Token2'],$fila['@html']);
+        $mail->AltBody = str_replace("{[tiquete]}",$fila['Token2'],$fila['@texto']); 
+        $mail->send();
         $_SESSION['mensaje'] = "Matrícula realizada con éxito. El tiquete fué enviado al correo";
         $_SESSION['tipoerror'] = 0;
-      } else {
+      } catch (Exception $e){
+        $_SESSION['mensaje'] = "Matrícula realizada con éxito. Error al enviar el correo";
+        $_SESSION['tipoerror'] = 1;
+      }	catch (\Exception $e){
         $_SESSION['mensaje'] = "Matrícula realizada con éxito. Error al enviar el correo";
         $_SESSION['tipoerror'] = 1;
       }

@@ -1,228 +1,66 @@
-window.onload = function() {
-CanvasJS.addColorSet('coloresGrafico',
-'#0008E6'.
-'#00FFFF',
-'#7CAD00',
-'#FEA90D',
-'#fd5f00'
-]);
-var graficoG = new CanvasJS.Chart('graficoG',
-{
-colorSet: 'coloresGrafico',
-title: { text: ""},
-animationEnabled: true,
-axisY: {
-maximum: 34,
-interval: 2
-},
-data: [
-{
-type: 'stackedColumn',
-dataPoints:[
-{ y: 5, label: 'N1'},
-{ y: 5, label: 'N2'},
-{ y: 3, label: 'N3'},
-{ y: 7, label: 'N4'},
-{ y: 8, label: 'N5'},
-{ y: 3, label: 'N6'},
-{ y: 16, label: 'E1'},
-{ y: 8, label: 'E2'},
-{ y: 9, label: 'E3'},
-{ y: 10, label: 'E4'},
-{ y: 9, label: 'E5'},
-{ y: 12, label: 'E6'},
-{ y: 9, label: 'O1'},
-{ y: 8, label: 'O2'},
-{ y: 13, label: 'O3'},
-{ y: 10, label: 'O4'},
-{ y: 12, label: 'O5'},
-{ y: 13, label: 'O6'},
-{ y: 14, label: 'A1'},
-{ y: 13, label: 'A2'},
-{ y: 17, label: 'A3'},
-{ y: 12, label: 'A4'},
-{ y: 11, label: 'A5'},
-{ y: 14, label: 'A6'},
-{ y: 17, label: 'C1'},
-{ y: 12, label: 'C2'},
-{ y: 17, label: 'C3'},
-{ y: 12, label: 'C4'},
-{ y: 15, label: 'C5'},
-{ y: 11, label: 'C6'}
-]
-},{
-type: 'stackedColumn',
-dataPoints:[
-{ y: 5, label: 'N1'},
-{ y: 4, label: 'N2'},
-{ y: 5, label: 'N3'},
-{ y: 4, label: 'N4'},
-{ y: 4, label: 'N5'},
-{ y: 4, label: 'N6'},
-{ y: 4, label: 'E1'},
-{ y: 5, label: 'E2'},
-{ y: 4, label: 'E3'},
-{ y: 4, label: 'E4'},
-{ y: 5, label: 'E5'},
-{ y: 5, label: 'E6'},
-{ y: 5, label: 'O1'},
-{ y: 5, label: 'O2'},
-{ y: 4, label: 'O3'},
-{ y: 4, label: 'O4'},
-{ y: 5, label: 'O5'},
-{ y: 5, label: 'O6'},
-{ y: 4, label: 'A1'},
-{ y: 4, label: 'A2'},
-{ y: 3, label: 'A3'},
-{ y: 4, label: 'A4'},
-{ y: 4, label: 'A5'},
-{ y: 3, label: 'A6'},
-{ y: 3, label: 'C1'},
-{ y: 4, label: 'C2'},
-{ y: 4, label: 'C3'},
-{ y: 5, label: 'C4'},
-{ y: 4, label: 'C5'},
-{ y: 4, label: 'C6'}
-]
-},{
-type: 'stackedColumn',
-dataPoints:[
-{ y: 5, label: 'N1'},
-{ y: 5, label: 'N2'},
-{ y: 6, label: 'N3'},
-{ y: 5, label: 'N4'},
-{ y: 5, label: 'N5'},
-{ y: 4, label: 'N6'},
-{ y: 4, label: 'E1'},
-{ y: 5, label: 'E2'},
-{ y: 5, label: 'E3'},
-{ y: 5, label: 'E4'},
-{ y: 5, label: 'E5'},
-{ y: 4, label: 'E6'},
-{ y: 5, label: 'O1'},
-{ y: 6, label: 'O2'},
-{ y: 4, label: 'O3'},
-{ y: 4, label: 'O4'},
-{ y: 5, label: 'O5'},
-{ y: 5, label: 'O6'},
-{ y: 5, label: 'A1'},
-{ y: 5, label: 'A2'},
-{ y: 4, label: 'A3'},
-{ y: 4, label: 'A4'},
-{ y: 5, label: 'A5'},
-{ y: 4, label: 'A6'},
-{ y: 4, label: 'C1'},
-{ y: 5, label: 'C2'},
-{ y: 4, label: 'C3'},
-{ y: 4, label: 'C4'},
-{ y: 5, label: 'C5'},
-{ y: 4, label: 'C6'}
-]
-},{
-type: 'stackedColumgn',
-dataPoints:[
-{ y: 5, label: 'N1'},
-{ y: 5, label: 'N2'},
-{ y: 5, label: 'N3'},
-{ y: 4, label: 'N4'},
-{ y: 4, label: 'N5'},
-{ y: 3, label: 'N6'},
-{ y: 4, label: 'E1'},
-{ y: 5, label: 'E2'},
-{ y: 5, label: 'E3'},
-{ y: 4, label: 'E4'},
-{ y: 5, label: 'E5'},
-{ y: 5, label: 'E6'},
-{ y: 5, label: 'O1'},
-{ y: 6, label: 'O2'},
-{ y: 4, label: 'O3'},
-{ y: 4, label: 'O4'},
-{ y: 5, label: 'O5'},
-{ y: 4, label: 'O6'},
-{ y: 4, label: 'A1'},
-{ y: 4, label: 'A2'},
-{ y: 4, label: 'A3'},
-{ y: 3, label: 'A4'},
-{ y: 4, label: 'A5'},
-{ y: 4, label: 'A6'},
-{ y: 3, label: 'C1'},
-{ y: 4, label: 'C2'},
-{ y: 4, label: 'C3'},
-{ y: 4, label: 'C4'},
-{ y: 4, label: 'C5'},
-{ y: 4, label: 'C6'}
-]
-},{
-type: 'stackedColumn',
-dataPoints:[
-{ y: 12, label: 'N1'},
-{ y: 13, label: 'N2'},
-{ y: 13, label: 'N3'},
-{ y: 12, label: 'N4'},
-{ y: 11, label: 'N5'},
-{ y: 18, label: 'N6'},
-{ y: 4, label: 'E1'},
-{ y: 9, label: 'E2'},
-{ y: 9, label: 'E3'},
-{ y: 9, label: 'E4'},
-{ y: 8, label: 'E5'},
-{ y: 6, label: 'E6'},
-{ y: 8, label: 'O1'},
-{ y: 7, label: 'O2'},
-{ y: 7, label: 'O3'},
-{ y: 10, label: 'O4'},
-{ y: 5, label: 'O5'},
-{ y: 5, label: 'O6'},
-{ y: 5, label: 'A1'},
-{ y: 6, label: 'A2'},
-{ y: 4, label: 'A3'},
-{ y: 9, label: 'A4'},
-{ y: 8, label: 'A5'},
-{ y: 7, label: 'A6'},
-{ y: 5, label: 'C1'},
-{ y: 7, label: 'C2'},
-{ y: 3, label: 'C3'},
-{ y: 7, label: 'C4'},
-{ y: 4, label: 'C5'},
-{ y: 9, label: 'C6'}
-]
-},{
-color: 'black',
-type: 'line',
-dataPoints:[
-{ y: 2, label: 'N1'},
-{ y: 3, label: 'N2'},
-{ y: 4, label: 'N3'},
-{ y: 5, label: 'N4'},
-{ y: 6, label: 'N5'},
-{ y: 7, label: 'N6'},
-{ y: 8, label: 'E1'},
-{ y: 9, label: 'E2'},
-{ y: 2, label: 'E3'},
-{ y: 1, label: 'E4'},
-{ y: 3, label: 'E5'},
-{ y: 2, label: 'E6'},
-{ y: 1, label: 'O1'},
-{ y: 3, label: 'O2'},
-{ y: 4, label: 'O3'},
-{ y: 5, label: 'O4'},
-{ y: 6, label: 'O5'},
-{ y: 5, label: 'O6'},
-{ y: 2, label: 'A1'},
-{ y: 3, label: 'A2'},
-{ y: 4, label: 'A3'},
-{ y: 5, label: 'A4'},
-{ y: 6, label: 'A5'},
-{ y: 1, label: 'A6'},
-{ y: 4, label: 'C1'},
-{ y: 3, label: 'C2'},
-{ y: 2, label: 'C3'},
-{ y: 5, label: 'C4'},
-{ y: 4, label: 'C5'},
-{ y: 8, label: 'C6'}
-]
-}
-]
-});
-graficoG.render();
-}
+<html>
+  <head>
+    <meta charset="utf-8">
+    <style>
+      body{
+        background-color: #f3f9fb;
+      }
+    </style>
+  </head>
+  <body>
+    <p>Este correo comprueba que <b>{[nombre]}</b> ha finalizado la prueba el <b>{[fecha]}</b>.</p>
+  </body>
+</html>
+
+
+Este correo comprueba que {[nombre]} ha finalizado la prueba el {[fecha]}.
+
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    body {
+      background-color: #f3f9fb;
+    }
+  </style>
+</head>
+
+<body>
+  <p>Bienvenido al sistema del departamento de psicología este mensaje es para confirmar su registro en nuestro sistema
+    en caso de que no lo haya solicitado ignore este mensaje de lo contrario favor dirigirse a este enlace
+    <a href="https://despairful-may.000webhostapp.com/validar.php">Confirmar Registro</a> e introduzca su cédula y el tiquete a continuación: 
+  </p>
+  <h3>{[tiquete]}</h3>
+</body>
+
+</html>
+
+Bienvenido al sistema del departamento de psicología este mensaje es para confirmar su registro en nuestro sistema
+  en caso de que no lo haya solicitado ignore este mensaje de lo contrario favor dirigirse a este enlace
+   https://despairful-may.000webhostapp.com/validar.php e introduzca su cédula y el
+  tiquete a continuación: {[tiquete]}
+
+  <html>
+
+  <head>
+    <meta charset="utf-8">
+    <style>
+      body {
+        background-color: #f3f9fb;
+      }
+    </style>
+  </head>
+
+  <body>
+    <p>Ha tramitado exitosamente la matrícula para la prueba de idoneidad para la portación de armas NEO PI-R. Para
+      ingresar a la prueba debe de primero ingresar a nuestro sitio con su usuario y dirigirse a la página de ingreso mediante el ítem
+      “PRUEBA”. Ahí deberá de ingresar el siguiente tiquete:</p>
+    <h3>{[tiquete]}</h3>
+  </body>
+
+  </html>
+
+Ha tramitado exitosamente la matrícula para la prueba de idoneidad para la portación de armas NEO PI-R. Para ingresar a la
+prueba debe de primero ingresar a nuestro sitio con su usuario y dirigirse a la página de ingreso mediante el ítem
+“PRUEBA”. Ahí deberá de ingresar el siguiente tiquete: {[tiquete]}.

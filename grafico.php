@@ -502,7 +502,7 @@ $cong->close();
                   $con->close();
                   $con=conectar();
                   $correo=conectar();
-                  if($con->query("CALL  calificar(".$_SESSION['idestudiante'].",".$_SESSION['fecha'].",'Aprobado')")){
+                  if($con->query("CALL  calificar(".$_SESSION['idestudiante'].",".$_SESSION['fecha'].",'Apto')")){
                 
                     $correo->close();
                     header("Location: examenesxestudiante.php");
@@ -515,7 +515,7 @@ $cong->close();
                 }else{
                   $con=conectar();
                   $correo=conectar();
-                   if($con->query("CALL  calificar(".$_SESSION['idestudiante'].",".$_SESSION['fecha'].",'Reprobado')")){
+                   if($con->query("CALL  calificar(".$_SESSION['idestudiante'].",".$_SESSION['fecha'].",'No apto')")){
                    $correo->close();
                    header("Location: examenesxestudiante.php");
                   }else{

@@ -17,14 +17,12 @@
   $CodigoMensaje = 0;
   $Mensaje3 = "";
   //Obtencion de los datos de los campos
-  if(isset($_POST['radio'])){
-    $CodigoMensaje = $_POST['radio'];
+  if(isset($_POST['listbox'])){
+    $CodigoMensaje = $_POST['listbox'];
   }
-
   if(isset($_POST['mensaje'])){
     $Mensaje3 = $_POST['mensaje'];
   }
-
   if(isset($_POST['btn'])){
     if($_POST['btn'] == 2){
     //Llamado al procedimiento almacenado cargar
@@ -39,11 +37,9 @@
         $_SESSION['tipoerror'] = 1;
       }
     }
-
     if($_POST['btn'] == 1){
     //Llamado al procedimiento almacenado guardar
     $sql = "CALL ModificarMensaje (".$CodigoMensaje. ", '".$Mensaje3. "')";
-
     if($respuesta = $conn->query($sql)){
         $fila = $respuesta->fetch_assoc();
         if($fila['R'] == 0){
@@ -59,7 +55,6 @@
       }
     }
   }
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -115,15 +110,13 @@
                   <label>Tipo de Correos:</label>
                 </div>
 
-                <div class="columna2 botonesRadio">
-                  <label class="contenedorRadioCheck">
-                    <input value= "1" type="radio" name="radio" required <?php if($CodigoMensaje ==1){ echo "checked"; } if($CodigoMensaje!=0){echo " disabled";}?>>
-                    <span class="radioCheck uno"></span>
-                  </label>
-                  <label class="contenedorRadioCheck">
-                    <input value = "2" type="radio" name="radio" required <?php if($CodigoMensaje ==2){ echo "checked"; } if($CodigoMensaje!=0){echo " disabled";} ?>>
-                    <span class="radioCheck dos"></span>
-                  </label>
+                <div class="columna2">
+                  <select name="listbox" size=1>
+                    <option value=1>Registro</option>
+                    <option value=2>Matricula</option>
+                    <option value=3>Resultado</option>
+                    <option value=4>Final de Examen</option>
+                  </select>
                 </div>
               </div>
               <button  type="submit" name="btn" class="posicionDerecha" value="1">Guardar</button>

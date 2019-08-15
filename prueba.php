@@ -172,7 +172,6 @@
           $suma = $_SESSION['numPregunta'] + $_SESSION['cantPreguntas'];
           $sql = "CALL AlmacenarProgreso(".$_SESSION['usuario'].",".$_SESSION['prueba'].",".$suma.");";
           if($con->query($sql)){
-
           }
           $con->close();
         } else {
@@ -301,9 +300,11 @@
             </tr>
           </table>
         </div>
+             <!--Botones de la prueba arriba-->
         <form action="prueba.php" method="post">
           <div id="siguiente" class="botonesPrueba">
             <button type="submit" name="btn" class="posicionIzquierda" value="1">GUARDAR</button>
+            <button type="submit" name="btn" class="posicionIzquierda" value="3">SALIR</button>
             <button type="submit" name="btn" <?php if($_SESSION['siguiente']){ echo "";} else { echo "disabled"; } ?> 
               class="posicionDerecha" value="2"><?php
               if(($_SESSION['numPregunta']+$_SESSION['cantPreguntas'])>$_SESSION['totalPreguntas']){
@@ -352,9 +353,10 @@
             }
           $con->close();
           ?>
-          <!--Botones de la prueba -->
+          <!--Botones de la prueba abajo-->
           <div id="siguiente" class="botonesPrueba">
             <button type="submit" name="btn" class="posicionIzquierda" value="1">GUARDAR</button>
+            <button type="submit" name="btn" class="posicionIzquierda" value="3">SALIR</button>
             <button type="submit" name="btn" <?php if($_SESSION['siguiente']){ echo "";} else { echo "disabled"; } ?> 
               class="posicionDerecha" value="2"><?php
               if(($_SESSION['numPregunta']+$_SESSION['cantPreguntas'])>$_SESSION['totalPreguntas']){

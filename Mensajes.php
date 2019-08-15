@@ -147,6 +147,9 @@
                         case 4: 
                           echo "<option value=4>Final de Examen</option>";
                           break;
+                        case 5: 
+                          echo "<option value=4>Recordatorio Matricula</option>";
+                          break;
                         default:
                           break;
                       }
@@ -155,12 +158,39 @@
                     <option value=2>Matricula</option>
                     <option value=3>Resultado</option>
                     <option value=4>Final de Examen</option>
+                    <option value=5>Recordatorio Matricula</option>
                   </select>
                 </div>
               </div>
               <button  type="submit" name="btn" class="posicionDerecha" value="1">Guardar</button>
               <button  type="submit" name="btn" class="posicionDerecha" value="2">Cargar</button>
          
+
+         
+              <div class="opciones">
+              <div class="columna1">
+                  <label>Formato Mensajes</label>
+                </div>
+              <label class="contenedorRadio">
+                      <input type="radio" name="Radio" value="1"/>
+                      <span class="botonRadio 1"></span>
+                    </label>
+                    <label class="contenedorRadio">
+                      <input type="radio" name="Radio" value="2"/>
+                      <span class="botonRadio 2"></span>
+                    </label>
+                    <label class="contenedorRadio">
+                      <input type="radio" name="Radio" value="3"/>
+                      <span class="botonRadio 3"></span>
+                    </label>
+                    <div class="columna1">
+                  <label>Texto Ejemplo para el formato del mensaje</label>
+                </div>
+
+                    </div>
+                    
+
+
             </form>
           </div>
         </div>

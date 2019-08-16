@@ -165,12 +165,14 @@
     }      
     $i++;
     if($fecha_actual>$fechaf or $cupos>=$pruebasXmes){
-      echo "La fecha que se ingreso no es correcta";
+      $_SESSION['mensaje'] = "La fecha que se ingreso no es correcta";
+      $_SESSION['tipoerror'] = 1;
     }
     else{
       $insertar ="INSERT INTO prueba (IDPrueba,Fechar,fechaF) VALUES ($i,'$fechaf','$fechaFinal')";
       $ejecutar = mysqli_query($con,$insertar);
-      echo "La fecha se ingreso correctamente   ";
+      $_SESSION['mensaje'] = "La fecha se ingreso correctamente";
+      $_SESSION['tipoerror'] = 0;
     }
   }
 

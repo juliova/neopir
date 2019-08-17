@@ -45,8 +45,11 @@
             switch($_SESSION['Rol']){
                 case 1://evaluación, fechas, preguntas, variables
                     ?>
-                        <li>
-                            <a href="resportesestudiantes.php">reporte estudiantes</a>
+                        <li class="itemDesplegable">
+                            <a>reportes</a>
+                            <ul>
+                                <li><a href="resportesestudiantes.php">estudiantes</a></li>
+                            </ul>
                         </li>
                     <?php
                     break;

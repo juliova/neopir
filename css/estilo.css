@@ -868,6 +868,52 @@ ul {
   height: 500px;
 }
 
+.itemDesplegable{
+  position: relative;
+}
+
+.itemDesplegable ul{
+  display: none;
+  position: absolute;
+  left: -35%;
+  top: 100%;
+  color: white;
+  background-color: #113f67;
+  padding: 0;
+  -webkit-box-shadow: 6px 26px 31px -11px rgba(0, 0, 0, 1);
+  -moz-box-shadow: 6px 26px 31px -11px rgba(0, 0, 0, 1);
+  box-shadow: 6px 26px 31px -11px rgba(0, 0, 0, 1);
+  animation-name: aniMenu;
+  animation-duration: 1s;
+}
+
+.itemDesplegable ul li{
+  margin: 15px 10px;
+  
+}
+
+.itemDesplegable ul li a{
+  color: white;
+  width: 64px;
+  height: 64px;
+}
+
+.itemDesplegable:hover ul, ul:hover{
+  display: block;
+}
+
+/*animación del menu responsivo. va de ser transparente a ser completamente
+      visible.*/
+@keyframes aniMenu {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
 /*EL modo responsivo entra en efecto cuando la ventana se encoge a un ancho
     menor a 1200px. Siendo una de las resoluciones más populares */
 @media only screen and (max-width: 1199px) { /*400*/
@@ -1021,13 +1067,6 @@ ul {
     box-shadow: 6px 26px 31px -11px rgba(0,0,0,1);
     animation-name: aniMenu;
     animation-duration: 1s;
-  }
-
-  /*animación del menu responsivo. va de ser transparente a ser completamente
-      visible.*/
-  @keyframes aniMenu{
-    from {opacity: 0;}
-    to {opacity: 1;}
   }
 
   /*Se remueve el posicionamiento horizontal de los elementos de menu*/

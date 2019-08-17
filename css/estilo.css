@@ -76,7 +76,7 @@ menu ul li{
 menu ul li a{
   width: 64px;
   height: 64px;
-  text-transform: uppercase;
+  text-transform: lowercase;
   font-size: 1.6em;
 }
 
@@ -116,7 +116,7 @@ menu ul li a{
 h1{
   font-size: 2.3em;
   text-align: center;
-  margin: 40px 0 20px;
+  margin: 5px 0 20px;
 }
 
 /*Se utiliza una lista ordenada para los requisitos de la prueba. Se separa
@@ -269,7 +269,7 @@ ol{
   content: "";
   position: absolute;
   color: white;
-  top: -2px;
+  top: 0px;
   left: 7px;
 }
 
@@ -340,9 +340,14 @@ button:disabled:hover{
 
 /*contenedor para los botones de la pagina de prueba.*/
 .botonesPrueba{
-  width: 85%;
-  padding: 40px;
+  padding: 20px 0;
   margin: 0 auto;
+  width: 85%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 /*Hacer que el elemento se pegue a el borde derecho*/
@@ -605,11 +610,20 @@ textarea{
   background: #113f67;
 }
 
+.guiaTabla{
+  width: 93%;
+  margin: 0 auto;
+}
+
+.botonesMensajes{
+  clear: both;
+}
+
 /*tabla para el backend del sitio. con ancho del 90% de bordes colapsados. */
 .tablaB{
   clear: both;
-  width: 90%;
-  margin: 20px auto;
+  width: 93%;
+  margin: 0 auto;
   border-collapse: collapse;
 }
 
@@ -617,6 +631,7 @@ textarea{
 .tablaB td, .tablaB th{
   border: 1px solid #ddd;
   padding: 1px;
+  text-align: center;
 }
 
 /*Dar a las filas de numero par un fondo de color gris claro. Las otras filas
@@ -636,9 +651,13 @@ textarea{
 .tablaB th{
   padding-top: 12px;
   padding-bottom: 12px;
-  text-align: left;
   background-color: #226597;
   color: white;
+}
+
+.tablaB td.texto {
+  text-align: left;
+  padding-left: 3px;
 }
 
 /*Posicionar elementos al centro de un contenedor utilizando flex-box*/
@@ -706,7 +725,7 @@ textarea{
   left: 50%;
   transform: translateX(-50%);
   animation: animensaje;
-  animation-duration: 12s;
+  animation-duration: 5s;
 }
 
 
@@ -798,7 +817,12 @@ ul {
 /*Boton para radio comun*/
 .dos:after {
   content: "2";
-  left: 17px;
+  left: 16px;
+}
+
+.tres:after {
+  content: "3";
+  left: 16px;
 }
 
 .paginacion{
@@ -834,8 +858,14 @@ ul {
   color: black;
 }
 
-#tablapreguntas button{
+#tablapregunta:last-child{
+  width: 306px;
+}
+
+.previsualizarCorreo{
   width: 100%;
+  background-color: magenta;
+  height: 500px;
 }
 
 /*EL modo responsivo entra en efecto cuando la ventana se encoge a un ancho
@@ -858,7 +888,7 @@ ul {
 
   /*Se ajusta el margen izquierdo de la lista ordenada.*/
   ol{
-    margin-left: 25px;
+    margin-left: 21px;
   }
 
   /*Modificamos el tamaño del padding de el contenedor de instrucciones.*/
@@ -1043,6 +1073,10 @@ ul {
     margin-bottom: 50px;
   }
 
+  .guiaTabla{
+    width: 100%;
+  }
+
   /*Tabla backend del 100% del ancho de la pantalla.*/
   .tablaB{
     width: 100%;
@@ -1056,6 +1090,8 @@ ul {
   .tablaB td{
     font-size: 0.9em;
   }
+
+  
 
   /*dar tamaño de 100% de la celda para que los botones se acomoden uno encima
       del otro*/
@@ -1072,10 +1108,12 @@ ul {
   }
 
   /*Quitar la columna que indica si la prueba ha sido revisada o no.
-      Solo se muestra mediante el color de la fila.*/
+      Solo se muestra mediante el color de la fila.
   #estudiantes th:last-child, #estudiantes td:last-child{
     display:none;
   }
+
+  */
 
   .ficha {
     width: 95%;
@@ -1108,6 +1146,24 @@ ul {
     overflow: auto;
     left: 5%;
     transform: translate(-5%);
+  }
+
+  @keyframes animensaje {
+    15% {
+      bottom: 20px;
+    }
+
+    85% {
+      bottom: 20px;
+    }
+  }
+
+  .botonesPruebaArriba{
+    padding-bottom: 20px;
+  }
+
+  .botonesPrueba button{
+    margin-top: 10px;
   }
 
 }

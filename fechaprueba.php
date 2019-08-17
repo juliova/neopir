@@ -98,6 +98,7 @@
           <tr>
             <th>Fecha Inicio</th>
             <th>Fecha Fin</th>
+            <th>Acción</th>
           </tr>
           <?php 
             $sql = "Call PruebasAno('".date("Y-m-d H:i:s")."');";
@@ -108,10 +109,13 @@
                   <td><?php echo date("d/m/Y  h:i:s A",strtotime($fila['Fechar'])); ?></td>
                   <td><?php echo date("d/m/Y  h:i:s A",strtotime($fila['fechaF'])); ?></td>
                   <td>
-                    <button class="aprobado" onclick="window.location.href='modfecha.php?prueba=<?php echo $fila['IDPrueba']; ?>';">Modificar</button>
+                    <button class="revisado" onclick="window.location.href='modfecha.php?prueba=<?php echo $fila['IDPrueba']; ?>';">Modificar</button>
                     <?php if($fila['Fechar']>date("Y-m-d H:i:s")) {?>
-                    <button class="rechazado" onclick="window.location.href='eliminarfecha.php?prueba=<?php echo $fila['IDPrueba']; ?>';">Eliminar</button>
-                    <?php } ?>
+                    <button class="norevisado" onclick="window.location.href='eliminarfecha.php?prueba=<?php echo $fila['IDPrueba']; ?>';">Eliminar</button>
+                    <?php } else { ?>
+                    <button  disabled>Eliminar</button>
+                    <?php
+                    } ?> 
                   </td>
                 </tr>
                 <?php

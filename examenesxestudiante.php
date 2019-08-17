@@ -51,7 +51,7 @@
       </div>
     </menu>         
     <div class="contenido">
-     <div>
+     <div class="guiaTabla">
             <ul class="guiaGrafico">
               <li>
                 Apto

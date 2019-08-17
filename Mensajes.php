@@ -161,37 +161,34 @@
                     <option value=5>Recordatorio Matricula</option>
                   </select>
                 </div>
-              </div>
-              <button  type="submit" name="btn" class="posicionDerecha" value="1">Guardar</button>
-              <button  type="submit" name="btn" class="posicionDerecha" value="2">Cargar</button>
-         
-
-         
-              <div class="opciones">
-              <div class="columna1">
+                <div class="columna1">
                   <label>Formato Mensajes</label>
                 </div>
-              <label class="contenedorRadio">
-                      <input type="radio" name="Radio" value="1"/>
-                      <span class="botonRadio 1"></span>
-                    </label>
-                    <label class="contenedorRadio">
-                      <input type="radio" name="Radio" value="2"/>
-                      <span class="botonRadio 2"></span>
-                    </label>
-                    <label class="contenedorRadio">
-                      <input type="radio" name="Radio" value="3"/>
-                      <span class="botonRadio 3"></span>
-                    </label>
-                    <div class="columna1">
-                  <label>Texto Ejemplo para el formato del mensaje</label>
+                <div class="columna2">
+                  <label class="contenedorRadio">
+                    <input type="radio" name="Radio" value="1"/>
+                    <span class="botonRadio uno"></span>
+                  </label>
+                  <label class="contenedorRadio">
+                    <input type="radio" name="Radio" value="2"/>
+                    <span class="botonRadio dos"></span>
+                  </label>
+                  <label class="contenedorRadio">
+                    <input type="radio" name="Radio" value="3"/>
+                    <span class="botonRadio tres"></span>
+                  </label>
                 </div>
-
-                    </div>
-                    
-
-
+                <div class="botonesMensajes">
+                  <button  type="submit" name="btn" class="posicionDerecha" value="1">Guardar</button>
+                  <button  type="submit" name="btn" class="posicionDerecha" value="2">Cargar</button>
+                </div>
+              </div>
             </form>
+          </div>
+          <div>
+            <div class="previsualizarCorreo">
+
+            </div>
           </div>
         </div>
       </div>

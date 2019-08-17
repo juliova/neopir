@@ -76,7 +76,7 @@
     $sql = "CALL obtener_Examenes(".$_SESSION['fecha'].")";
     if($result = $con->query($sql)){
       ?>
-      <table class="tablaB"><tr><th>IDENTIFICACIÓN</th><th>FECHA PRUEBA</th><th>ESTADO</th><th>Pruebas Realizadas</th><th>Tiquete</th></tr>
+      <table class="tablaB"><tr><th>IDENTIFICACIÓN</th><th>Pruebas Realizadas</th><th>Aplico</th><th>Tiquete</th><th>FECHA PRUEBA</th><th>ESTADO</th><th>Genero</th></tr>
       <?php
        
       if ($result->num_rows > 0) {
@@ -90,10 +90,13 @@
             ?>
             <tr class="porrevisar" onClick=window.location.href='grafico.php?idfecha=<?php echo($_SESSION['fecha']);?>&idestudiante=<?php echo($row["IDEstudiante"]);?>'>
               <td><?php echo($row["IDEstudiante"]);?></td>
+              <td><?php echo($ves["veces"]);?></td>
+              <td><?php echo($ves["Utilizada"]);?></td>
+              <td><?php echo($row["Utilizada"]);?></td>
               <td><?php echo($row["Fechar"]);?></td>
               <td><?php echo($row["Estado"]);?></td>
-              <td><?php echo($ves["veces"]);?></td>
-              <td><?php echo($row["Utilizada"]);?></td>
+              <td><?php echo($row["Genero"]);?></td>
+    
             </tr><?php
             }
             
@@ -106,11 +109,13 @@
                $ves=$veces->fetch_assoc();?>
             
              <tr class="revisado" onClick=window.location.href='grafico.php?idfecha=<?php echo($_SESSION['fecha']);?>&idestudiante=<?php echo($row["IDEstudiante"]);?>'>
-              <td><?php echo($row["IDEstudiante"]);?></td>
+             <td><?php echo($row["IDEstudiante"]);?></td>
+              <td><?php echo($ves["veces"]);?></td>
+              <td><?php echo($ves["Utilizada"]);?></td>
+              <td><?php echo($row["Utilizada"]);?></td>
               <td><?php echo($row["Fechar"]);?></td>
               <td><?php echo($row["Estado"]);?></td>
-              <td><?php echo($ves["veces"]);?></td>
-              <td><?php echo($row["Utilizada"]);?></td>
+              <td><?php echo($row["Genero"]);?></td>
             </tr><?php 
           } 
           }else{
@@ -120,11 +125,13 @@
                $ves=$veces->fetch_assoc();?>
             
              <tr class="norevisado" onClick=window.location.href='grafico.php?idfecha=<?php echo($_SESSION['fecha']);?>&idestudiante=<?php echo($row["IDEstudiante"]);?>'>
-              <td><?php echo($row["IDEstudiante"]);?></td>
+             <td><?php echo($row["IDEstudiante"]);?></td>
+              <td><?php echo($ves["veces"]);?></td>
+              <td><?php echo($ves["Utilizada"]);?></td>
+              <td><?php echo($row["Utilizada"]);?></td>
               <td><?php echo($row["Fechar"]);?></td>
               <td><?php echo($row["Estado"]);?></td>
-              <td><?php echo($ves["veces"]);?></td>
-              <td><?php echo($row["Utilizada"]);?></td>
+              <td><?php echo($row["Genero"]);?></td>
             </tr><?php 
           } 
         }

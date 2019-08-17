@@ -48,7 +48,8 @@
                         <li class="itemDesplegable">
                             <a>reportes</a>
                             <ul>
-                                <li><a href="resportesestudiantes.php">estudiantes</a></li>
+                                <li><a href="reportesestudiantes.php">estudiantes</a></li>
+                                <li><a href="reportesexamenes.php">examenes</a></li>
                             </ul>
                         </li>
                     <?php

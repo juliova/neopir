@@ -118,7 +118,7 @@
         </table> 
         <h1>SIN DATOS</h1>
             <div class='flexCentro'>
-                <button onClick=window.location.href='ReportesEstudiantes.php'>ATRAS</button>
+                <button onClick=window.location.href='reportesestudiantes.php'>ATRAS</button>
             </div> 
       
 <?php
@@ -128,14 +128,15 @@
             </table> 
             <h1>SIN DATOS</h1>
             <div class='flexCentro'>
-                <button onClick=window.location.href='ReportesEstudiantes.php'>ATRAS</button>
+                <button onClick=window.location.href='reportesestudiantes.php'>ATRAS</button>
             </div> 
             <?php
       }
+    /*
     } else {
       $_SESSION['mensaje'] = "Error de conexión. Favor intentarlo más tarde";
       $_SESSION['tipoerror'] = 1;
-    }
+    }*/
     $con->close();
     ?>  
     </div>

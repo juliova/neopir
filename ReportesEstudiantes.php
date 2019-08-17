@@ -61,7 +61,7 @@
     <div class="contenido">
     <div class="seccionMedia">
           <div>
-            <form action="examenesxfecha.php" method="post" >
+            <form action="reportesestudiantes.php" method="post" >
             <h1>Filtro por fechas</h1>
               <div class="columna1">
                 <label>Fecha Inicio</label>
@@ -122,13 +122,14 @@
           <td>....</td>
           </tr>
           </table>
-          <h1>SIN DATOS</h1>" 
+          <h1>SIN DATOS</h1>
           <?php
         }
+        /*
       } else {
         $_SESSION['mensaje'] = "Error de conexión. Favor intentarlo más tarde";
         $_SESSION['tipoerror'] = 1;
-      }
+      }*/
       $con->close();
       ?>  
     </div>

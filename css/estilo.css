@@ -878,7 +878,7 @@ ul {
   left: -35%;
   top: 100%;
   color: white;
-  background-color: #113f67;
+  background-color: #226597;
   padding: 0;
   -webkit-box-shadow: 6px 26px 31px -11px rgba(0, 0, 0, 1);
   -moz-box-shadow: 6px 26px 31px -11px rgba(0, 0, 0, 1);
@@ -1203,6 +1203,19 @@ ul {
 
   .botonesPrueba button{
     margin-top: 10px;
+  }
+
+  .itemDesplegable ul{
+    display: block;
+    background-color: #113f67;
+    left: -50%;
+    right: -15%;
+    box-shadow: none;
+    animation-name: none;
+  }
+
+  .itemDesplegable ul li a{
+    font-size: 1.5em;
   }
 
 }

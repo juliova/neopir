@@ -80,7 +80,7 @@
           </div>
     </div>
     </br>
-    <div>
+    <div class="guiaTabla">
             <ul class="guiaGrafico">
               <li>
                 Formalizado
@@ -91,7 +91,7 @@
                 <div class="colornorevisado"></div>
               </li>
             </ul>
-       </div>
+    </div>
     <?php 
     
     

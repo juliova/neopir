@@ -89,12 +89,14 @@ session_start();
           ?>
           <tr>
           <td><?php echo $id; ?></td>
-          <td><?php echo $texto; ?></td>
+          <td class="texto"><?php echo $texto; ?></td>
           <td><?php echo $tipo; ?></td>
           <td>
             <button class="aprobado" onclick="window.location.href='modificarpregunta.php?pregunta=<?php echo $id; ?>';">Editar</button>
             <?php if($_SESSION['totalPreguntas']==$id){ ?>
             <button class="rechazado" onclick="window.location.href='eliminarpregunta.php?pregunta=<?php echo $id; ?>';">Eliminar</button>
+            <?php } else { ?>
+            <button disabled>Eliminar</button>
             <?php } ?>
           </td>
           </tr>

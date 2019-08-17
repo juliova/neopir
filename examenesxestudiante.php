@@ -51,7 +51,7 @@
       </div>
     </menu>         
     <div class="contenido">
-     <div>
+     <div class="guiaTabla">
             <ul class="guiaGrafico">
               <li>
                 Apto
@@ -63,7 +63,7 @@
               </li>
               <li>
                 Por Revisar
-                <div class="colorporrevisado"></div>
+                <div class="colorporrevisar"></div>
               </li>
             </ul>
        </div>

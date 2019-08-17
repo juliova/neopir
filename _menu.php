@@ -46,19 +46,7 @@
                 case 1://evaluación, fechas, preguntas, variables
                     ?>
                         <li>
-                            <a href="examenesxfecha.php">evaluación</a>
-                        </li>
-                        <li>
-                            <a href="fechaprueba.php">fechas</a>
-                        </li>
-                        <li>
-                            <a href="preguntas.php">preguntas</a>
-                        </li>
-                        <li>
-                            <a href="mensajes.php">mensajes</a>
-                        </li>
-                        <li>
-                            <a href="variables.php">variables</a>
+                            <a href="resportesestudiantes.php">reporte estudiantes</a>
                         </li>
                     <?php
                     break;

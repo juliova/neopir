@@ -46,7 +46,7 @@
 
                 <h1>Login</h1>
                 <div class="columna1">
-                  <label>Cedula</label>
+                  <label>Cédula</label>
                 </div>
                 <div class="columna2">
                   <input type="number" name="cedula" required/>
@@ -68,7 +68,7 @@
               <div>
                 <h1>Registro</h1>
                 <div class="columna1">
-                  <label>Cedula:</label>
+                  <label>Cédula:</label>
                 </div>
                 <div class="columna2">
                   <input type="number" name="cedula2" required/>
@@ -110,7 +110,7 @@
                   <input type="password" name="contraC" required placeholder="Confirmar contraseña"/>
                 </div>
                 <div class="columna1">
-                  <label>Genero:</label>
+                  <label>Género:</label>
                 </div>
 
                 <div class="columna2">

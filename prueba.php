@@ -3,6 +3,10 @@
   session_start();
   //Incluir función de conexión a la base
   include 'Base.php';
+  $_SESSION['prueba'] = 1;
+  $_SESSION['numPregunta'] = 1;
+  $_SESSION['cantPreguntas'] = 20;
+  $_SESSION['totalPreguntas'] = 240;
   if(!isset($_SESSION['prueba']) || $_SESSION['prueba']==0){
     header("Location: ingresarprueba.php");
   }
@@ -172,7 +176,6 @@
           $suma = $_SESSION['numPregunta'] + $_SESSION['cantPreguntas'];
           $sql = "CALL AlmacenarProgreso(".$_SESSION['usuario'].",".$_SESSION['prueba'].",".$suma.");";
           if($con->query($sql)){
-
           }
           $con->close();
         } else {
@@ -301,11 +304,13 @@
             </tr>
           </table>
         </div>
+             <!--Botones de la prueba arriba-->
         <form action="prueba.php" method="post">
-          <div id="siguiente" class="botonesPrueba">
-            <button type="submit" name="btn" class="posicionIzquierda" value="1">GUARDAR</button>
+          <div id="siguiente" class="botonesPrueba botonesPruebaArriba">
+            <button type="submit" name="btn"  value="1">GUARDAR</button>
+            <button type="submit" name="btn"  value="3">SALIR</button>
             <button type="submit" name="btn" <?php if($_SESSION['siguiente']){ echo "";} else { echo "disabled"; } ?> 
-              class="posicionDerecha" value="2"><?php
+               value="2"><?php
               if(($_SESSION['numPregunta']+$_SESSION['cantPreguntas'])>$_SESSION['totalPreguntas']){
                 echo "FINALIZAR";
               } else {
@@ -352,9 +357,10 @@
             }
           $con->close();
           ?>
-          <!--Botones de la prueba -->
+          <!--Botones de la prueba abajo-->
           <div id="siguiente" class="botonesPrueba">
             <button type="submit" name="btn" class="posicionIzquierda" value="1">GUARDAR</button>
+            <button type="submit" name="btn" value="3">SALIR</button>
             <button type="submit" name="btn" <?php if($_SESSION['siguiente']){ echo "";} else { echo "disabled"; } ?> 
               class="posicionDerecha" value="2"><?php
               if(($_SESSION['numPregunta']+$_SESSION['cantPreguntas'])>$_SESSION['totalPreguntas']){

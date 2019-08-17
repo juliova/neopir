@@ -98,6 +98,7 @@
           <tr>
             <th>Fecha Inicio</th>
             <th>Fecha Fin</th>
+            <th>Acción</th>
           </tr>
           <?php 
             $sql = "Call PruebasAno('".date("Y-m-d H:i:s")."');";
@@ -108,10 +109,13 @@
                   <td><?php echo date("d/m/Y  h:i:s A",strtotime($fila['Fechar'])); ?></td>
                   <td><?php echo date("d/m/Y  h:i:s A",strtotime($fila['fechaF'])); ?></td>
                   <td>
-                    <button class="aprobado" onclick="window.location.href='modfecha.php?prueba=<?php echo $fila['IDPrueba']; ?>';">Modificar</button>
+                    <button class="revisado" onclick="window.location.href='modfecha.php?prueba=<?php echo $fila['IDPrueba']; ?>';">Modificar</button>
                     <?php if($fila['Fechar']>date("Y-m-d H:i:s")) {?>
-                    <button class="rechazado" onclick="window.location.href='eliminarfecha.php?prueba=<?php echo $fila['IDPrueba']; ?>';">Eliminar</button>
-                    <?php } ?>
+                    <button class="norevisado" onclick="window.location.href='eliminarfecha.php?prueba=<?php echo $fila['IDPrueba']; ?>';">Eliminar</button>
+                    <?php } else { ?>
+                    <button  disabled>Eliminar</button>
+                    <?php
+                    } ?> 
                   </td>
                 </tr>
                 <?php
@@ -127,58 +131,56 @@
     </div>
 	
 	<?php
-	if(isset($_POST ['insert'])){
-    $con = conectar();
-		$fecha = $_POST['fecha'];
+  if(isset($_POST ['insert'])){
+    $fecha = $_POST['fecha'];
     $hora = $_POST['hora'];
-    $fechaf =date ($fecha ." ".$hora);
-    $sql = "CALL variables();";
-    $sumahoras = 2;
-    if($respuesta = $con->query($sql)){
-      $fila = $respuesta->fetch_assoc();
-      $sumahoras = $fila['DuracionPrueba'];
-    }
-    $con->close();
-    $con = conectar();
-    $fechaFinal=date("Y/m/d H:i",strtotime($fechaf."+ ".$sumahoras." hour"));
-		$consulta = "SELECT * from prueba";
-		$fechaComoEntero = strtotime($fechaf);
-		$anio = date("Y", $fechaComoEntero);
-		$mes = date("m", $fechaComoEntero);
+    $fechaf =date ($fecha ."".$hora);
+    $consulta = "SELECT * from prueba";
+    $fechaComoEntero = strtotime($fechaf);
+    $anio = date("Y", $fechaComoEntero);
+    $mes = date("m", $fechaComoEntero);
+    $fecha_actual=date("Y-m-d", time());
     $ciclo =mysqli_query($con,$consulta);
     $i = 0;
-    $Paso = false;
-	  while($fila = mysqli_fetch_array($ciclo)){
-  	  $fechap = $fila['Fechar'];
-      $fechaEntero = strtotime($fechap);
-      $annio = date("Y", $fechaEntero);
-      $mess = date("m", $fechaEntero);
-      if($fechaf > $fechap and !($annio==$anio and $mess ==$mes))
-      {
-
-      }else
-      {
-        $Paso = true;
+    $cupos = 0;
+    $consultaHora = "SELECT DuracionPrueba, MaximoPruebasxMes from variables";
+    $consultaCupos = "SELECT Fechar from prueba";
+    $result = mysqli_query($con,$consultaHora);
+    $result1 = mysqli_query($con,$consultaCupos);
+    if ($result->num_rows > 0) {
+      while($row = $result->fetch_assoc()) {	
+        $horas=$row["DuracionPrueba"];
+        $pruebasXmes=$row["MaximoPruebasxMes"];
       }
-		  $i++;
-	  }        
+    }
+    $fechaFinal=date("Y/m/d H:i",strtotime($fechaf."+ ". $horas . "hour"));
 
-		$i++;
-		if($Paso){
+    if ($result1->num_rows > 0) {
+      while($row1 = $result1->fetch_assoc()) {	
+        $fechas=$row1["Fechar"];
+        $fechaEntero = strtotime($fechas);
+        $mess = date("m", $fechaEntero);
+        $annio = date("Y", $fechaEntero);
+        if($mess==$mes and $annio == $anio){
+          $cupos++;
+        }
+        $i++;
+      }
+    }      
+    $i++;
+    if($fecha_actual>$fechaf or $cupos>=$pruebasXmes){
       $_SESSION['mensaje'] = "La fecha que se ingreso no es correcta";
       $_SESSION['tipoerror'] = 1;
-		}
-		else{
-			$insertar ="INSERT INTO prueba (Fechar,fechaF) VALUES ('$fechaf','$fechaFinal')";
+    }
+    else{
+      $insertar ="INSERT INTO prueba (IDPrueba,Fechar,fechaF) VALUES ($i,'$fechaf','$fechaFinal')";
+      $ejecutar = mysqli_query($con,$insertar);
+      $_SESSION['mensaje'] = "La fecha se ingreso correctamente";
+      $_SESSION['tipoerror'] = 0;
+    }
+  }
 
-			$ejecutar = mysqli_query($con,$insertar);
-      if($ejecutar){
-        $_SESSION['mensaje'] = "Fecha creada";
-        $_SESSION['tipoerror'] = 0;
-      }
-		}
-  }				
-?>	
+?>
   <?php include "error.php"; ?>
   </body>
 

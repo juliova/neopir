@@ -508,14 +508,13 @@ $cong->close();
                     header("Location: examenesxestudiante.php");
                   }else{
                     $_SESSION['mensaje'] = "no se pudo aprobar";
-                    $_SESSION['tipoerror'] = 1; 
                   }
                   $con->close();
 
                 }else{
                   $con=conectar();
                   $correo=conectar();
-                   if($con->query("CALL  calificar(".$_SESSION['idestudiante'].",".$_SESSION['fecha'].",'No apto')")){
+                   if($con->query("CALL  calificar(".$_SESSION['idestudiante'].",".$_SESSION['fecha'].",'No Apto')")){
                    $correo->close();
                    header("Location: examenesxestudiante.php");
                   }else{

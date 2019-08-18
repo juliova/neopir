@@ -78,7 +78,7 @@
       if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
              $con2=conectar();
-            if(strcmp ($row["Estado"] ,"APTO"))
+            if(strcmp ($row["Estado"] ,"Apto"))
             {
              if($veces=$con2->query("CALL veces(".$row["IDEstudiante"].")"))
             
@@ -117,7 +117,7 @@
                 <button onClick=window.location.href='reportesestudiantes.php'>ATRAS</button>
             </div> 
       
-<?php
+     <?php
       } else { ?>
 
       <tr class='sindatos'><td>....</td></tr>

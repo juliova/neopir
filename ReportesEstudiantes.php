@@ -80,7 +80,7 @@
           </div>
     </div>
     </br>
-    <div>
+    <div class="guiaTabla" >
             <ul class="guiaGrafico">
               <li>
                 Formalizado

@@ -26,14 +26,14 @@
   if(isset($_GET["revisar"]))
   {
       $con = conectar();
-      $sql = "CALL PuedoRevisar(".$_GET["fecha"].")";
+      $sql = "CALL PuedoRevisar('".$_GET["fecha"]."')";
       if($result = $con->query($sql)){
         $row = $result->fetch_assoc();
         if($row["cantidad"]==0){
           header("Location: examenesxestudiante.php?fecha=".$_GET["id"]);
          }
          else{
-          $_SESSION['mensaje'] = "Para poder revisar la  prueba del ".$_GET["fecha"]."debe de haber revisado y formalizado todas las pruebas anteriores";
+          $_SESSION['mensaje'] = "Para poder revisar la  prueba del ".date("d/m/Y",strtotime($_GET["fecha"]))." debe de haber revisado y formalizado todas las pruebas anteriores";
           $_SESSION['tipoerror'] = 1;
          }
       }else{

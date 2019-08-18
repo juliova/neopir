@@ -68,6 +68,9 @@
                             <a href="mensajes.php">mensajes</a>
                         </li>
                         <li>
+                            <a href="reenvio.php">tiquetes</a>
+                        </li>
+                        <li>
                             <a href="variables.php">variables</a>
                         </li>
                     <?php

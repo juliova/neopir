@@ -111,7 +111,7 @@
              <tr class="revisado" onClick=window.location.href='grafico.php?idfecha=<?php echo($_SESSION['fecha']);?>&idestudiante=<?php echo($row["IDEstudiante"]);?>'>
              <td><?php echo($row["IDEstudiante"]);?></td>
               <td><?php echo($ves["veces"]);?></td>
-              <td><?php echo($ves["Utilizada"]);?></td>
+              <td><?php echo($row["Utilizada"]);?></td>
               <td><?php echo($row["Utilizada"]);?></td>
               <td><?php echo($row["Fechar"]);?></td>
               <td><?php echo($row["Estado"]);?></td>

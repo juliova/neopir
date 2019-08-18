@@ -19,43 +19,48 @@
   if(isset($_POST['listbox'])){
     $CodigoMensaje = $_POST['listbox'];
     $cedula = $_POST['cedula3'];
-    $fechaprueba = $_POST['fechapru'];
     
   }
 
   if(isset($_POST['btn'])){
     if($_POST['listbox'] == 1){
       //Procedimiento reenvio correo de registro
-      $sql = "CALL Correo (".$CodigoMensaje. ")";
+      $sql = "CALL Correo (".$CodigoMensaje.")";
       if($respuesta = $conn->query($sql)){
-        $fila = $respuesta->fetch_assoc();
-        $Mensaje3 = $fila['TextoCorreo'];
-        $Html = $fila['html'];
-        $Asunto = $fila['asunto'];
+      $fila = $respuesta->fetch_assoc();
+      $Mensaje3 = $fila['TextoCorreo'];
+      $Html = $fila['html'];
+      $Asunto = $fila['asunto'];
       }else{
-        $_SESSION['mensaje'] = "Error de conexión. Favor intentarlo más tarde";
+        $_SESSION['mensaje'] = "Error de conexión en correo. Favor intentarlo más tarde";
         $_SESSION['tipoerror'] = 1;
       }
       $conn->close();
       $conn = conectar();
-      $sql = "CALL ObtenerEstudiante(".$cedula.")";
+      $sql = "CALL ObtenerEstudiante (".$cedula.")";
       if($respuesta = $conn->query($sql)){
         $fila = $respuesta->fetch_assoc();
         $destino = $fila['Correo'];
         $token = $fila['Token'];
-        echo $destino. "es el correo del estudiante";
-        $_SESSION['mensaje'] = "Tiquete de registro enviado al correo $destino";
-        $_SESSION['tipoerror'] = 0;
+        if ($token == ''){
+          $_SESSION['mensaje'] = "Error devolvio vacio";
+          $_SESSION['tipoerror'] = 1;
+        } else {
+          $_SESSION['mensaje'] = "Correo enviado a $destino";
+          $_SESSION['tipoerror'] = 0;
+        }
       }else{
-        $_SESSION['mensaje'] = "Error de conexión. Favor intentarlo más tarde";
+        $_SESSION['mensaje'] = "Error de conexión despues de correo. Favor intentarlo más tarde";
         $_SESSION['tipoerror'] = 1;
       }
          ////////Aqui va el codigo de envio de Correo con las variables de arriba
 
+
+
     }
     if($_POST['listbox'] == 2){
     //Procedimiento reenvio correo de matricula
-    $sql = "CALL Correo (".$CodigoMensaje.")";
+    $sql = "CALL Correo (".$CodigoMensaje. ")";
     if($respuesta = $conn->query($sql)){
     $fila = $respuesta->fetch_assoc();
     $Mensaje3 = $fila['TextoCorreo'];
@@ -68,13 +73,18 @@
     }
     $conn->close();
     $conn = conectar();
-    $sql = "CALL DatosMatricula (".$cedula." ,'".$fechaprueba."' )";
+    $sql = "CALL DatosMatricula (".$cedula.")";
     if($respuesta = $conn->query($sql)){
       $fila = $respuesta->fetch_assoc();
       $destino = $fila['Correo'];
       $token = $fila['Token'];
-      $_SESSION['mensaje'] = "Tiquete de matrícula enviado al correo $destino.";
-      $_SESSION['tipoerror'] = 0;
+      if($token == ''){
+        $_SESSION['mensaje'] = "Error devolvio vacio";
+        $_SESSION['tipoerror'] = 1;
+      } else {
+        $_SESSION['mensaje'] = "Correo enviado a $destino";
+        $_SESSION['tipoerror'] = 0;
+      }
     }else{
       $_SESSION['mensaje'] = "Error de conexión. Favor intentarlo más tarde";
       $_SESSION['tipoerror'] = 1;
@@ -82,8 +92,15 @@
         ////////Aqui va el codigo de envio de Correo con las variables de arriba
 
     }
-
+    
   }
+
+
+
+
+
+
+
 
 ?>
 <!DOCTYPE html>
@@ -122,25 +139,27 @@
       <div class="contenido">
         <div class="seccionMedia">
 
+         
+    
+
           <!--Reenvio-->
           <div>
             <form action="reenvio.php" method="POST">
               <div>
                 <h1>Reenviar Correos</h1>
              
+           
+           
+            
                 <div class="columna1">
                   <label>Cedula:</label>
                 </div>
                 <div class="columna2">
                   <input type="text" name="cedula3" />
                 </div>
-                <div class="columna1">
-                <label>Fecha Prueba</label>
-              </div>
-              <div class="columna2">
-                <input type="date" name="fechapru" value="<?php if(isset($fechaprueba)){ echo $fechaprueba;} ?>"/>
-              </div>
+                
             
+      
                 <div class="columna1">
                   <label>Tipo de Correos:</label>
                 </div>
@@ -154,6 +173,9 @@
                   </select>
                 </div>
               
+
+            
+
               </div>
               <button  type="submit" name="btn" class="posicionDerecha">Reenviar</button>
             </form>

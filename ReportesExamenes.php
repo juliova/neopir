@@ -106,7 +106,9 @@
               <td><?php echo($ves["veces"]);?></td>
               <td><?php echo($row["Utilizada"]);?></td>
 
-            </tr><?php 
+            </tr>
+            <button onClick=window.location.href='reportesestudiantes.php'>ATRAS</button>
+            <?php 
           } 
         }
         } 

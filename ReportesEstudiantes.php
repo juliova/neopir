@@ -105,7 +105,7 @@
         if ($result->num_rows > 0) {
           while($row = $result->fetch_assoc()) {
              ?>
-              <tr class="revisado" onclick="window.location.href='ReportesExamenes.php?fecha=<?php echo($row["IDPrueba"]);?>'">
+              <tr class="revisado" onclick="window.location.href='reportesexamenes.php?fecha=<?php echo($row["IDPrueba"]);?>'">
               <td><?php echo(date("d/m/Y  h:i:s A", strtotime($row["Fechar"])));?></td>
               <td><?php echo($row["numestudiantes"]);?></td>
               <td><?php echo($row["Estado"]);?></td>

@@ -110,13 +110,7 @@
           } 
         }
         } 
-        } ?>
-        </table> 
-        <h1>SIN DATOS</h1>
-            <div class='flexCentro'>
-                <button onClick=window.location.href='reportesestudiantes.php'>ATRAS</button>
-            </div> 
-      
+        } ?> 
      <?php
       } else { ?>
 

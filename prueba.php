@@ -198,6 +198,9 @@
           header("Location: finalprueba.php");
         }
         break;
+      case 3:
+
+        break;
     }
   }
 ?>
@@ -308,8 +311,8 @@
         <form action="prueba.php" method="post">
           <div id="siguiente" class="botonesPrueba botonesPruebaArriba">
             <button type="submit" name="btn"  value="1">GUARDAR</button>
-            <button type="submit" name="btn"  value="3">SALIR</button>
-            <button type="submit" name="btn" <?php if($_SESSION['siguiente']){ echo "";} else { echo "disabled"; } ?> 
+            <button formnovalidate type="submit" name="btn" <?php if($_SESSION['siguiente']){ echo "";} else { echo "disabled"; } ?> value="3">SALIR</button>
+            <button formnovalidate type="submit" name="btn" <?php if($_SESSION['siguiente']){ echo "";} else { echo "disabled"; } ?> 
                value="2"><?php
               if(($_SESSION['numPregunta']+$_SESSION['cantPreguntas'])>$_SESSION['totalPreguntas']){
                 echo "FINALIZAR";
@@ -329,7 +332,7 @@
                   <p><?php echo($fila['IDPregunta'].". ".$fila['TextoPregunta']);?></p>
                   <div class="opciones">
                     <label class="contenedorRadio">
-                      <input type="radio" name="radio<?php echo($pregunta);?>" value="<?php echo($fila['Valor1']); ?>"/>
+                      <input required type="radio" name="radio<?php echo($pregunta);?>" value="<?php echo($fila['Valor1']); ?>"/>
                       <span class="botonRadio so"></span>
                     </label>
                     <label class="contenedorRadio">
@@ -358,11 +361,11 @@
           $con->close();
           ?>
           <!--Botones de la prueba abajo-->
-          <div id="siguiente" class="botonesPrueba">
-            <button type="submit" name="btn" class="posicionIzquierda" value="1">GUARDAR</button>
-            <button type="submit" name="btn" value="3">SALIR</button>
-            <button type="submit" name="btn" <?php if($_SESSION['siguiente']){ echo "";} else { echo "disabled"; } ?> 
-              class="posicionDerecha" value="2"><?php
+          <div id="siguiente" class="botonesPrueba botonesPruebaArriba">
+            <button type="submit" name="btn"  value="1">GUARDAR</button>
+            <button formnovalidate type="submit" name="btn" <?php if($_SESSION['siguiente']){ echo "";} else { echo "disabled"; } ?> value="3">SALIR</button>
+            <button formnovalidate type="submit" name="btn" <?php if($_SESSION['siguiente']){ echo "";} else { echo "disabled"; } ?> 
+               value="2"><?php
               if(($_SESSION['numPregunta']+$_SESSION['cantPreguntas'])>$_SESSION['totalPreguntas']){
                 echo "FINALIZAR";
               } else {

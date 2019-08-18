@@ -1219,4 +1219,8 @@ ul {
     font-size: 1.5em;
   }
 
+  button:disabled:hover{
+    padding: 5px 0;
+  }
+
 }

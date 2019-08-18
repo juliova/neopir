@@ -23,6 +23,22 @@
    if(isset($_POST["fechafin"])){
     $fechafin=$_POST["fechafin"];
   }
+  if(isset($_GET["revisar"]))
+  {
+      $con = conectar();
+      $sql = "CALL PuedoRevisar("$_GET["fecha"]")";
+      if($result = $con->query($sql)){
+        $row = $result->fetch_assoc();
+        if($row["cantidad"]==0){
+          header("Location: examenesxestudiante.php?fecha=".$_GET["fecha"]);
+         }
+         else{
+          $_SESSION['mensaje'] = "Para poder revisar la  prueba del ".$_GET["fecha"]."debe de haber revisado y formalizado todas las pruebas anteriores";
+          $_SESSION['tipoerror'] = 1;
+         }
+      }
+
+  }
 ?>
 <!DOCTYPE html>
 <html>
@@ -105,8 +121,12 @@
         if ($result->num_rows > 0) {
           while($row = $result->fetch_assoc()) {
             if(strcmp ($row["Estado"] ,"SIN REVISAR") == 0){  ?>
+<<<<<<< HEAD
               <tr class="norevisado" onclick="window.location.href='examenesxfecha.php?fecha=<?php echo($row["IDPrueba"]);?>&revisar=1';">
               <!--<tr class="norevisado" onclick="window.location.href='examenesxestudiante.php?fecha=<?php echo($row["IDPrueba"]);?>'"> -->
+=======
+              <tr class="norevisado" onclick="window.location.href='examenesxfecha.php?fecha=<?php echo($row["IDPrueba"]);?>&revisar=1'">
+>>>>>>> 49f8db75b799552e092d062f98533f187d1c18d8
               <td><?php echo(date("d/m/Y  h:i:s A", strtotime($row["Fechar"])));?></td>
               <td><?php echo($row["numestudiantes"]);?></td>
               <td><?php echo($row["Estado"]);?></td>

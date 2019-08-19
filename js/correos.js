@@ -9,7 +9,6 @@ $(document).ready(function(){
     switch($(this).val()){
       case "1":
         $("#previsualizarCorreo").load("correos/tipo1.html", function() {
-          $("#previsualizarCorreo").html().replace("{[raíz]}", raíz);
           actualizarTiquete();
           actualizarCorreo();
         });

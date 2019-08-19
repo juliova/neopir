@@ -3,7 +3,6 @@ var asunto = "", html = "", tipo = "", tiquete = false,
 var nombres = ["Isabella", "Santiago"];
 var raíz = window.location.href.match(/^.*\//);
 $(document).ready(function(){
-  alert(raíz);
   actualizarTiquete();
 
   $("input[name=Radio]").change(function(){

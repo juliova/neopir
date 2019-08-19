@@ -74,6 +74,7 @@
     <link type="text/css" rel="stylesheet" href="css/all.css" />
     <script src="js/jquery-3.4.1.min.js"></script>
     <script src="js/scripts.js"></script>
+    <script src="js/correos.js"></script>
   </head>
 
   <body>
@@ -186,7 +187,7 @@
             </form>
           </div>
           <div>
-            <div class="previsualizarCorreo">
+            <div id="previsualizarCorreo">
 
             </div>
           </div>

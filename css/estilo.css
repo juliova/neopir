@@ -862,10 +862,8 @@ ul {
   width: 306px;
 }
 
-.previsualizarCorreo{
+#previsualizarCorreo{
   width: 100%;
-  background-color: magenta;
-  height: 500px;
 }
 
 .itemDesplegable{

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Correo de tipo 1</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style type="text/css">
+      @import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
+      #correo_contenedor{
+        background-color: #e0dede;
+        font-family: 'Poppins', sans-serif;
+        margin: 0 auto;
+        padding: 0;
+        border: none;
+        font-size: 16px;
+        max-width: 800px;
+      }
+      #correo_encabezado{
+        background-color: white;
+        padding: 10px 50px;
+      }
+      #correo_logo{
+        background-image: url("{[raíz]}/img/logo-blanco-64.png");
+        background-repeat: no-repeat;
+        background-size: contain;
+        height: 110px;
+        margin: 0 auto;
+      }
+      #correo_titulo{
+        font-size: 20px;
+        color: black;
+      }
+      #correo_contenido{
+
+      }
+      #correo_cuerpo{
+        background-color: #C1D4D9;
+        padding: 5%;
+      }
+      #correo_parrafos p{
+        color: black;
+      }
+      #correo_parrafos p a{
+        color: blue;
+        text-decoration: underline;
+      }
+      #correo_pie{
+        background-color: #0D0D0D;
+        padding: 3% 5%;
+      }
+      #correo_pie a{
+        text-decoration: underline;
+        color: white;
+      }
+      #correo_tiquete {
+        font-size: 20px;
+        text-decoration: none;
+        padding: 6px 4px;
+        background: #121D26;
+        color: #fff;
+        font-weight: bold;
+        position: relative;
+        display: inline-block;
+        margin-top: 15px;
+        left: 50%;
+        transform: translateX(-50%);
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+      }
+
+      #correo_tiquete_contenido{
+        border: 3px dotted white;
+        padding: 10px 22px;
+      }
+
+      /* fake the cut out with a masked circle*/
+      #correo_tiquete:before {
+        content: "";
+        width: 0px;
+        height: 0px;
+        position: absolute !important;
+        z-index: 100;
+        top: 38%;
+        left: -7px;
+        border: 8px solid #C1D4D9;
+        border-radius: 8px;
+      }
+      #correo_tiquete:after {
+        content: "";
+        width: 0px;
+        height: 0px;
+        position: absolute !important;
+        z-index: 100;
+        top: 38%;
+        right: -7px;
+        border: 8px solid #C1D4D9;
+        border-radius: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="correo_contenedor">
+      <div id="correo_contenido">
+        <div id="correo_encabezado">
+          <div id="correo_logo"></div>
+          <h2 id="correo_titulo">{[titulo]}</h2>
+        </div>
+        <div id="correo_cuerpo">
+          <div id="correo_parrafos">
+            {[parrafos]}
+          </div>
+          <div id ="correo_tiquete">
+            <div id="correo_tiquete_contenido">
+              {[tiquete]}
+            </div>
+          </div>
+        </div>
+        <div id="correo_pie">
+          <a href="{[raíz]}" target="_blank">NEO PI-R CUC</a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

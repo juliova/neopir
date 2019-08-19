@@ -14,7 +14,13 @@
           $_SESSION['cantPreguntas'] = $fila['xvista'];
           $_SESSION['totalPreguntas'] = $fila['total'];
           $_SESSION['prueba'] = $fila['IDPrueba'];
+          $_SESSION['mensaje'] = "Usted esta retomando la prueba: <br>
+                                  -Has repondido:".($_SESSION['numPregunta']-1)."/".$_SESSION['totalPreguntas'].".<br>
+                                  -Ultima pregunta respondida:".($_SESSION['numPregunta']-1).".<br>
+                                  -Le faltan:".($_SESSION['totalPreguntas']-($_SESSION['numPregunta']-1)).".";
+          $_SESSION['tipoerror'] = 0;
           header("Location: prueba.php");
+          die();
         }
       } else {
         $_SESSION['mensaje'] = "Error de conexión. Favor intentarlo más tarde";

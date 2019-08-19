@@ -199,6 +199,13 @@
         }
         break;
       case 3:
+      unset($_SESSION['prueba']);
+      unset($_SESSION['numPregunta']);
+      unset($_SESSION['cantPreguntas']);
+      unset($_SESSION['totalPreguntas']);
+      $_SESSION['mensaje'] = "Usted a salido de la prueba puede retomarla detro del tiempo establecido.";
+      $_SESSION['tipoerror'] = 0;
+      header("Location: index.php");
 
         break;
     }
@@ -310,7 +317,7 @@
              <!--Botones de la prueba arriba-->
         <form action="prueba.php" method="post">
           <div id="siguiente" class="botonesPrueba botonesPruebaArriba">
-            <button type="submit" name="btn"  value="1">GUARDAR</button>
+            <button type="submit" name="btn" <?php if(!$_SESSION['siguiente']){ echo "";} else { echo "disabled"; } ?> value="1">GUARDAR</button>
             <button formnovalidate type="submit" name="btn" <?php if($_SESSION['siguiente']){ echo "";} else { echo "disabled"; } ?> value="3">SALIR</button>
             <button formnovalidate type="submit" name="btn" <?php if($_SESSION['siguiente']){ echo "";} else { echo "disabled"; } ?> 
                value="2"><?php
@@ -362,7 +369,7 @@
           ?>
           <!--Botones de la prueba abajo-->
           <div id="siguiente" class="botonesPrueba botonesPruebaArriba">
-            <button type="submit" name="btn"  value="1">GUARDAR</button>
+            <button type="submit" name="btn" <?php if(!$_SESSION['siguiente']){ echo "";} else { echo "disabled"; } ?> value="1">GUARDAR</button>
             <button formnovalidate type="submit" name="btn" <?php if($_SESSION['siguiente']){ echo "";} else { echo "disabled"; } ?> value="3">SALIR</button>
             <button formnovalidate type="submit" name="btn" <?php if($_SESSION['siguiente']){ echo "";} else { echo "disabled"; } ?> 
                value="2"><?php

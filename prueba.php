@@ -3,10 +3,6 @@
   session_start();
   //Incluir función de conexión a la base
   include 'Base.php';
-  $_SESSION['prueba'] = 1;
-  $_SESSION['numPregunta'] = 1;
-  $_SESSION['cantPreguntas'] = 20;
-  $_SESSION['totalPreguntas'] = 240;
   if(!isset($_SESSION['prueba']) || $_SESSION['prueba']==0){
     header("Location: ingresarprueba.php");
   }

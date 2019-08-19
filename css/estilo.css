@@ -720,7 +720,7 @@ textarea{
   padding: 10px;
   margin: 0 auto;
   position: fixed;
-  bottom: -100px;
+  bottom: -300px;
   border-radius: 20px;
   left: 50%;
   transform: translateX(-50%);
@@ -735,7 +735,7 @@ textarea{
 
 @keyframes animensaje{
   0%{
-    bottom: -100px;
+    bottom: -300px;
   }
   15%{
     bottom: 30px;
@@ -744,7 +744,7 @@ textarea{
     bottom: 30px;
   }
   100%{
-    bottom: -100px;
+    bottom: -300px;
   }
 }
 

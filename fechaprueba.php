@@ -6,6 +6,7 @@
   date_default_timezone_set("America/Costa_Rica");
 ?>
 
+
 <!DOCTYPE html>
 <html>
   <!--Cabeza con el estilo -->
@@ -129,12 +130,15 @@
         </table>
       </div>
     </div>
+
+
 	
-	<?php
+<?php
+  $con = conectar();
   if(isset($_POST ['insert'])){
     $fecha = $_POST['fecha'];
     $hora = $_POST['hora'];
-    $fechaf =date ($fecha ."".$hora);
+    $fechaf =date ($fecha ." ".$hora);
     $consulta = "SELECT * from prueba";
     $fechaComoEntero = strtotime($fechaf);
     $anio = date("Y", $fechaComoEntero);
@@ -153,8 +157,7 @@
         $pruebasXmes=$row["MaximoPruebasxMes"];
       }
     }
-    $fechaFinal=date("Y/m/d H:i",strtotime($fechaf."+ ". $horas . "hour"));
-
+    $fechaFinal=date("Y-m-d H:i",strtotime($fechaf."+ ". $horas . "hour"));
     if ($result1->num_rows > 0) {
       while($row1 = $result1->fetch_assoc()) {	
         $fechas=$row1["Fechar"];
@@ -173,15 +176,15 @@
       $_SESSION['tipoerror'] = 1;
     }
     else{
-      $insertar ="INSERT INTO prueba (IDPrueba,Fechar,fechaF) VALUES ($i,'$fechaf','$fechaFinal')";
+      $insertar ="INSERT INTO prueba (IDPrueba,Fechar,fechaF) VALUES (1,'$fechaf','$fechaFinal')";
       $ejecutar = mysqli_query($con,$insertar);
       $_SESSION['mensaje'] = "La fecha se ingreso correctamente";
       $_SESSION['tipoerror'] = 0;
     }
   }
-
 ?>
-  <?php include "error.php"; ?>
+
+<?php include "error.php"; ?>
   </body>
 
 </html>

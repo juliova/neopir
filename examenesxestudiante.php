@@ -101,7 +101,7 @@
             }
             
           }
-            if(strcmp ($row["Estado"] ,"Apto"))
+            if(strcmp ($row["Estado"] ,"No Apto"))
             {
              if($veces=$con2->query("CALL veces(".$row["IDEstudiante"].")"))
             
@@ -119,7 +119,7 @@
             </tr><?php 
           } 
           }
-          if(strcmp ($row["Estado"] ,"No Apto"))
+          if(strcmp ($row["Estado"] ,"Apto"))
           {
           if($veces=$con2->query("CALL veces(".$row["IDEstudiante"].")"))  
             {

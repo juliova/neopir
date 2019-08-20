@@ -3,6 +3,7 @@
   session_start();
   include 'Base.php';
   include '_menu.php';
+  date_default_timezone_set("America/Costa_Rica");
   if(!isset($_SESSION['Rol'])){
     $_SESSION['mensaje'] = "Debe identificarse antes de continuar";
     $_SESSION['tipoerror'] = 1;
@@ -16,7 +17,7 @@
   }
   date_default_timezone_set("America/Costa_Rica");
   $fechaini = date("Y")."-01-01";
-  $fechafin = date("Y")."-12-31";
+  $fechafin = date("Y-m-d");
   if(isset($_POST["fechaini"])){
     $fechaini=$_POST["fechaini"];
   }
@@ -92,7 +93,7 @@
                 <label>Fecha Fin</label>
               </div>
               <div class="columna2">
-                <input type="date" name="fechafin" value="<?php echo $fechafin; ?>" required/>
+                <input type="date" readonly name="fechafin" value="<?php echo $fechafin; ?>" required/>
               </div>
               <button type="submit">Filtrar</button>
             </form>
@@ -116,7 +117,7 @@
     
 
       $con = conectar();
-      $sql = "CALL obtener_fechas('".$fechaini."','".$fechafin."')";
+      $sql = "CALL obtener_fechas('".$fechaini."','".date("Y-m-d h:i:s")."')";
       if($result = $con->query($sql)){
       ?> 
         <table class="tablaB" id="estudiantes"><tr><th>Fechas de Examenes realizados</th><th>Estudiantes que realizaron la prueba</th><th>Estado</th></tr>

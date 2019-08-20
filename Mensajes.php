@@ -161,7 +161,7 @@
                           echo "<option value=4>Final de Examen</option>";
                           break;
                         case 5: 
-                          echo "<option value=4>Recordatorio Matricula</option>";
+                          echo "<option value=5>Recordatorio Matricula</option>";
                           break;
                         default:
                           break;

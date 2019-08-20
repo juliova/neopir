@@ -1,5 +1,6 @@
 <?php 
   session_start();
+  $_SESSION['prueba'] = 1;
   if(!isset($_SESSION['prueba'])){
     header("Location: ingresarprueba.php");
   }
@@ -77,11 +78,16 @@
                 $mail = iniciarCorreo();
                 $mail->addAddress($fila['Correo']);
                 $mail->Subject = $fila2['asunto'];
-                $message = str_replace("{[nombre]}",$fila['Nombre']." ".$fila['Apellido1']." ".$fila['Apellido2'],$fila2['html']);
-                $message = str_replace("{[fecha]}",date('d/m/Y'),$message);
+                $archivo = file_get_contents("correos/tipo".$fila2['estilo'].".html");
+                $archivo = str_replace("url(\"","url(\"https://".$_SERVER['HTTP_HOST']."/",$archivo);
+                $archivo = str_replace("{[titulo]}",$fila2['asunto'],$archivo);
+                $archivo = str_replace("{[parrafos]}",$fila2['html'],$archivo);
+                $archivo = str_replace("{[nombre]}",$fila['Nombre']." ".$fila['Apellido1']." ".$fila['Apellido2'],$archivo);
+                $archivo = str_replace("{[fecha]}",date('d/m/Y'),$archivo);
+                $archivo = str_replace("{[raíz]}","https://".$_SERVER['HTTP_HOST'],$archivo);
                 $altmessage = str_replace("{[nombre]}",$fila['Nombre']." ".$fila['Apellido1']." ".$fila['Apellido2'],$fila2['TextoCorreo']);
                 $altmessage = str_replace("{[fecha]}",date('d/m/Y'),$altmessage);
-                $mail->Body = $message;
+                $mail->Body = $archivo;
                 $mail->AltBody = $altmessage; 
                 $mail->send();
                 $_SESSION['mensaje'] = "Correo enviado";

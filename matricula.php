@@ -16,7 +16,13 @@
         $mail = iniciarCorreo();
         $mail->addAddress($fila['Correo']);
         $mail->Subject = $fila['@asunto'];
-        $mail->Body = str_replace("{[tiquete]}",$fila['Token2'],$fila['@html']);
+        $archivo = file_get_contents("correos/tipo".$fila['@estilo'].".html");
+        $archivo = str_replace("url(\"","url(\"https://".$_SERVER['HTTP_HOST']."/",$archivo);
+        $archivo = str_replace("{[titulo]}",$fila['@asunto'],$archivo);
+        $archivo = str_replace("{[parrafos]}",$fila['@html'],$archivo);
+        $archivo = str_replace("{[tiquete]}",$fila['Token2'],$archivo);
+        $archivo = str_replace("{[raíz]}","https://".$_SERVER['HTTP_HOST'],$archivo);
+        $mail->Body = $archivo;
         $mail->AltBody = str_replace("{[tiquete]}",$fila['Token2'],$fila['@texto']); 
         $mail->send();
         $_SESSION['mensaje'] = "Matrícula realizada con éxito. El tiquete fué enviado al correo";

@@ -1,6 +1,7 @@
 <?php
 session_start();
 include 'Base.php';
+include 'Correo.php';
 //Coneccion ala base de datos
 $conn = conectar();
 if($conn->connect_error){
@@ -18,7 +19,7 @@ $Genero = $_POST['radio'];
 
 
 //Llamado al procedimiento almacenado
-$sql = "CALL Registro (".$Cedula .", '".$Nombre."', '".$Apellido1."', '".$Apellido2."', '".$Correo."', '".$Genero."', '".$Contra."')";
+$sql = "CALL Registro(".$Cedula.",'".$Nombre."','".$Apellido1."','".$Apellido2."','".$Correo."','".$Genero."','".$Contra."');";
 //Puede implicar fallos no probado tomar valores de token y mensaje
 if($respuesta = $conn->query($sql)){
   $fila = $respuesta->fetch_assoc();
@@ -35,6 +36,8 @@ if($respuesta = $conn->query($sql)){
       $archivo = str_replace("{[titulo]}",$fila['@asunto'],$archivo);
       //Insertar el contenido de correo.
       $archivo = str_replace("{[parrafos]}",$fila['@html'],$archivo);
+      //Insertar link a validar
+      $archivo = str_replace("{[enlace]}","<a href=\"https://".$_SERVER['HTTP_HOST']."/validar.php\" target=\"_blank\">Validar Registro</a>",$archivo);
       //Insertar el tiquete del correo.
       $archivo = str_replace("{[tiquete]}",$fila['Token2'],$archivo);
       //Insertar un link a la página principal del sitio.

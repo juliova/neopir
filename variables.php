@@ -61,91 +61,119 @@
 
       <!--Contenido-->
       <div class="contenido">
-        <div class="instrucciones">
-          <h1>Guía</h1>
-          <ul>
-            <li>
-              Cupo Máximo: Cantidad total de aplicantes posibles por prueba.
-            </li>
-            <li>
-              Cant. Pruebas: Cantidad total de pruebas por mes.
-            </li>
-            <li>
-              Cant. Intentos: Cantidad de veces que el paciente puede realizar la prueba.
-            </li>
-            <li>
-              Horas x prueba: Cantidad de horas que dura la prueba.
-            </li>
-            <li>
-              Cant. Preguntas: Cantidad de preguntas mostradas al paciente por página.
-            </li>
-          </ul>
-        </div>
+        <form action="variables.php" method="post" >
+        
         <div class="seccionMedia">
-            <!--Login-->
+          <?php
+            $cupo = 0;
+            $pruebas = 0;
+            $intentos = 0;
+            $duracion = 0;
+            $preguntas = 0;
+            $con = conectar();
+            $sql = "CALL variables();";
+            if($respuesta = $con->query($sql)){
+                $fila = $respuesta->fetch_assoc();
+                $cupo      = $fila['MaximoCupo'];
+                $pruebas   = $fila['MaximoPruebasxMes'];
+                $intentos  = $fila['MaximoIntentos'];
+                $duracion  = $fila['DuracionPrueba'];
+                $preguntas = $fila['PreguntasxVista'];
+                $correo    = $fila['correoSmtp'];
+                $host      = $fila['hostSmtp'];
+                $seguridad = $fila['seguridadSmtp'];
+                $contraseña= $fila['contraSmtp'];
+                $puerto    = $fila['puertoSmtp'];
+            } else {
+                $_SESSION['mensaje'] = "Error de conexión. Favor intentarlo más tarde";
+                $_SESSION['tipoerror'] = 1;
+            }
+            $con->close();
+          ?>
+          <!--Login-->
+          <div>
             <div>
-                <form action="variables.php" method="post" >
-                    <div>
-                        <h1>Variables</h1>
-                        <?php
-                            $cupo = 0;
-                            $pruebas = 0;
-                            $intentos = 0;
-                            $duracion = 0;
-                            $preguntas = 0;
-                            $con = conectar();
-                            $sql = "CALL variables();";
-                            if($respuesta = $con->query($sql)){
-                                $fila = $respuesta->fetch_assoc();
-                                $cupo      = $fila['MaximoCupo'];
-                                $pruebas   = $fila['MaximoPruebasxMes'];
-                                $intentos  = $fila['MaximoIntentos'];
-                                $duracion  = $fila['DuracionPrueba'];
-                                $preguntas = $fila['PreguntasxVista'];
-                            } else {
-                                $_SESSION['mensaje'] = "Error de conexión. Favor intentarlo más tarde";
-                                $_SESSION['tipoerror'] = 1;
-                            }
-                            $con->close();
-                        ?>
-                        <div class="columna1">
-                        <label>Cupo Máximo</label>
-                        </div>
-                        <div class="columna2">
-                        <input type="number" name="cupo" value="<?php echo $cupo; ?>" required/>
-                        </div>
-                        <div class="columna1">
-                        <label>Cant Pruebas</label>
-                        </div>
-                        <div class="columna2">
-                        <input type="number" name="pruebas" value="<?php echo $pruebas; ?>" required/>
-                        </div>
-                        <div class="columna1">
-                        <label>Cant. Intentos</label>
-                        </div>
-                        <div class="columna2">
-                        <input type="number" name="intentos" value="<?php echo $intentos; ?>" required/>
-                        </div>
-                        <div class="columna1">
-                        <label>Horas x prueba</label>
-                        </div>
-                        <div class="columna2">
-                        <input type="number" name="duracion" value="<?php echo $duracion; ?>" required/>
-                        </div>
-                        <div class="columna1">
-                        <label>Cant. Preguntas</label>
-                        </div>
-                        <div class="columna2">
-                        <input type="number" name="preguntas" value="<?php echo $preguntas; ?>" required/>
-                        </div>
-                    </div>
-                    <button type="submit" name="btn" class="seccionMedia">Modificar</button>
-                </form>
+              <h1>Pruebas</h1>
+              <div class="columna1">
+              <label>Cupo Máximo</label>
+              </div>
+              <div class="columna2">
+              <input type="number" name="cupo" value="<?php echo $cupo; ?>" required/>
+              </div>
+              <div class="columna1">
+              <label># por mes</label>
+              </div>
+              <div class="columna2">
+              <input type="number" name="pruebas" value="<?php echo $pruebas; ?>" required/>
+              </div>
+              <div class="columna1">
+              <label># de intentos</label>
+              </div>
+              <div class="columna2">
+              <input type="number" name="intentos" value="<?php echo $intentos; ?>" required/>
+              </div>
+              <div class="columna1">
+              <label># de Horas</label>
+              </div>
+              <div class="columna2">
+              <input type="number" name="duracion" value="<?php echo $duracion; ?>" required/>
+              </div>
+              
             </div>
+            <button type="submit" name="btn" class="seccionMedia">Modificar</button>
+          </div>
+          <div>
+            <div>
+              <h1>Envío de correos</h1>
+              <div class="columna1">
+              <label>Correo</label>
+              </div>
+              <div class="columna2">
+              <input type="text" name="correo" value="<?php echo $correo ; ?>" required/>
+              </div>
+              <div class="columna1">
+              <label>Host</label>
+              </div>
+              <div class="columna2">
+              <input type="text" name="host" value="<?php echo $host; ?>" required/>
+              </div>
+              <div class="columna1">
+              <label>Seguridad</label>
+              </div>
+              <div class="columna2">
+              <input type="text" name="seguridad" value="<?php echo $seguridad; ?>" required/>
+              </div>
+              <div class="columna1">
+              <label>Contraseña</label>
+              </div>
+              <div class="columna2">
+              <input type="text" name="contraseña" value="<?php echo $contraseña; ?>" required/>
+              </div>
+              <div class="columna1">
+              <label>Puerto</label>
+              </div>
+              <div class="columna2">
+              <input type="number" name="puerto" value="<?php echo $puerto; ?>" required/>
+              </div>
+            </div>
+            <button type="submit" name="btn" class="seccionMedia">Modificar</button>
+          </div>
+          <div>
+            <div>
+              <h1>Preguntas</h1>
+              <div class="columna1">
+              <label># por vista</label>
+              </div>
+              <div class="columna2">
+              <input type="number" name="preguntas" value="<?php echo $preguntas; ?>" required/>
+              </div>
+            </div>
+            <button type="submit" name="btn" class="seccionMedia">Modificar</button>
+          </div>
         </div>
-      </div>
-      <?php include 'error.php'; ?>
+      </form>
+    </div>
+    <?php include 'error.php'; ?>
     </div>
   </body>
-
 </html>

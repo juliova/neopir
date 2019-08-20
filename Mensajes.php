@@ -40,19 +40,26 @@
       //Llamado al procedimiento almacenado cargar
       $sql = "CALL Correo (".$CodigoMensaje. ")";
       if($respuesta = $conn->query($sql)){
-      $fila = $respuesta->fetch_assoc();
-      $Mensaje3 = $fila['TextoCorreo'];
-      $Html = $fila['html'];
-      $Asunto = $fila['asunto'];
-      $Radio = $fila['estilo'];
+        $fila = $respuesta->fetch_assoc();
+        $Mensaje3 = $fila['TextoCorreo'];
+        $Html = $fila['html'];
+        $Asunto = $fila['asunto'];
+        $Radio = $fila['estilo'];
+        $Html = str_replace("<p>","",$Html);
+        $Html = str_replace("</p>","",$Html);
       }else{
         $_SESSION['mensaje'] = "Error de conexión. Favor intentarlo más tarde";
         $_SESSION['tipoerror'] = 1;
       }
     }
     if($_POST['btn'] == 1){
+      $parrafos = explode("\n",$Html);
+      $cuerpo = "";
+      for($i=0;$i<sizeof($parrafos);$i++){
+        $cuerpo .= "<p>".$parrafos[$i]."</p>";
+      }
     //Llamado al procedimiento almacenado guardar
-    $sql = "CALL ModificarMensaje (".$CodigoMensaje. ",'".$Asunto."','".$Html."' ,'".$Mensaje3."',".$Radio.");";
+    $sql = "CALL ModificarMensaje (".$CodigoMensaje. ",'".$Asunto."','".$cuerpo."' ,'".$Mensaje3."',".$Radio.");";
     if($respuesta = $conn->query($sql)){
         $fila = $respuesta->fetch_assoc();
         if($fila['R'] == 0){

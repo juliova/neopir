@@ -121,7 +121,7 @@
                     placeholder="Texto con formato html"><?php if($Html != ""){ echo $Html;} ?></textarea>
                 </div>
                 <div class="columna1">
-                  <label>Texto:</label>
+                  <label>Texto simple:</label>
                 </div>
                 <div class="columna2">
                   <textarea name="mensaje" rows="5" 

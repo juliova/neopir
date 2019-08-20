@@ -4,6 +4,14 @@ var nombres = ["Isabella", "Santiago"];
 var raíz = window.location.href.match(/^.*\//);
 $(document).ready(function(){
   actualizarTiquete();
+  if($("input[name=Radio]").is(":checked")){
+    var archivo = "correos/tipo"+$("input[name=Radio]:checked").val()+".html";
+    $("#previsualizarCorreo").load(archivo, function () {
+      actualizarTiquete();
+      actualizarCorreo();
+    });
+  }
+  
 
   $("input[name=Radio]").change(function(){
     switch($(this).val()){
@@ -37,7 +45,7 @@ $(document).ready(function(){
   });
 
   $("select[name=listbox]").change(function(){
-    actualizarTiquete();
+    //actualizarTiquete();
     actualizarCorreo();
   });
 
@@ -55,7 +63,7 @@ function actualizarCorreo(){
     html = html.replace("{[enlace]}",enlace);
 //  }
   //if($("select[name=listbox]").val() == "4"){
-    html = html.replace("{[nombre]}",nombres[azar(0,1)]+" "+apellidos);
+    html = html.replace("{[nombre]}", nombres[Math.floor((Math.random() * 2))] + " " + apellidos);
     html = html.replace("{[fecha]}",Hoy());
   //}
   $("#correo_titulo").text(asunto);

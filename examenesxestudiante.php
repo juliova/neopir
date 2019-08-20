@@ -100,8 +100,8 @@
             </tr><?php
             }
             
-          }else{
-            if(strcmp ($row["Estado"] ,"APTO"))
+          }
+            if(strcmp ($row["Estado"] ,"Apto"))
             {
              if($veces=$con2->query("CALL veces(".$row["IDEstudiante"].")"))
             
@@ -118,24 +118,24 @@
               <td><?php echo($row["Genero"]);?></td>
             </tr><?php 
           } 
-          }else{
-            if($veces=$con2->query("CALL veces(".$row["IDEstudiante"].")"))
-            
+          }
+          if(strcmp ($row["Estado"] ,"No Apto"))
+          {
+          if($veces=$con2->query("CALL veces(".$row["IDEstudiante"].")"))  
             {
                $ves=$veces->fetch_assoc();?>
-            
-             <tr class="norevisado" onClick=window.location.href='grafico.php?idfecha=<?php echo($_SESSION['fecha']);?>&idestudiante=<?php echo($row["IDEstudiante"]);?>'>
-             <td><?php echo($row["IDEstudiante"]);?></td>
-              <td><?php echo($ves["veces"]);?></td>
-              <td><?php echo($ves["Utilizada"]);?></td>
-              <td><?php echo($row["Utilizada"]);?></td>
-              <td><?php echo($row["Fechar"]);?></td>
-              <td><?php echo($row["Estado"]);?></td>
-              <td><?php echo($row["Genero"]);?></td>
-            </tr><?php 
+               <tr class="norevisado" onClick=window.location.href='grafico.php?idfecha=<?php echo($_SESSION['fecha']);?>&idestudiante=<?php echo($row["IDEstudiante"]);?>'>
+               <td><?php echo($row["IDEstudiante"]);?></td>
+               <td><?php echo($ves["veces"]);?></td>
+               <td><?php echo($ves["Utilizada"]);?></td>
+               <td><?php echo($row["Utilizada"]);?></td>
+               <td><?php echo($row["Fechar"]);?></td>
+               <td><?php echo($row["Estado"]);?></td>
+               <td><?php echo($row["Genero"]);?></td>
+              </tr><?php 
           } 
+      
         }
-        } 
         } ?>
         </table> 
         <div class="flexCentro">

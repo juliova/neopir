@@ -121,7 +121,7 @@
                 <?php
               }
             } else {
-              $_SESSION['mensaje'] = "Error de conexión. Favor intentarlo de nuevo";
+              $_SESSION['mensaje'] = "Error de conexión. Favor intentarlo de nuevos";
               $_SESSION['tipoerror'] = 1;
             }
             $con->close();

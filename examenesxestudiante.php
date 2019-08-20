@@ -134,7 +134,7 @@
                <td><?php echo($row["Genero"]);?></td>
               </tr><?php 
           } 
-      
+          
         }
         } ?>
         </table> 

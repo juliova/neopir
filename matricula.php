@@ -100,7 +100,7 @@
                 </div>
                 <?php
               } else {
-                $_SESSION['mensaje'] = "No es elegible para realizar la matrícula";
+                $_SESSION['mensaje'] = $fila['error'];
                 $_SESSION['tipoerror'] = 1;
               }
             }

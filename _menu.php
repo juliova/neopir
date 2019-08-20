@@ -8,7 +8,7 @@
                 $fila = $respuesta->fetch_assoc();
                 ?>
                 <li>
-                    <a>Bienvenido: <?php echo $fila['Nombre']." ".$fila['Apellido1']; ?></a>
+                    <a href="usuario.php">Bienvenido: <?php echo $fila['Nombre']." ".$fila['Apellido1']; ?></a>
                 </li>
                 <li class="cerrarsesion">
                     <a href="cerrar.php">Cerrar Sesión</a>

@@ -12,7 +12,7 @@
   $Html = "";
   $Asunto = "";
   $archivo = "";
-  $tiempo = date("Y-m-d h:i:s");
+  $tiempo = date("Y-m-d");
   echo $tiempo ."<br>";
        //Obtenemos el Mensaje 5 Recordatorio
   $sql = "CALL Correo (5)";
@@ -49,36 +49,37 @@
   }
   $conn->close();
         //Repetir el proceso para enviar correo a cada uno de los estudiantes
-      while ( $contador <=  $contador2) {
+     // while ( $contador <=  $contador2) {
         $conn = conectar();
         //Procedimiento almacenado donde se consigue el correo del estudiante que deba hacer la prueba al dia siguiente
         $sql = "CALL CorreoAutomatico ('".$tiempo."')";
         //Pasa por cada uno de los resultados
         if($respuesta = $conn->query($sql)){
-          $fila = $respuesta->fetch_assoc($contador);
-          $Correo =  $fila['Correo'];
-          $Fecha =  $fila['Fechar'];
-          $Tiquete =  $fila['Token'];
-          try{
-          //// Codigo de envio de Correo con los datos de arriba
-          $mail = iniciarCorreo();
-          $mail->addAddress($Correo);
-          $mail->Subject=$Asunto;
-          $Mensaje4 = $archivo;
-          $Mensaje4 = str_replace("{[fecha]}",date("d/m/Y",strtotime($Fecha)),$Mensaje4);
-          $Mensaje4 = str_replace("{[hora]}",date("h:i:s A",strtotime($Fecha)),$Mensaje4);
-          $Mensaje4 = str_replace("{[tiquete]}",$Tiquete,$Mensaje4);
-          $Mensaje5 = $Mensaje3;
-          $Mensaje5 = str_replace("{[fecha]}",date("d/m/Y",strtotime($Fecha)),$Mensaje5);
-          $Mensaje5 = str_replace("{[hora]}",date("h:i:s A",strtotime($Fecha)),$Mensaje5);
-          $Mensaje5 = str_replace("{[tiquete]}",$Tiquete,$Mensaje5);
-          $mail->Body = $Mensaje4;
-          $mail->AltBody = $Mensaje5; 
-          $mail->send();
-        } catch (Exception $e){
-        }	catch (\Exception $e){
-        }
-          echo $Mensaje4;
+          while($fila = $respuesta->fetch_assoc()){
+            $Correo =  $fila['Correo'];
+            $Fecha =  $fila['Fechar'];
+            $Tiquete =  $fila['Token'];
+            try{
+            //// Codigo de envio de Correo con los datos de arriba
+            $mail = iniciarCorreo();
+            $mail->addAddress($Correo);
+            $mail->Subject=$Asunto;
+            $Mensaje4 = $archivo;
+            $Mensaje4 = str_replace("{[fecha]}",date("d/m/Y",strtotime($Fecha)),$Mensaje4);
+            $Mensaje4 = str_replace("{[hora]}",date("h:i:s A",strtotime($Fecha)),$Mensaje4);
+            $Mensaje4 = str_replace("{[tiquete]}",$Tiquete,$Mensaje4);
+            $Mensaje5 = $Mensaje3;
+            $Mensaje5 = str_replace("{[fecha]}",date("d/m/Y",strtotime($Fecha)),$Mensaje5);
+            $Mensaje5 = str_replace("{[hora]}",date("h:i:s A",strtotime($Fecha)),$Mensaje5);
+            $Mensaje5 = str_replace("{[tiquete]}",$Tiquete,$Mensaje5);
+            $mail->Body = $Mensaje4;
+            $mail->AltBody = $Mensaje5; 
+            $mail->send();
+            } catch (Exception $e){
+            }	catch (\Exception $e){
+            }
+            echo $Mensaje4;
+          }
         }else{
           echo 'error en CorreoAutomatico';
         }
@@ -87,7 +88,6 @@
 
         //Contador aumenta +1 por cada loop hasta alcansar a contador 2
            $contador++;
-}
 
 
 

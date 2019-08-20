@@ -2,6 +2,33 @@
   session_start();
   include 'Base.php';
   include '_menu.php';
+  if(isset($_SESSION['Rol'])){
+    if($_SESSION['Rol']!=3){
+      header("Location: index.php");
+    }
+  } else {
+    header("Location: index.php");
+  }
+  if(isset($_POST['btn'])){
+    $conn= conectar();
+    $sql = "Call ActualizarCorreo(".$_SESSION['usuario'].",'".$_POST['correo']."');";
+    if($respuesta = $conn->query($sql)){
+      $_SESSION['mensaje'] = "Correo actualizado con exito.";
+      $_SESSION['tipoerror'] = 0;
+    }else{
+      $_SESSION['mensaje'] = "error al actualizar el correo.";
+      $_SESSION['tipoerror'] = 1;
+    }
+  $conn->close();
+  }
+  $correo ="";
+  $conn= conectar();
+  $sql = "Call NombreCorreo(". $_SESSION['usuario'] .");";
+  if($respuesta = $conn->query($sql)){
+    $fila = $respuesta->fetch_assoc();
+    $correo=$fila['Correo'];
+  }
+  $conn->close();
 ?>
 <!DOCTYPE html>
 <html>
@@ -41,92 +68,50 @@
 
           <!--Login-->
           <div>
-            <form action="rlogin.php" method="post" >
+            <form action="usuario.php" method="post" >
               <div>
 
-                <h1>Login</h1>
+                <h1>Actualizar correo</h1>
                 <div class="columna1">
-                  <label>Cédula</label>
+                  <label>Correo</label>
                 </div>
                 <div class="columna2">
-                  <input type="number" name="cedula" required/>
-                </div>
-                <div class="columna1">
-                  <label>Contraseña</label>
-                </div>
-                <div class="columna2">
-                  <input type="password" name="contra" required/>
+                  <input type="text" name="correo" value="<?php echo $correo ?>" required/>
                 </div>
               </div>
-              <button class="seccionMedia">Iniciar Sesion</button>
+              <button type="input" value="1" name="btn" class="seccionMedia">Actualizar</button>
             </form>
           </div>
 
           <!--Registro-->
           <div>
-            <form action="registro.php" method="post">
               <div>
-                <h1>Registro</h1>
-                <div class="columna1">
-                  <label>Cédula:</label>
+                <?php 
+          $con = conectar();
+          $sql = "CALL MatriculaUsuario(".$_SESSION['usuario'].",'".date("Y-m-d h:i:s")."');";
+          if($respuesta = $con->query($sql)){
+              $fila = $respuesta->fetch_assoc()
+                ?>
+                <div class="ficha">
+                  <div class="head">
+                    <?php
+                      echo date("d/m/Y",strtotime($fila['Fechar'])); 
+                    ?>
+                  </div>
+                  <div class="cuerpo">
+                    <ul>
+                      <li>Hora Inicio: <?php echo date("h:i:s A",strtotime($fila['Fechar'])); ?></li>
+                      <li>Hora Final: <?php echo date("h:i:s A",strtotime($fila['fechaF'])); ?></li>
+                    </ul>
+                  </div>
                 </div>
-                <div class="columna2">
-                  <input type="number" name="cedula2" required/>
-                </div>
-                <div class="columna1">
-                  <label>Nombre:</label>
-                </div>
-                <div class="columna2">
-                  <input type="text" name="nombre" required/>
-                </div>
-                <div class="columna1">
-                  <label>Primer Apellido:</label>
-                </div>
-                <div class="columna2">
-                  <input type="text" name="apellidos1" required/>
-                </div>
-                <div class="columna1">
-                  <label>Segundo Apellido:</label>
-                </div>
-                <div class="columna2">
-                  <input type="text" name="apellidos2" required/>
-                </div>
-                <div class="columna1">
-                  <label>Correo:</label>
-                </div>
-                <div class="columna2">
-                  <input type="text" name="correo" required/>
-                </div>
-                <div class="columna1">
-                  <label>Contraseña:</label>
-                </div>
-                <div class="columna2">
-                  <input type="password" name="contra2" required/>
-                </div>
-                <div class="columna1">
-                  <label></label>
-                </div>
-                <div class="columna2">
-                  <input type="password" name="contraC" required placeholder="Confirmar contraseña"/>
-                </div>
-                <div class="columna1">
-                  <label>Género:</label>
-                </div>
-
-                <div class="columna2">
-                  <label class="contenedorRadioCheck">
-                    <input value= "Hombre" type="radio" name="radio" required>
-                    <span class="radioCheck radioH"></span>
-                  </label>
-                  <label class="contenedorRadioCheck">
-                    <input value = "Mujer" type="radio" name="radio" required>
-                    <span class="radioCheck radioM"></span>
-                  </label>
-                </div>
-
+                <?php
+              } else {
+            $_SESSION['mensaje'] = "Error de conexión. Favor intentarlo de nuevo";
+            $_SESSION['tipoerror'] = 1;
+          }
+        ?>
               </div>
-              <button id="registro" disabled class="posicionDerecha">Registro</button>
-            </form>
           </div>
         </div>
       </div>

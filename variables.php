@@ -16,7 +16,9 @@
   if(isset($_POST['btn'])){
     $con = conectar();
     $sql = "CALL Modvariables(".$_POST['cupo'].",".$_POST['pruebas'].",".
-                                $_POST['intentos'].",".$_POST['duracion'].",".$_POST['preguntas'].");";
+            $_POST['intentos'].",".$_POST['duracion'].",".$_POST['preguntas'].",
+            '".$_POST['correo']."','".$_POST['host']."','".$_POST['seguridad']."',
+            '".$_POST['contraseña']."',".$_POST['puerto'].");";
     if($respuesta = $con->query($sql)){
         $_SESSION['mensaje'] = "Modificación exitosa";
         $_SESSION['tipoerror'] = 0;

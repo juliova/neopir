@@ -33,6 +33,7 @@ a:visited{
 .contenido{
   background-color: #f3f9fb;
   overflow: auto;
+  padding-bottom: 10px; 
 }
 
 /*Se separa el contenido del menu de sus bordes */
@@ -599,7 +600,7 @@ textarea{
   background-color: #FF6961;
 }
 .colorporrevisar{
-  background-color: #FDFD96;
+  background-color: #FDFD96 !important;
 }
 
 /*Cuando el menu de celular se despliega pinta el icono de blanco y el
@@ -725,7 +726,7 @@ textarea{
   left: 50%;
   transform: translateX(-50%);
   animation: animensaje;
-  animation-duration: 5s;
+  animation-duration: 6s;
 }
 
 
@@ -1017,11 +1018,6 @@ ul {
     width: 10px;
     height: 10px;
     margin-top: 5px;
-  }
-
-  /*Los botones de la página de gráficos los acomodamos de modo horizontal.*/
-  .botonesGraficos{
-    flex-direction: row;
   }
 
   /*Damos tamaño al menu*/

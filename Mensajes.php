@@ -18,6 +18,7 @@
   $Mensaje3 = "";
   $Html = "";
   $Asunto = "";
+  $Radio = 0;
   //Obtencion de los datos de los campos
   if(isset($_POST['listbox'])){
     $CodigoMensaje = $_POST['listbox'];
@@ -31,23 +32,34 @@
   if(isset($_POST['asunto'])){
     $Asunto = $_POST['asunto'];
   }
+  if(isset($_POST['Radio'])){
+    $Radio = $_POST['Radio'];
+  }
   if(isset($_POST['btn'])){
     if($_POST['btn'] == 2){
       //Llamado al procedimiento almacenado cargar
       $sql = "CALL Correo (".$CodigoMensaje. ")";
       if($respuesta = $conn->query($sql)){
-      $fila = $respuesta->fetch_assoc();
-      $Mensaje3 = $fila['TextoCorreo'];
-      $Html = $fila['html'];
-      $Asunto = $fila['asunto'];
+        $fila = $respuesta->fetch_assoc();
+        $Mensaje3 = $fila['TextoCorreo'];
+        $Html = $fila['html'];
+        $Asunto = $fila['asunto'];
+        $Radio = $fila['estilo'];
+        $Html = str_replace("<p>","",$Html);
+        $Html = str_replace("</p>","",$Html);
       }else{
         $_SESSION['mensaje'] = "Error de conexión. Favor intentarlo más tarde";
         $_SESSION['tipoerror'] = 1;
       }
     }
     if($_POST['btn'] == 1){
+      $parrafos = explode("\n",$Html);
+      $cuerpo = "";
+      for($i=0;$i<sizeof($parrafos);$i++){
+        $cuerpo .= "<p>".$parrafos[$i]."</p>";
+      }
     //Llamado al procedimiento almacenado guardar
-    $sql = "CALL ModificarMensaje (".$CodigoMensaje. ",'".$Asunto."','".$Html."' ,'".$Mensaje3. "');";
+    $sql = "CALL ModificarMensaje (".$CodigoMensaje. ",'".$Asunto."','".$cuerpo."' ,'".$Mensaje3."',".$Radio.");";
     if($respuesta = $conn->query($sql)){
         $fila = $respuesta->fetch_assoc();
         if($fila['R'] == 0){
@@ -121,7 +133,7 @@
                     placeholder="Texto con formato html"><?php if($Html != ""){ echo $Html;} ?></textarea>
                 </div>
                 <div class="columna1">
-                  <label>Texto:</label>
+                  <label>Texto simple:</label>
                 </div>
                 <div class="columna2">
                   <textarea name="mensaje" rows="5" 
@@ -149,7 +161,7 @@
                           echo "<option value=4>Final de Examen</option>";
                           break;
                         case 5: 
-                          echo "<option value=4>Recordatorio Matricula</option>";
+                          echo "<option value=5>Recordatorio Matricula</option>";
                           break;
                         default:
                           break;
@@ -167,15 +179,15 @@
                 </div>
                 <div class="columna2">
                   <label class="contenedorRadio">
-                    <input type="radio" name="Radio" value="1"/>
+                    <input type="radio" name="Radio" value="1" <?php if($Radio==1){echo "checked";} ?> />
                     <span class="botonRadio uno"></span>
                   </label>
                   <label class="contenedorRadio">
-                    <input type="radio" name="Radio" value="2"/>
+                    <input type="radio" name="Radio" value="2" <?php if($Radio==2){echo "checked";} ?> />
                     <span class="botonRadio dos"></span>
                   </label>
                   <label class="contenedorRadio">
-                    <input type="radio" name="Radio" value="3"/>
+                    <input type="radio" name="Radio" value="3" <?php if($Radio==3){echo "checked";} ?> />
                     <span class="botonRadio tres"></span>
                   </label>
                 </div>

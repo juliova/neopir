@@ -88,10 +88,10 @@
             {
               $ves=$veces->fetch_assoc();
             ?>
-            <tr class="porrevisar" onClick=window.location.href='grafico.php?idfecha=<?php echo($_SESSION['fecha']);?>&idestudiante=<?php echo($row["IDEstudiante"]);?>'>
+            <tr class="colorporrevisar" onClick=window.location.href='grafico.php?idfecha=<?php echo($_SESSION['fecha']);?>&idestudiante=<?php echo($row["IDEstudiante"]);?>'>
               <td><?php echo($row["IDEstudiante"]);?></td>
               <td><?php echo($ves["veces"]);?></td>
-              <td><?php echo($ves["Utilizada"]);?></td>
+              <td><?php echo($row["Utilizada"]);?></td>
               <td><?php echo($row["Utilizada"]);?></td>
               <td><?php echo($row["Fechar"]);?></td>
               <td><?php echo($row["Estado"]);?></td>
@@ -182,7 +182,17 @@
                   try{
                     $mail->addAddress($cor['Correo']);
                     $mail->Subject = $cor['@asunto'];
-                    $mail->Body = str_replace("{[resultado]}",$cor['Estado'],$cor['@html']);
+                    //Llamar plantilla de html.
+                    $archivo = file_get_contents("correos/tipo".$cor['@estilo'].".html"); 
+                    $archivo = str_replace("url(\"","url(\"https://".$_SERVER['HTTP_HOST']."/",$archivo);
+                    $archivo = str_replace("{[titulo]}",$cor['@asunto'],$archivo);
+                    $archivo = str_replace("{[parrafos]}",$cor['@html'],$archivo);
+                    $archivo = str_replace("{[tiquete]}","",$archivo);
+                    $archivo = str_replace("id=\"correo_tiquete\"","",$archivo);
+                    $archivo = str_replace("id=\"correo_tiquete_contenido\"","",$archivo);
+                    $archivo = str_replace("{[resultado]}",$cor['Estado'],$archivo);
+                    $archivo = str_replace("{[raíz]}","https://".$_SERVER['HTTP_HOST'],$archivo);
+                    $mail->Body = $archivo;
                     $mail->AltBody = str_replace("{[resultado]}",$cor['Estado'],$cor['@texto']); 
                     $mail->send();
                     $corr=$corr + 0;
@@ -196,7 +206,7 @@
                 if( $corr==0 ){
                   $_SESSION['tipoerror'] = 0;
                   $_SESSION['mensaje'] = "La prueba ha sido formalizada con exito";
-                  header("Location: examenesxfecha.php");
+                 // header("Location: examenesxfecha.php");
                 }else{
                   $_SESSION['mensaje'] = "No pudieron enviar todos los correos debido a un fallo con el servidor. Intentelo mas tarde";
                   $_SESSION['tipoerror'] = 1;

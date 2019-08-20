@@ -176,7 +176,7 @@
       $_SESSION['tipoerror'] = 1;
     }
     else{
-      $insertar ="INSERT INTO prueba (IDPrueba,Fechar,fechaF) VALUES (1,'$fechaf','$fechaFinal')";
+      $insertar ="INSERT INTO prueba (Fechar,fechaF) VALUES ('$fechaf','$fechaFinal')";
       $ejecutar = mysqli_query($con,$insertar);
       $_SESSION['mensaje'] = "La fecha se ingreso correctamente";
       $_SESSION['tipoerror'] = 0;

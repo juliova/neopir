@@ -84,6 +84,9 @@
                 $archivo = str_replace("{[parrafos]}",$fila2['html'],$archivo);
                 $archivo = str_replace("{[nombre]}",$fila['Nombre']." ".$fila['Apellido1']." ".$fila['Apellido2'],$archivo);
                 $archivo = str_replace("{[fecha]}",date('d/m/Y'),$archivo);
+                $archivo = str_replace("{[tiquete]}","",$archivo);
+                $archivo = str_replace("id=\"correo_tiquete\"","",$archivo);
+                $archivo = str_replace("id=\"correo_tiquete_contenido\"","",$archivo);
                 $archivo = str_replace("{[raíz]}","https://".$_SERVER['HTTP_HOST'],$archivo);
                 $altmessage = str_replace("{[nombre]}",$fila['Nombre']." ".$fila['Apellido1']." ".$fila['Apellido2'],$fila2['TextoCorreo']);
                 $altmessage = str_replace("{[fecha]}",date('d/m/Y'),$altmessage);
